@@ -21,14 +21,14 @@ export function TextInput( {
 			</label>
 			<input
 				type="text"
-				autoFocus={ autoFocus } 
+				autoFocus={ autoFocus }
 				name={ name }
 				id={ name }
 				value={ value }
-				onChange={ ( e ) => onChange( e.target.value ) } 
+				onChange={ ( e ) => onChange( e.target.value ) }
 			/>
-			{ 
-				helpText && 
+			{
+				helpText &&
 				<span className="help-text"> { helpText } </span>
 			}
 		</React.Fragment>
