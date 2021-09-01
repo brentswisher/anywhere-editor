@@ -1,3 +1,4 @@
+export { FieldLabel } from './FieldLabel';
 export { default as ColorPicker } from './ColorPicker';
 export { default as ContentEditor } from './ContentEditor';
 export { default as ImageInput } from './ImageInput';
