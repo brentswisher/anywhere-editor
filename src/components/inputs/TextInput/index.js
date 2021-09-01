@@ -7,11 +7,10 @@ export function TextInput( {
 	value,
 	onChange,
 	labelHidden,
-	helpText
+	helpText,
 } ) {
-
 	let labelClass = '';
-	if( labelHidden ) {
+	if ( labelHidden ) {
 		labelClass += 'sr-only';
 	}
 	return (
@@ -27,10 +26,7 @@ export function TextInput( {
 				value={ value }
 				onChange={ ( e ) => onChange( e.target.value ) }
 			/>
-			{
-				helpText &&
-				<span className="help-text"> { helpText } </span>
-			}
+			{ helpText && <span className="help-text"> { helpText } </span> }
 		</React.Fragment>
 	);
 }

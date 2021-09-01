@@ -49,21 +49,30 @@ export default function ColorPicker( props ) {
 
 	return (
 		<div>
-			<label htmlFor={ props.fieldName }>
-				{ props.fieldLabel }
-			</label>
+			<label htmlFor={ props.fieldName }>{ props.fieldLabel }</label>
 			<div className="row">
-				<div className="small-1 column" style={ { backgroundColor: colors[ currentValue ], height: 2.25 + 'em' } }>
-				</div>
+				<div
+					className="small-1 column"
+					style={ {
+						backgroundColor: colors[ currentValue ],
+						height: 2.25 + 'em',
+					} }
+				></div>
 				<div className="small-11 column">
-					<select name={ props.fieldName } id={ props.fieldName } value={ currentValue } onChange={ ( e ) => props.onChange( e.target.value ) }>
-						{
-							Object.keys( colors ).map( ( item, index ) =>
-								(
-									<option value={ item.value } key={ props.fieldName + '_' + index }>{ item }</option>
-								),
-							)
-						}
+					<select
+						name={ props.fieldName }
+						id={ props.fieldName }
+						value={ currentValue }
+						onChange={ ( e ) => props.onChange( e.target.value ) }
+					>
+						{ Object.keys( colors ).map( ( item, index ) => (
+							<option
+								value={ item.value }
+								key={ props.fieldName + '_' + index }
+							>
+								{ item }
+							</option>
+						) ) }
 					</select>
 				</div>
 			</div>

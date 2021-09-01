@@ -11,21 +11,10 @@ export default function ContentEditor( props ) {
 			],
 		},
 		//Which elements to allow in the editor
-		formats = [
-			'bold',
-			'italic',
-			'list',
-			'bullet',
-			'link',
-		]
-	;
+		formats = [ 'bold', 'italic', 'list', 'bullet', 'link' ];
 	return (
 		<React.Fragment>
-			{ props.fieldLabel &&
-				<strong>
-					{ props.fieldLabel }
-				</strong>
-			}
+			{ props.fieldLabel && <strong>{ props.fieldLabel }</strong> }
 			<ReactQuill
 				value={ props.value || '' }
 				onChange={ ( e ) => props.onChange( e ) }
