@@ -16,7 +16,7 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"test:nowatch": "CI=true react-scripts test",
+		"test:nowatch": "CI=true react-scripts test --passWithNoTests",
 		"lint": "eslint ./src/",
 		"lint:fix": "eslint --fix ./src/",
 		"prettier": "prettier --write .",
@@ -30,10 +30,10 @@
 		]
 	},
 	"lint-staged": {
-		"src/**/*.{ts,css,html}": [
-			"lint:fix",
-			"prettier",
-			"test:nowatch"
+		"src/**/*.{js,ts,css,html}": [
+			"npm run lint:fix",
+			"npm run prettier",
+			"npm run test:nowatch"
 		]
 	},
 	"browserslist": {
