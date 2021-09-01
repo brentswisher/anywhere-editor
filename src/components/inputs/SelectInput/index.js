@@ -1,24 +1,32 @@
 import React from 'react';
-
-export default function SelectInput( props ) {
+import { FieldLabel } from '../';
+export default function SelectInput( {
+	label,
+	name,
+	options,
+	value,
+	onChange,
+	labelHidden,
+	helpText,
+} ) {
 	return (
 		<div>
-			<label htmlFor={ props.fieldName }>{ props.fieldLabel }</label>
+			<FieldLabel htmlFor={ name } visuallyHidden={ labelHidden }>
+				{ label }
+			</FieldLabel>
 			<select
-				name={ props.fieldName }
-				id={ props.fieldName }
-				value={ props.value }
-				onChange={ ( e ) => props.onChange( e.target.value ) }
+				name={ name }
+				id={ name }
+				value={ value }
+				onChange={ ( e ) => onChange( e.target.value ) }
 			>
-				{ props.options.map( ( item, index ) => (
-					<option
-						value={ item.value }
-						key={ props.fieldName + '_' + index }
-					>
+				{ options.map( ( item, index ) => (
+					<option value={ item.value } key={ item.value.toString() }>
 						{ item.title }
 					</option>
 				) ) }
 			</select>
+			{ helpText && <span className="help-text"> { helpText } </span> }
 		</div>
 	);
 }
