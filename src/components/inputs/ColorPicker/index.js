@@ -1,7 +1,7 @@
 import React from 'react';
 import { FieldLabel } from '../';
 
-export default function ColorPicker( {
+export function ColorPicker( {
 	value,
 	name,
 	colors,
@@ -58,3 +58,5 @@ ColorPicker.defaultProps = {
 	},
 	label: 'Color:',
 };
+
+export default ColorPicker;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FieldLabel } from '../';
-export default function SelectInput( {
+export function SelectInput( {
 	label,
 	name,
 	options,
@@ -30,3 +30,5 @@ export default function SelectInput( {
 		</div>
 	);
 }
+
+export default SelectInput;
