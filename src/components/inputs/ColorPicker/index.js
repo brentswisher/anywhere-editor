@@ -1,74 +1,39 @@
 import React from 'react';
+import { FieldLabel } from '../';
 
-export default function ColorPicker( props ) {
-	const colors = {
-			black: '#0a0a0a',
-			brown: '#6F4923',
-			cyprus: '#003333',
-			eggplant: '#990066',
-			'forest-green': '#003400',
-			grape: '#990099',
-			gray: '#757575',
-			green: '#336600',
-			'gvsu-blue': '#0065a4',
-			maroon: '#660000',
-			navy: '#000066',
-			'nin-blue': '#0032A0',
-			'nin-purple': '#660099',
-			olive: '#666600',
-			pink: '#cc0066',
-			plum: '#610061',
-			red: '#cc0000',
-			'red-brown': '#993300',
-			'red-orange': '#cc3300',
-			'rgb-blue': '#0000FF',
-			'rgb-purple': '#6200FF',
-			rust: '#996600',
-			teal: '#006666',
-		},
-		colorAliases = {
-			smalt: 'nin-blue',
-			'navy-blue': 'navy',
-			mosque: 'teal',
-			indigo: 'nin-purple',
-			'dark-magenta': 'grape',
-			'mardigras-purple': 'plum',
-			ruby: 'pink',
-			'freespeech-red': 'red',
-			'harleydavidson-orange': 'red-orange',
-			'golden-brown': 'rust',
-			'verdun-green': 'green',
-		};
-
-	let currentValue = 'black';
-	if ( props.value in colors ) {
-		currentValue = props.value;
-	} else if ( props.value in colorAliases ) {
-		currentValue = colorAliases[ props.value ];
-	}
-
+export default function ColorPicker( {
+	value,
+	name,
+	colors,
+	label,
+	onChange,
+	labelHidden,
+	helpText,
+} ) {
 	return (
 		<div>
-			<label htmlFor={ props.fieldName }>{ props.fieldLabel }</label>
-			<div className="row">
+			<FieldLabel htmlFor={ name } visuallyHidden={ labelHidden }>
+				{ label }
+			</FieldLabel>
+			<div className="color-picker" style={ { display: 'flex' } }>
 				<div
-					className="small-1 column"
+					className="color-picker-sample"
 					style={ {
-						backgroundColor: colors[ currentValue ],
+						backgroundColor: colors[ value ],
 						height: 2.25 + 'em',
 					} }
 				></div>
-				<div className="small-11 column">
+				<div>
 					<select
-						name={ props.fieldName }
-						id={ props.fieldName }
-						value={ currentValue }
-						onChange={ ( e ) => props.onChange( e.target.value ) }
+						name={ name }
+						id={ name }
+						value={ value }
+						onChange={ ( e ) => onChange( e.target.value ) }
 					>
 						{ Object.keys( colors ).map( ( item, index ) => (
 							<option
 								value={ item.value }
-								key={ props.fieldName + '_' + index }
+								key={ name + '_' + index }
 							>
 								{ item }
 							</option>
@@ -76,6 +41,20 @@ export default function ColorPicker( props ) {
 					</select>
 				</div>
 			</div>
+			{ helpText && <span className="help-text"> { helpText } </span> }
 		</div>
 	);
 }
+
+ColorPicker.defaultProps = {
+	value: 'black',
+	name: 'colorPicker',
+	colors: {
+		black: '#0a0a0a',
+		brown: '#6F4923',
+		gray: '#757575',
+		'gvsu-blue': '#0065a4',
+		teal: '#006666',
+	},
+	label: 'Color:',
+};
