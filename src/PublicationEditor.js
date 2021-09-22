@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-
-import { TextInput, SelectInput } from './components/inputs';
+import { TextInput, SelectInput, ContentEditor } from './components/inputs';
 
 export default function PublicationEditor( props ) {
 	const [ exampleText, setExampleText ] = useState( 'test' ),
-		[ position, setPosition ] = useState( 'left' );
+		[ position, setPosition ] = useState( 'left' ),
+		[ richContent, setRichContent ] = useState( 'Lorem Ipsum' );
 	return (
 		<div>
 			<TextInput
@@ -15,8 +15,8 @@ export default function PublicationEditor( props ) {
 			/>
 
 			<SelectInput
-				fieldName="position"
-				fieldLabel="Alignment"
+				name="position"
+				label="Alignment"
 				value={ position }
 				options={ [
 					{
@@ -33,6 +33,12 @@ export default function PublicationEditor( props ) {
 					},
 				] }
 				onChange={ setPosition }
+			/>
+			<ContentEditor
+				name="content"
+				label="Section Content:"
+				value={ richContent }
+				onChange={ setRichContent }
 			/>
 		</div>
 	);

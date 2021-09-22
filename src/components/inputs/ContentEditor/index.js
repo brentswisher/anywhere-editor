@@ -1,26 +1,31 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
-export default function ContentEditor( props ) {
-	const modules = {
-			toolbar: [
-				[ 'bold', 'italic' ],
-				[ { list: 'ordered' }, { list: 'bullet' } ],
-				[ 'link' ],
-				[ 'clean' ],
-			],
-		},
-		//Which elements to allow in the editor
-		formats = [ 'bold', 'italic', 'list', 'bullet', 'link' ];
+export function ContentEditor( { label, value, toolbar, formats, onChange } ) {
+	const defaultToolbar = [
+			[ 'bold', 'italic' ],
+			[ { list: 'ordered' }, { list: 'bullet' } ],
+			[ 'link' ],
+			[ 'clean' ],
+		],
+		//Formats are which html elements to allow in the editor
+		defaultFormats = [ 'bold', 'italic', 'list', 'bullet', 'link' ],
+		modules = {
+			toolbar: toolbar || defaultToolbar,
+		};
 	return (
 		<React.Fragment>
-			{ props.fieldLabel && <strong>{ props.fieldLabel }</strong> }
+			{ label && <strong>{ label }</strong> }
 			<ReactQuill
-				value={ props.value || '' }
-				onChange={ ( e ) => props.onChange( e ) }
+				value={ value || '' }
+				onChange={ ( e ) => onChange( e ) }
 				modules={ modules }
-				formats={ formats }
+				formats={ formats || defaultFormats }
+				theme="snow"
 			/>
 		</React.Fragment>
 	);
 }
+
+export default ContentEditor;
