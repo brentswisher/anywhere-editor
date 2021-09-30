@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import FieldLabel from '../';
+import FieldLabel from '..';
 it( 'should render sucessfully', () => {
 	const { container } = render(
 			<FieldLabel htmlFor="firstName">First Name:</FieldLabel>

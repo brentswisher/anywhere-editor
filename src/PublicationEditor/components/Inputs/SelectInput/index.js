@@ -1,5 +1,5 @@
 import React from 'react';
-import { FieldLabel } from '../';
+import { FieldLabel } from '..';
 export function SelectInput( {
 	label,
 	name,

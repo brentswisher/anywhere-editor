@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import ContentEditor from '../';
+import RichTextInput from '..';
 it( 'should render sucessfully', () => {
 	const { container } = render(
-			<ContentEditor
+			<RichTextInput
 				name="pageContent"
 				value="This is an editor instance"
 				label="Content:"
@@ -18,7 +18,7 @@ it( 'should render sucessfully', () => {
 
 it( 'should render the toolbar passed in', () => {
 	const { container } = render(
-			<ContentEditor
+			<RichTextInput
 				name="pageContent"
 				value="This is an editor instance"
 				label="Content:"

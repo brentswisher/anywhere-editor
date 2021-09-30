@@ -1,9 +1,10 @@
-import PublicationEditor from './PublicationEditor.js';
+import PublicationEditor from './PublicationEditor';
 
 function App() {
+	const savedContent = [];
 	return (
 		<div className="container">
-			<PublicationEditor />
+			<PublicationEditor content={ savedContent } />
 		</div>
 	);
 }

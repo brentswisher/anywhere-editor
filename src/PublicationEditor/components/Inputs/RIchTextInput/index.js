@@ -2,7 +2,7 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-export function ContentEditor( { label, value, toolbar, formats, onChange } ) {
+export function RichTextInput( { label, value, toolbar, formats, onChange } ) {
 	const defaultToolbar = [
 			[ 'bold', 'italic' ],
 			[ { list: 'ordered' }, { list: 'bullet' } ],
@@ -28,4 +28,4 @@ export function ContentEditor( { label, value, toolbar, formats, onChange } ) {
 	);
 }
 
-export default ContentEditor;
+export default RichTextInput;
