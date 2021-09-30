@@ -58,7 +58,7 @@ export function PublicationEditor( { content } ) {
 		// }
 	];
 
-	return <LayoutEditor content={ content } controls={ controls } />;
+	return <LayoutEditor controls={ controls } />;
 }
 
 export default PublicationEditor;

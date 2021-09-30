@@ -29,7 +29,7 @@ module.exports = {
 		'no-useless-constructor': 'error',
 		'no-var': 'error',
 		'object-shorthand': 'error',
-		'one-var': [ 'error', 'always' ],
+		'one-var': [ 'error', 'consecutive' ],
 		'prefer-const': [ 'error', { destructuring: 'all' } ],
 		quotes: [
 			'error',
@@ -67,4 +67,6 @@ module.exports = {
 			},
 		},
 	],
+    ignorePatterns: ['**/*.css'],
+
 };
