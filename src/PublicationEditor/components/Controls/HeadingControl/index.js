@@ -1,0 +1,95 @@
+import React, { useState } from 'react';
+import { TextInput } from '../../Inputs';
+import EditModal from '../../EditModal';
+
+export function HeadingControl( {
+	name,
+	currentLevel,
+	currentText,
+	setData,
+	required,
+} ) {
+	const [ editing, setEditing ] = useState( false );
+
+	function toggleEditable() {
+		setEditing( ! editing );
+	}
+
+	if ( editing ) {
+		return (
+			<HeadingEditor
+				text={ currentText }
+				level={ currentLevel }
+				required={ required }
+				setData={ setData }
+				toggleEditable={ toggleEditable }
+				name={ name }
+			/>
+		);
+	}
+	return (
+		<HeadingDisplay
+			text={ currentText }
+			level={ currentLevel }
+			name={ name }
+			onClick={ () => toggleEditable() }
+		/>
+	);
+}
+
+HeadingControl.defaultProps = {
+	currentText: '',
+	currentLevel: 1,
+	required: false,
+};
+
+function HeadingEditor( props ) {
+	const [ text, setText ] = useState( props.text ),
+		// [ level, setLevel ] = useState( props.level ),
+		[ error, setError ] = useState( '' ),
+		saveChanges = ( e ) => {
+			e.preventDefault();
+			if ( props.required && ! text.length ) {
+				setError( 'Please enter an article heading to continue' );
+			} else {
+				props.setData( { text, level: 1 } );
+				setError( '' );
+			}
+		},
+		cancelChanges = () => props.toggleEditable();
+
+	return (
+		<EditModal
+			saveChanges={ saveChanges }
+			cancelChanges={ cancelChanges }
+			error={ error }
+		>
+			<TextInput
+				name={ props.name + '_text' }
+				fieldLabel="Heading Text"
+				autoFocus={ true }
+				value={ text }
+				onChange={ setText }
+			/>
+		</EditModal>
+	);
+}
+
+function HeadingDisplay( props ) {
+	const validHeadings = [ 1, 2, 3, 4 ],
+		cssClasses = [ 'article-title', 'article-subtitle', '', '' ],
+		HeadingEl =
+			'h' + ( validHeadings.indexOf( props.level ) ? props.level : '1' );
+	return (
+		<HeadingEl
+			tabIndex="0"
+			onClick={ props.onClick }
+			className={ cssClasses[ props.level - 1 ] }
+		>
+			{ props.text ? props.text : '[Enter heading text here]' }
+			<input type="hidden" name={ props.name } value={ props.text } />
+		</HeadingEl>
+	);
+}
+
+export default HeadingControl;

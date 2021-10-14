@@ -1,0 +1,1 @@
+export { HeadingControl } from './HeadingControl';
