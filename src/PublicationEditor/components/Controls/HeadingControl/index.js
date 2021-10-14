@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import { TextInput } from '../../Inputs';
 import EditModal from '../../EditModal';
 
-export function HeadingControl( {
-	name,
-	currentLevel,
-	currentText,
-	setData,
-	required,
-} ) {
+export function HeadingControl( { name, level, text, setData, required } ) {
 	const [ editing, setEditing ] = useState( false );
 
 	function toggleEditable() {
@@ -18,8 +12,8 @@ export function HeadingControl( {
 	if ( editing ) {
 		return (
 			<HeadingEditor
-				text={ currentText }
-				level={ currentLevel }
+				text={ text }
+				level={ level }
 				required={ required }
 				setData={ setData }
 				toggleEditable={ toggleEditable }
@@ -29,8 +23,8 @@ export function HeadingControl( {
 	}
 	return (
 		<HeadingDisplay
-			text={ currentText }
-			level={ currentLevel }
+			text={ text }
+			level={ level }
 			name={ name }
 			onClick={ () => toggleEditable() }
 		/>
@@ -38,8 +32,8 @@ export function HeadingControl( {
 }
 
 HeadingControl.defaultProps = {
-	currentText: '',
-	currentLevel: 1,
+	text: '',
+	level: 1,
 	required: false,
 };
 
@@ -54,6 +48,7 @@ function HeadingEditor( props ) {
 			} else {
 				props.setData( { text, level: 1 } );
 				setError( '' );
+				props.toggleEditable();
 			}
 		},
 		cancelChanges = () => props.toggleEditable();
