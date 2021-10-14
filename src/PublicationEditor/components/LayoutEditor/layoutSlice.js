@@ -1,15 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	content: [ 4, 2 ],
+	content: [],
 };
 
 export const layoutSlice = createSlice( {
 	name: 'layout',
 	initialState,
 	reducers: {
+		moveItem: ( state, action ) => {
+			const { currentIndex, newIndex } = action.payload,
+				item = state.content[ currentIndex ];
+			state.content.splice( currentIndex, 1 );
+			state.content.splice( newIndex, 0, item );
+		},
 		addContentItem: ( state, action ) => {
-			// Redux Toolkit allows us to write "mutating" logic in reducers. It doesn't actually mutate the state because it uses the Immer library
+			// Reminder: Redux Toolkit allows us to write "mutating" logic in reducers.
+			// It doesn't actually mutate the state because it uses the Immer library
 			state.content.push( action.payload );
 		},
 		removeContentItem: ( state, action ) => {
@@ -18,7 +25,11 @@ export const layoutSlice = createSlice( {
 	},
 } );
 
-export const { addContentItem, removeContentItem } = layoutSlice.actions;
+export const {
+	moveItem,
+	addContentItem,
+	removeContentItem,
+} = layoutSlice.actions;
 
 export const selectContent = ( state ) => state.layout.content;
 
