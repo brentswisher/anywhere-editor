@@ -3,11 +3,8 @@ import { TextInput } from '../../Inputs';
 import EditModal from '../../EditModal';
 
 export function HeadingControl( { name, level, text, setData, required } ) {
-	const [ editing, setEditing ] = useState( false );
-
-	function toggleEditable() {
-		setEditing( ! editing );
-	}
+	const [ editing, setEditing ] = useState( false ),
+		toggleEditable = () => setEditing( ! editing );
 
 	if ( editing ) {
 		return (

@@ -26,6 +26,9 @@ export const layoutSlice = createSlice( {
 			const { index, data } = action.payload;
 			state.content[ index ].data = data;
 		},
+		setContent: ( state, action ) => {
+			state.content = action.payload;
+		},
 	},
 } );
 
@@ -34,6 +37,7 @@ export const {
 	addContentItem,
 	removeContentItem,
 	setContentItemData,
+	setContent,
 } = layoutSlice.actions;
 
 export const selectContent = ( state ) => state.layout.content;

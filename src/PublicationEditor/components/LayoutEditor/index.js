@@ -9,7 +9,7 @@ import {
 	setContentItemData,
 } from './layoutSlice';
 
-import { HeadingControl } from '../Controls/';
+import { HeadingControl, ContentControl } from '../Controls/';
 
 export function LayoutEditor( { controls } ) {
 	const content = useSelector( selectContent ),
@@ -18,6 +18,11 @@ export function LayoutEditor( { controls } ) {
 			Heading: {
 				control: HeadingControl,
 				displayName: 'Heading',
+				isMainItem: true,
+			},
+			Content: {
+				control: ContentControl,
+				displayName: 'Content',
 				isMainItem: true,
 			},
 		};

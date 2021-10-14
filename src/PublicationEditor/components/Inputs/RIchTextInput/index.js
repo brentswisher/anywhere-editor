@@ -19,7 +19,7 @@ export function RichTextInput( { label, value, toolbar, formats, onChange } ) {
 			{ label && <strong>{ label }</strong> }
 			<ReactQuill
 				value={ value || '' }
-				onChange={ ( e ) => onChange( e ) }
+				onChange={ onChange }
 				modules={ modules }
 				formats={ formats || defaultFormats }
 				theme="snow"
