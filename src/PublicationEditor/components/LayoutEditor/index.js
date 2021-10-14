@@ -11,23 +11,36 @@ import {
 
 import { HeadingControl } from '../Controls/';
 
-export function LayoutEditor() {
+export function LayoutEditor( { controls } ) {
 	const content = useSelector( selectContent ),
 		dispatch = useDispatch(),
-		newItem = {
-			id: parseInt( Math.random() * 10000 ).toString(),
-			type: 'Heading',
-			data: {},
-		},
-		controls = {
-			Heading: HeadingControl,
+		controlLibrary = {
+			Heading: {
+				control: HeadingControl,
+				displayName: 'Heading',
+				isMainItem: true,
+			},
 		};
-
 	return (
 		<div>
-			<button onClick={ () => dispatch( addContentItem( newItem ) ) }>
-				Add Content Item
-			</button>
+			{ controls.map( ( controlName ) => (
+				<button
+					onClick={ () =>
+						dispatch(
+							addContentItem( {
+								id: parseInt(
+									Math.random() * 10000
+								).toString(),
+								type: controlName,
+								data: {},
+							} )
+						)
+					}
+					key={ controlName }
+				>
+					Add { controlLibrary[ controlName ].displayName }
+				</button>
+			) ) }
 			<DragDropContext
 				onDragEnd={ ( result ) => {
 					const { destination, source } = result;
@@ -56,7 +69,8 @@ export function LayoutEditor() {
 							{ content.map( ( item, index ) => {
 								// This is how to create a React component from a string of its neam
 								// https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
-								const TheControl = controls[ item.type ];
+								const TheControl =
+									controlLibrary[ item.type ].control;
 								return (
 									<Draggable
 										draggableId={ item.id }
