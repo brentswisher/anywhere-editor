@@ -1,61 +1,79 @@
 {
-	"name": "publication-editor",
-	"version": "0.1.0",
-	"private": true,
-	"dependencies": {
-		"@reduxjs/toolkit": "^1.6.1",
-		"@testing-library/jest-dom": "^5.14.1",
-		"@testing-library/react": "^11.2.7",
-		"@testing-library/user-event": "^12.8.3",
-		"react": "^17.0.2",
-		"react-beautiful-dnd": "^13.1.0",
-		"react-dom": "^17.0.2",
-		"react-modal": "^3.14.3",
-		"react-quill": "^2.0.0-beta.4",
-		"react-redux": "^7.2.5",
-		"react-scripts": "4.0.3",
-		"web-vitals": "^1.1.2"
-	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"test:nowatch": "CI=true react-scripts test --passWithNoTests",
-		"lint": "eslint ./src/",
-		"lint:fix": "eslint --fix ./src/",
-		"prettier": "prettier --write .",
-		"eject": "react-scripts eject",
-		"prepare": "husky install"
-	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
-	},
-	"lint-staged": {
-		"src/**/*.{js,ts,css,html}": [
-			"npm run lint:fix",
-			"npm run prettier",
-			"npm run test:nowatch"
-		]
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
-	"devDependencies": {
-		"eslint-config-prettier": "^8.3.0",
-		"husky": "^7.0.0",
-		"lint-staged": "^11.1.2",
-		"prettier": "npm:wp-prettier@^2.2.1-beta-1"
-	}
+  "name": "publication-editor",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "react": "^17.0.2",
+    "react-beautiful-dnd": "^13.1.0",
+    "react-dom": "^17.0.2",
+    "react-modal": "^3.14.3",
+    "react-quill": "^2.0.0-beta.4",
+    "react-redux": "^7.2.5",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.1.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:nowatch": "CI=true react-scripts test --passWithNoTests",
+    "lint": "eslint ./src/",
+    "lint:fix": "eslint --fix ./src/",
+    "prettier": "prettier --write .",
+    "eject": "react-scripts eject",
+    "prepare": "husky install",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,css,html}": [
+      "npm run lint:fix",
+      "npm run prettier",
+      "npm run test:nowatch"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/node-logger": "^6.3.12",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.3.12",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^11.1.2",
+    "prettier": "npm:wp-prettier@^2.2.1-beta-1"
+  }
 }

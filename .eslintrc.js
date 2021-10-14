@@ -66,6 +66,12 @@ module.exports = {
 				'additional-typescript-only-rule': 'warn',
 			},
 		},
+		{
+			files: [ '**/stories.js?(x)' ],
+			rules: {
+				'import/no-anonymous-default-export': 'off',
+			},
+		},
 	],
 	ignorePatterns: [ '**/*.css' ],
 };
