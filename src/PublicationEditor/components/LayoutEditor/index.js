@@ -20,10 +20,6 @@ export function LayoutEditor() {
 			<button onClick={ () => dispatch( addContentItem( newItem ) ) }>
 				Add Content Item
 			</button>
-			<button onClick={ () => dispatch( removeContentItem( 0 ) ) }>
-				Remove Content Item
-			</button>
-
 			<ul>
 				{ content.map( ( item, index ) => (
 					<li key={ item.id }>
@@ -53,6 +49,13 @@ export function LayoutEditor() {
 							}
 						>
 							Down
+						</button>
+						<button
+							onClick={ () =>
+								dispatch( removeContentItem( index ) )
+							}
+						>
+							Delete
 						</button>
 					</li>
 				) ) }
