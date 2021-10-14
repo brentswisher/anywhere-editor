@@ -17,3 +17,34 @@ code {
 	border: 1px solid blue;
 	margin: 1em;
 }
+
+/* Modal styles */
+.ReactModal__Body--open {
+	overflow: hidden;
+}
+
+.modal {
+	position: relative;
+	margin: 20%;
+	margin-top: 3%;
+	border: 1px solid rgb( 204, 204, 204 );
+	background: rgb( 255, 255, 255 );
+	overflow: auto;
+	border-radius: 4px;
+	outline: none;
+	padding: 20px;
+	max-height: 85vh;
+}
+
+.modal-overlay {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background-color: rgba( 0, 0, 0, 0.75 );
+}
+
+.modal .button-group {
+	margin-top: 0.75em;
+}
