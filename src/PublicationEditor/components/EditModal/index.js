@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 
 export function EditModal( { error, saveChanges, cancelChanges, children } ) {
+	Modal.setAppElement( '#publicatioEditorLayout' );
 	return (
 		<Modal
 			isOpen={ true }

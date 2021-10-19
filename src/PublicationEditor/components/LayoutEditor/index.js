@@ -27,7 +27,7 @@ export function LayoutEditor( { controls } ) {
 			},
 		};
 	return (
-		<div>
+		<div id="publicatioEditorLayout">
 			{ controls.map( ( controlName ) => (
 				<button
 					onClick={ () =>
