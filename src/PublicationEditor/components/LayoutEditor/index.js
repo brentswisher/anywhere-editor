@@ -1,14 +1,15 @@
 import React from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	addContentItem,
-	removeContentItem,
 	selectContent,
 	moveItem,
+	removeContentItem,
 	setContentItemData,
 } from './layoutSlice';
 
+import ControlBlock from '../ControlBlock';
 import { HeadingControl, ContentControl } from '../Controls/';
 
 export function LayoutEditor( { controls } ) {
@@ -77,74 +78,48 @@ export function LayoutEditor( { controls } ) {
 								const TheControl =
 									controlLibrary[ item.type ].control;
 								return (
-									<Draggable
-										draggableId={ item.id }
+									<ControlBlock
 										key={ item.id }
+										id={ item.id }
 										index={ index }
+										onMoveUp={ () =>
+											dispatch(
+												moveItem( {
+													currentIndex: index,
+													newIndex: index - 1,
+												} )
+											)
+										}
+										onMoveDown={ () =>
+											dispatch(
+												moveItem( {
+													currentIndex: index,
+													newIndex: index + 1,
+												} )
+											)
+										}
+										onDelete={ () =>
+											dispatch(
+												removeContentItem( index )
+											)
+										}
+										disableUp={ index === 0 }
+										disableDown={
+											index === content.length - 1
+										}
 									>
-										{ ( provided ) => (
-											<div
-												className="block"
-												key={ item.id }
-												{ ...provided.draggableProps }
-												{ ...provided.dragHandleProps }
-												ref={ provided.innerRef }
-											>
-												<TheControl
-													setData={ ( data ) =>
-														dispatch(
-															setContentItemData(
-																{ index, data }
-															)
-														)
-													}
-													{ ...item.data }
-												/>
-												<button
-													disabled={ index === 0 }
-													onClick={ () =>
-														dispatch(
-															moveItem( {
-																currentIndex: index,
-																newIndex:
-																	index - 1,
-															} )
-														)
-													}
-												>
-													Up
-												</button>
-												<button
-													disabled={
-														index ===
-														content.length - 1
-													}
-													onClick={ () =>
-														dispatch(
-															moveItem( {
-																currentIndex: index,
-																newIndex:
-																	index + 1,
-															} )
-														)
-													}
-												>
-													Down
-												</button>
-												<button
-													onClick={ () =>
-														dispatch(
-															removeContentItem(
-																index
-															)
-														)
-													}
-												>
-													Delete
-												</button>
-											</div>
-										) }
-									</Draggable>
+										<TheControl
+											setData={ ( data ) =>
+												dispatch(
+													setContentItemData( {
+														index,
+														data,
+													} )
+												)
+											}
+											{ ...item.data }
+										/>
+									</ControlBlock>
 								);
 							} ) }
 							{ provided.placeholder }
