@@ -19,10 +19,10 @@ export function ControlBlock( {
 					className="block"
 					key={ id }
 					{ ...provided.draggableProps }
-					{ ...provided.dragHandleProps }
 					ref={ provided.innerRef }
 				>
 					{ children }
+					<span { ...provided.dragHandleProps }>Move</span>
 					<button disabled={ disableUp } onClick={ onMoveUp }>
 						Up
 					</button>
