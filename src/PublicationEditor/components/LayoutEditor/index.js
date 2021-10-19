@@ -10,7 +10,7 @@ import {
 } from './layoutSlice';
 
 import ControlBlock from '../ControlBlock';
-import { HeadingControl, ContentControl } from '../Controls/';
+import { HeadingControl, ContentControl, VideoControl } from '../Controls/';
 
 export function LayoutEditor( { controls } ) {
 	const content = useSelector( selectContent ),
@@ -24,6 +24,11 @@ export function LayoutEditor( { controls } ) {
 			Content: {
 				control: ContentControl,
 				displayName: 'Content',
+				isMainItem: true,
+			},
+			Video: {
+				control: VideoControl,
+				displayName: 'VIdeo',
 				isMainItem: true,
 			},
 		};
