@@ -1,14 +1,16 @@
 import React from 'react';
 
-export function FieldLabel( { htmlFor, visuallyHidden, children } ) {
+export function FieldLabel( { htmlFor, text, visuallyHidden, children } ) {
 	let labelClasses = '';
 	if ( visuallyHidden ) {
 		labelClasses += 'sr-only';
 	}
 	return (
-		<label htmlFor={ htmlFor } className={ labelClasses }>
-			{ children }
-		</label>
+		<React.Fragment>
+			<label htmlFor={ htmlFor } className={ labelClasses }>
+				{ text }
+			</label>
+		</React.Fragment>
 	);
 }
 export default FieldLabel;

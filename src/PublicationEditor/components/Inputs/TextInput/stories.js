@@ -1,18 +1,26 @@
 import { useState } from 'react';
-
-// import { text, number, boolean } from '@storybook/addon-knobs';
 import TextInput from './';
 
-export default { title: 'Inputs/TextInput', component: TextInput };
+export default {
+	title: 'Inputs/TextInput',
+	component: TextInput,
+	args: {
+		label: 'Author Name:',
+		labelHidden: false,
+		helpText: '',
+	},
+};
 
 export const _default = ( args ) => {
 	const [ value, setValue ] = useState( args.value ?? '' );
 	return (
 		<TextInput
-			label="Title"
+			label={ args.label }
 			name="title"
 			value={ value }
 			onChange={ setValue }
+			labelHidden={ args.labelHidden }
+			helpText={ args.helpText }
 		/>
 	);
 };

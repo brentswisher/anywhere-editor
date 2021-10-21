@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { FieldLabel } from '../';
 export function TextInput( {
 	label,
 	name,
@@ -15,9 +15,12 @@ export function TextInput( {
 	}
 	return (
 		<React.Fragment>
-			<label htmlFor={ name } className={ labelClass }>
-				{ label }
-			</label>
+			<FieldLabel
+				htmlFor={ name }
+				className={ labelClass }
+				visuallyHidden={ labelHidden }
+				text={ label }
+			/>
 			<input
 				type="text"
 				autoFocus={ autoFocus }
