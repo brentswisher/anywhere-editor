@@ -15,6 +15,10 @@ export function TextInput( {
 	}
 	return (
 		<React.Fragment>
+			<FieldLabel htmlFor={ name } visuallyHidden={ labelHidden }>
+				{ label }
+			</FieldLabel>
+
 			<FieldLabel
 				htmlFor={ name }
 				className={ labelClass }
