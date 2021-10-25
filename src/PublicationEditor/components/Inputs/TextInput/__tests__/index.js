@@ -1,7 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
+import { axe, toHaveNoViolations } from 'jest-axe';
 import TextInput from '../';
+
+expect.extend( toHaveNoViolations );
+
 it( 'should render sucessfully', () => {
 	const { container } = render(
 			<TextInput name="firstName" label="First Name:" />
@@ -47,4 +50,12 @@ it( 'should visually hide label when labelHidden is set', () => {
 		),
 		label = container.querySelector( 'label' );
 	expect( label ).toHaveClass( 'sr-only' );
+} );
+
+it( 'should not have basic accessibility issues', async () => {
+	const { container } = render(
+			<TextInput name="firstName" label="First Name:" />
+		),
+		results = await axe( container );
+	expect( results ).toHaveNoViolations();
 } );
