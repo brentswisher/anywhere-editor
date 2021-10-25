@@ -1,10 +1,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import ColorInput from '../';
+expect.extend( toHaveNoViolations );
 
-import ColorPicker from '..';
 it( 'should render sucessfully', () => {
 	const { container } = render(
-			<ColorPicker name="backgroundColor" label="Background Color:" />
+			<ColorInput name="backgroundColor" label="Background Color:" />
 		),
 		label = container.querySelector( 'label' ),
 		select = container.querySelector( 'select' );
@@ -17,7 +19,7 @@ it( 'should render sucessfully', () => {
 
 it( 'should set initial value correctly', () => {
 	const { container } = render(
-			<ColorPicker
+			<ColorInput
 				name="backgroundColor"
 				label="Background Color:"
 				colors={ {
@@ -36,7 +38,7 @@ it( 'should set initial value correctly', () => {
 
 it( 'should render help text when provided', () => {
 	const { container } = render(
-			<ColorPicker
+			<ColorInput
 				name="backgroundColor"
 				label="Background Color:"
 				helpText="This is what color will be behind the text."
@@ -50,7 +52,7 @@ it( 'should render help text when provided', () => {
 
 it( 'should visually hide label when labelHidden is set', () => {
 	const { container } = render(
-			<ColorPicker
+			<ColorInput
 				name="firstName"
 				label="First Name:"
 				labelHidden={ true }
@@ -58,4 +60,11 @@ it( 'should visually hide label when labelHidden is set', () => {
 		),
 		label = container.querySelector( 'label' );
 	expect( label ).toHaveClass( 'sr-only' );
+} );
+it( 'should not have basic accessibility issues', async () => {
+	const { container } = render(
+			<ColorInput name="firstName" label="First Name:" />
+		),
+		results = await axe( container );
+	expect( results ).toHaveNoViolations();
 } );

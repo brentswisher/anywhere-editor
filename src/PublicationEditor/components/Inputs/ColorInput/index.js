@@ -1,7 +1,7 @@
 import React from 'react';
 import { FieldLabel } from '..';
 
-export function ColorPicker( {
+export function ColorInput( {
 	value,
 	name,
 	colors,
@@ -20,7 +20,9 @@ export function ColorPicker( {
 					className="color-picker-sample"
 					style={ {
 						backgroundColor: colors[ value ],
-						height: 2.25 + 'em',
+						height: '1.25em',
+						width: '2em',
+						paddinRight: '0.5em',
 					} }
 				></div>
 				<div>
@@ -46,9 +48,9 @@ export function ColorPicker( {
 	);
 }
 
-ColorPicker.defaultProps = {
+ColorInput.defaultProps = {
 	value: 'black',
-	name: 'colorPicker',
+	name: 'ColorInput',
 	colors: {
 		black: '#0a0a0a',
 		brown: '#6F4923',
@@ -59,4 +61,4 @@ ColorPicker.defaultProps = {
 	label: 'Color:',
 };
 
-export default ColorPicker;
+export default ColorInput;
