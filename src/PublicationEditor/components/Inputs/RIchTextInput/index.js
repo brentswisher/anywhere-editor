@@ -2,30 +2,70 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-export function RichTextInput( { label, value, toolbar, formats, onChange } ) {
-	const defaultToolbar = [
-			[ 'bold', 'italic' ],
-			[ { list: 'ordered' }, { list: 'bullet' } ],
-			[ 'link' ],
-			[ 'clean' ],
-		],
-		//Formats are which html elements to allow in the editor
-		defaultFormats = [ 'bold', 'italic', 'list', 'bullet', 'link' ],
-		modules = {
-			toolbar: toolbar || defaultToolbar,
-		};
+import { FieldLabel } from '../';
+
+export function RichTextInput( {
+	label,
+	name,
+	value,
+	formats,
+	labelHidden,
+	helpText,
+	onChange,
+} ) {
+	const defaultFormats = [ 'bold', 'italic', 'list', 'bullet', 'link' ];
 	return (
 		<React.Fragment>
-			{ label && <strong>{ label }</strong> }
+			<FieldLabel htmlFor={ name } visuallyHidden={ labelHidden }>
+				{ label }
+			</FieldLabel>
+			<CustomToolbar name={ name } />
 			<ReactQuill
 				value={ value || '' }
 				onChange={ onChange }
-				modules={ modules }
+				modules={ { toolbar: `#${ name }Toolbar` } }
 				formats={ formats || defaultFormats }
 				theme="snow"
 			/>
+			{ helpText && <span className="help-text"> { helpText } </span> }
 		</React.Fragment>
 	);
 }
 
+function CustomToolbar( { name } ) {
+	return (
+		<div id={ `${ name }Toolbar` }>
+			<span className="ql-formats">
+				<button className="ql-bold" aria-label="Bold"></button>
+				<button className="ql-italic" aria-label="Italics"></button>
+			</span>
+			<span className="ql-formats">
+				<button
+					className="ql-list"
+					value="ordered"
+					aria-label="Ordered List"
+				></button>
+				<button
+					className="ql-list"
+					value="bullet"
+					aria-label="Bulleted List"
+				></button>
+			</span>
+			<span className="ql-formats">
+				<button
+					className="ql-link"
+					type="button"
+					aria-label="Link"
+				></button>
+			</span>
+			<span className="ql-formats">
+				<button
+					className="ql-clean"
+					type="button"
+					aria-label="Clear Formatting"
+				></button>
+			</span>
+		</div>
+	);
+}
 export default RichTextInput;
