@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function FieldLabel( { htmlFor, text, visuallyHidden, children } ) {
+export function FieldLabel( { htmlFor, visuallyHidden, children } ) {
 	let labelClasses = '';
 	if ( visuallyHidden ) {
 		labelClasses += 'sr-only';
@@ -8,7 +8,7 @@ export function FieldLabel( { htmlFor, text, visuallyHidden, children } ) {
 	return (
 		<React.Fragment>
 			<label htmlFor={ htmlFor } className={ labelClasses }>
-				{ text }
+				{ children }
 			</label>
 		</React.Fragment>
 	);
