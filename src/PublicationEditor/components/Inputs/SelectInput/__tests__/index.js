@@ -1,7 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
+import { axe, toHaveNoViolations } from 'jest-axe';
 import SelectInput from '../';
+
+expect.extend( toHaveNoViolations );
+
+expect.extend( toHaveNoViolations );
 it( 'should render sucessfully', () => {
 	const { container } = render(
 			<SelectInput
@@ -110,4 +114,29 @@ it( 'should visually hide label when labelHidden is set', () => {
 		),
 		label = container.querySelector( 'label' );
 	expect( label ).toHaveClass( 'sr-only' );
+} );
+
+it( 'should not have basic accessibility issues', async () => {
+	const { container } = render(
+			<SelectInput
+				name="firstName"
+				label="First Name:"
+				options={ [
+					{
+						value: 'left',
+						title: 'Left',
+					},
+					{
+						value: 'right',
+						title: 'Right',
+					},
+					{
+						value: 'center',
+						title: 'Centered',
+					},
+				] }
+			/>
+		),
+		results = await axe( container );
+	expect( results ).toHaveNoViolations();
 } );
