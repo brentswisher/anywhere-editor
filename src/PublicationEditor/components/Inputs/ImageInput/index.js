@@ -1,9 +1,13 @@
 import React from 'react';
+import { FieldLabel } from '../';
 
 export function ImageInput( {
+	name,
+	label,
+	helpText,
+	labelHidden,
 	setError,
 	sizes,
-	minWidth,
 	maxFileSize,
 	onChange,
 	src,
@@ -132,7 +136,7 @@ export function ImageInput( {
 				reader.readAsDataURL( e.target.files[ 0 ] );
 			} else {
 				fileRef.current.value = '';
-				onChange( 'hasUpload', false );
+				// onChange( 'hasUpload', false );
 				// Don't don't want to update the src via onChange('src','') as that will override the existing image is a bad file was attempted
 			}
 		};
@@ -140,10 +144,10 @@ export function ImageInput( {
 	let thumbnailSrc = '';
 	if ( typeof src === 'string' && src.length ) {
 		//Previously uploaded image, saved to storage
-		thumbnailSrc = `${ thumbnailPath }/${ src }/500.jpg`;
+		thumbnailSrc = thumbnailPath.concat( src );
 	} else if ( Object.keys( src ).length ) {
 		// Image uploaded in this editing session, not saved to storage yet
-		thumbnailSrc = src[ 500 ];
+		thumbnailSrc = src[ sizes[ 0 ] ];
 	}
 
 	return (
@@ -151,27 +155,26 @@ export function ImageInput( {
 			{ thumbnailSrc && (
 				<img
 					src={ thumbnailSrc }
-					alt="Thumbnail preview of upload"
+					alt={ `Thumbnail preview of upload for ${ label }` }
 					style={ { width: '150px' } }
 				/>
 			) }
-			<label htmlFor="photo">
-				{ src ? 'Replace Image' : 'Upload Image' }:
-			</label>
+			<FieldLabel htmlFor={ name } visuallyHidden={ labelHidden }>
+				{ src ? `Replace ${ label }` : `Upload ${ label }` }
+			</FieldLabel>
 			<input
 				type="file"
-				id="photo"
+				id={ name }
 				onChange={ saveFile }
-				autoFocus={ true }
 				ref={ fileRef }
 			/>
+			{ helpText && <span className="help-text"> { helpText } </span> }
 		</div>
 	);
 }
 ImageInput.defaultProps = {
 	src: '',
 	sizes: [ 500, 1000, 1200, 1500 ],
-	onChange: '',
 	thumbnailPath: '',
 	maxFileSize: 300000,
 };

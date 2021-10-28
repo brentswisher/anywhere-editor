@@ -2,7 +2,7 @@ import React from 'react';
 import { LayoutEditor } from './components/';
 
 export function PublicationEditor( { content, controls } ) {
-	const defaultControls = [ 'Heading', 'Content', 'Video' ];
+	const defaultControls = [ 'Heading', 'Content', 'Image', 'Video' ];
 	return <LayoutEditor controls={ controls || defaultControls } />;
 }
 
