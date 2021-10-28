@@ -28,7 +28,7 @@ export function LayoutEditor( { controls } ) {
 			},
 			Video: {
 				control: VideoControl,
-				displayName: 'VIdeo',
+				displayName: 'Video',
 				isMainItem: true,
 			},
 		};
