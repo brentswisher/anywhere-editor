@@ -9,22 +9,11 @@ export function TextInput( {
 	labelHidden,
 	helpText,
 } ) {
-	let labelClass = '';
-	if ( labelHidden ) {
-		labelClass += 'sr-only';
-	}
 	return (
 		<React.Fragment>
 			<FieldLabel htmlFor={ name } visuallyHidden={ labelHidden }>
 				{ label }
 			</FieldLabel>
-
-			<FieldLabel
-				htmlFor={ name }
-				className={ labelClass }
-				visuallyHidden={ labelHidden }
-				text={ label }
-			/>
 			<input
 				type="text"
 				autoFocus={ autoFocus }
