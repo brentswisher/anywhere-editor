@@ -10,7 +10,7 @@ function App() {
 
 	return (
 		<div className="container">
-			<PublicationEditor content={ testData } />
+			<PublicationEditor content={ testData } template={ testData } />
 		</div>
 	);
 }

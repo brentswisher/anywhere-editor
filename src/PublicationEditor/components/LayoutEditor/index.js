@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	addContentItem,
 	selectContent,
 	moveItem,
+	setContent,
 	removeContentItem,
 	setContentItemData,
 } from './layoutSlice';
@@ -17,7 +18,7 @@ import {
 	ImageControl,
 } from '../Controls/';
 
-export function LayoutEditor( { controls } ) {
+export function LayoutEditor( { initialContent, controls } ) {
 	const content = useSelector( selectContent ),
 		dispatch = useDispatch(),
 		controlLibrary = {
@@ -42,6 +43,11 @@ export function LayoutEditor( { controls } ) {
 				isMainItem: true,
 			},
 		};
+
+	useEffect( () => {
+		dispatch( setContent( initialContent ) );
+	}, [ dispatch, initialContent ] );
+
 	return (
 		<div id="publicatioEditorLayout">
 			{ controls.map( ( controlName ) => (
@@ -145,5 +151,10 @@ export function LayoutEditor( { controls } ) {
 		</div>
 	);
 }
+
+LayoutEditor.defaultProps = {
+	controls: [],
+	template: [],
+};
 
 export default LayoutEditor;

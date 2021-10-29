@@ -88,10 +88,7 @@ function ContentDisplay( props ) {
 		<div className="grid-x" onClick={ props.onClick }>
 			<div className="article-content small-6 small-offset-3 cell">
 				{ props.title && (
-					<h2 className="article-content-header">
-						{ ' ' }
-						{ props.title }{ ' ' }
-					</h2>
+					<h2 className="article-content-header">{ props.title }</h2>
 				) }
 				<div
 					dangerouslySetInnerHTML={ {
