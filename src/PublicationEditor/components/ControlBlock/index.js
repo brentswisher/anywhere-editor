@@ -22,14 +22,31 @@ export function ControlBlock( {
 					ref={ provided.innerRef }
 				>
 					{ children }
-					<span { ...provided.dragHandleProps }>Move</span>
-					<button disabled={ disableUp } onClick={ onMoveUp }>
+					<span
+						className="block-button-drag"
+						{ ...provided.dragHandleProps }
+					>
+						Drag
+					</span>
+					<button
+						className="block-button-up"
+						disabled={ disableUp }
+						onClick={ onMoveUp }
+					>
 						Up
 					</button>
-					<button disabled={ disableDown } onClick={ onMoveDown }>
+					<button
+						className="block-button-down"
+						disabled={ disableDown }
+						onClick={ onMoveDown }
+					>
 						Down
 					</button>
-					<button disabled={ disableDelete } onClick={ onDelete }>
+					<button
+						className="block-button-delete"
+						disabled={ disableDelete }
+						onClick={ onDelete }
+					>
 						Delete
 					</button>
 				</div>
