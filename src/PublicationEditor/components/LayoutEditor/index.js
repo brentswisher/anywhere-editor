@@ -49,7 +49,7 @@ export function LayoutEditor( { initialContent, controls } ) {
 	}, [ dispatch, initialContent ] );
 
 	return (
-		<div id="publicatioEditorLayout">
+		<div id="publicationEditorLayout">
 			{ controls.map( ( controlName ) => (
 				<button
 					onClick={ () =>

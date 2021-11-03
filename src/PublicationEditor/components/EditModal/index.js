@@ -1,8 +1,14 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-export function EditModal( { error, saveChanges, cancelChanges, children } ) {
-	Modal.setAppElement( '#publicatioEditorLayout' );
+export function EditModal( {
+	error,
+	saveChanges,
+	cancelChanges,
+	children,
+	appElement,
+} ) {
+	Modal.setAppElement( appElement );
 	return (
 		<Modal
 			isOpen={ true }
@@ -32,5 +38,9 @@ export function EditModal( { error, saveChanges, cancelChanges, children } ) {
 		</Modal>
 	);
 }
+
+EditModal.defaultProps = {
+	appElement: '#publicationEditorLayout',
+};
 
 export default EditModal;
