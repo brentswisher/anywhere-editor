@@ -58,8 +58,15 @@ export function LayoutEditor( { initialContent, controls } ) {
 								id: parseInt(
 									Math.random() * 10000
 								).toString(),
-								type: controlName,
-								data: {},
+								innerContent: [
+									{
+										id: parseInt(
+											Math.random() * 10000
+										).toString(),
+										type: controlName,
+										data: {},
+									},
+								],
 							} )
 						)
 					}
