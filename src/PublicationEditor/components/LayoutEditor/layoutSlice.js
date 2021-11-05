@@ -23,8 +23,8 @@ export const layoutSlice = createSlice( {
 			state.content.splice( action.payload, 1 );
 		},
 		setContentItemData: ( state, action ) => {
-			const { index, data } = action.payload;
-			state.content[ index ].data = data;
+			const { rowIndex, columnIndex, data } = action.payload;
+			state.content[ rowIndex ].innerContent[ columnIndex ].data = data;
 		},
 		setContent: ( state, action ) => {
 			state.content = action.payload;

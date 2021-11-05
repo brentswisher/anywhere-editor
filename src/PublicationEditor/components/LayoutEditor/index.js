@@ -93,53 +93,65 @@ export function LayoutEditor( { initialContent, controls } ) {
 				<Droppable droppableId={ 'dropper' }>
 					{ ( provided ) => (
 						<div className="block-list" ref={ provided.innerRef }>
-							{ content.map( ( item, index ) => {
+							{ content.map( ( row, rowIndex ) => {
 								// This is how to create a React component from a string of its neam
 								// https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
-								const TheControl =
-									controlLibrary[ item.type ].control;
 								return (
 									<ControlBlock
-										key={ item.id }
-										id={ item.id }
-										index={ index }
+										key={ row.id }
+										id={ row.id }
+										index={ rowIndex }
 										onMoveUp={ () =>
 											dispatch(
 												moveItem( {
-													currentIndex: index,
-													newIndex: index - 1,
+													currentIndex: rowIndex,
+													newIndex: rowIndex - 1,
 												} )
 											)
 										}
 										onMoveDown={ () =>
 											dispatch(
 												moveItem( {
-													currentIndex: index,
-													newIndex: index + 1,
+													currentIndex: rowIndex,
+													newIndex: rowIndex + 1,
 												} )
 											)
 										}
 										onDelete={ () =>
 											dispatch(
-												removeContentItem( index )
+												removeContentItem( rowIndex )
 											)
 										}
-										disableUp={ index === 0 }
+										disableUp={ rowIndex === 0 }
 										disableDown={
-											index === content.length - 1
+											rowIndex === content.length - 1
 										}
 									>
-										<TheControl
-											setData={ ( data ) =>
-												dispatch(
-													setContentItemData( {
-														index,
-														data,
-													} )
-												)
+										{ row.innerContent.map(
+											( column, columnIndex ) => {
+												const TheControl =
+													controlLibrary[
+														column.type
+													].control;
+												return (
+													<TheControl
+														key={ column.id }
+														setData={ ( data ) =>
+															dispatch(
+																setContentItemData(
+																	{
+																		rowIndex,
+																		columnIndex,
+																		data,
+																	}
+																)
+															)
+														}
+														{ ...column.data }
+													/>
+												);
 											}
-											{ ...item.data }
-										/>
+										) }
 									</ControlBlock>
 								);
 							} ) }

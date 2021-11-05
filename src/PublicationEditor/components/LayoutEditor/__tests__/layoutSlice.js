@@ -9,10 +9,46 @@ import layoutReducer, {
 describe( 'Layout Reducer', () => {
 	const initialState = {
 		content: [
-			{ id: '1111', type: 'Heading', data: { text: 'Apple', level: 1 } },
-			{ id: '2222', type: 'Heading', data: { text: 'Kiwi', level: 1 } },
-			{ id: '3333', type: 'Heading', data: { text: 'Banana', level: 1 } },
-			{ id: '4444', type: 'Heading', data: { text: 'Grape', level: 1 } },
+			{
+				id: '1111',
+				innerContent: [
+					{
+						id: 'aaaa',
+						type: 'Heading',
+						data: { text: 'Apple', level: 1 },
+					},
+				],
+			},
+			{
+				id: '2222',
+				innerContent: [
+					{
+						id: 'bbbb',
+						type: 'Heading',
+						data: { text: 'Kiwi', level: 1 },
+					},
+				],
+			},
+			{
+				id: '3333',
+				innerContent: [
+					{
+						id: 'cccc',
+						type: 'Heading',
+						data: { text: 'Banana', level: 1 },
+					},
+				],
+			},
+			{
+				id: '4444',
+				innerContent: [
+					{
+						id: 'dddd',
+						type: 'Heading',
+						data: { text: 'Grape', level: 1 },
+					},
+				],
+			},
 		],
 	};
 	it( 'should handle default state', () => {
@@ -46,8 +82,13 @@ describe( 'Layout Reducer', () => {
 	it( 'should handle adding an item', () => {
 		const newItem = {
 				id: '5555',
-				type: 'Heading',
-				data: { text: 'Apple', level: 1 },
+				innerContent: [
+					{
+						id: 'eeee',
+						type: 'Heading',
+						data: { text: 'Apple', level: 1 },
+					},
+				],
 			},
 			actual = layoutReducer( initialState, addContentItem( newItem ) );
 		expect( actual.content.length ).toEqual( 5 );
@@ -64,23 +105,43 @@ describe( 'Layout Reducer', () => {
 		const newContentTree = [
 				{
 					id: '5555',
-					type: 'Heading',
-					data: { text: 'Carrot', level: 1 },
+					innerContent: [
+						{
+							id: 'eeee',
+							type: 'Heading',
+							data: { text: 'Carrot', level: 1 },
+						},
+					],
 				},
 				{
 					id: '6666',
-					type: 'Heading',
-					data: { text: 'Spinach', level: 1 },
+					innerContent: [
+						{
+							id: 'ffff',
+							type: 'Heading',
+							data: { text: 'Kale', level: 1 },
+						},
+					],
 				},
 				{
 					id: '7777',
-					type: 'Heading',
-					data: { text: 'Corn', level: 1 },
+					innerContent: [
+						{
+							id: 'gggg',
+							type: 'Heading',
+							data: { text: 'Beet', level: 1 },
+						},
+					],
 				},
 				{
 					id: '8888',
-					type: 'Heading',
-					data: { text: 'Kale', level: 1 },
+					innerContent: [
+						{
+							id: 'hhhh',
+							type: 'Heading',
+							data: { text: 'Green Bean', level: 1 },
+						},
+					],
 				},
 			],
 			actual = layoutReducer(
@@ -98,8 +159,12 @@ describe( 'Layout Reducer', () => {
 			},
 			actual = layoutReducer(
 				initialState,
-				setContentItemData( { index: 2, data: newData } )
+				setContentItemData( {
+					rowIndex: 2,
+					columnIndex: 0,
+					data: newData,
+				} )
 			);
-		expect( actual.content[ 2 ].data ).toEqual( newData );
+		expect( actual.content[ 2 ].innerContent[ 0 ].data ).toEqual( newData );
 	} );
 } );
