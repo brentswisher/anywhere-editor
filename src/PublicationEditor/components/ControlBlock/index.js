@@ -15,7 +15,7 @@ export function ControlBlock( {
 	const [ isFocused, setFocused ] = useState( false );
 	return (
 		<Draggable draggableId={ id } index={ index }>
-			{ ( provided ) => (
+			{ ( provided, snapshot ) => (
 				<div
 					className="block"
 					key={ id }
@@ -25,37 +25,35 @@ export function ControlBlock( {
 					onMouseLeave={ () => setFocused( false ) }
 				>
 					{ children }
-					{ isFocused && (
-						<React.Fragment>
-							<span
-								className="block-button-drag"
-								{ ...provided.dragHandleProps }
-							>
-								Drag
-							</span>
-							<button
-								className="block-button-up"
-								disabled={ disableUp }
-								onClick={ onMoveUp }
-							>
-								Up
-							</button>
-							<button
-								className="block-button-down"
-								disabled={ disableDown }
-								onClick={ onMoveDown }
-							>
-								Down
-							</button>
-							<button
-								className="block-button-delete"
-								disabled={ disableDelete }
-								onClick={ onDelete }
-							>
-								Delete
-							</button>
-						</React.Fragment>
-					) }
+					<div style={ { display: isFocused ? 'block' : 'none' } }>
+						<span
+							className="block-button-drag"
+							{ ...provided.dragHandleProps }
+						>
+							Drag
+						</span>
+						<button
+							className="block-button-up"
+							disabled={ disableUp }
+							onClick={ onMoveUp }
+						>
+							Up
+						</button>
+						<button
+							className="block-button-down"
+							disabled={ disableDown }
+							onClick={ onMoveDown }
+						>
+							Down
+						</button>
+						<button
+							className="block-button-delete"
+							disabled={ disableDelete }
+							onClick={ onDelete }
+						>
+							Delete
+						</button>
+					</div>
 				</div>
 			) }
 		</Draggable>
