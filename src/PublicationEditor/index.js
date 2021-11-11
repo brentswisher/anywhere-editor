@@ -13,7 +13,6 @@ export function PublicationEditor( { content, template, controls } ) {
 				initialContent={ initalContent }
 				controls={ controls }
 			/>
-			;
 		</Provider>
 	);
 }
