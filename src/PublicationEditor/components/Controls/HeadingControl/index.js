@@ -69,7 +69,7 @@ function HeadingEditor( props ) {
 
 function HeadingDisplay( props ) {
 	const validHeadings = [ 1, 2, 3, 4 ],
-		cssClasses = [ 'article-title', 'article-subtitle', '', '' ],
+		cssClasses = [ 'article-heading', 'article-subheading', '', '' ],
 		HeadingEl =
 			'h' + ( validHeadings.indexOf( props.level ) ? props.level : '1' );
 	return (

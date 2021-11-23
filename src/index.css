@@ -1,4 +1,28 @@
-/* Modal styles */
+/*  Temporary Override of gvmagazine styles */
+.chunkActions {
+	width: 11.5rem;
+}
+
+.chunkActions {
+	display: none;
+}
+
+.active .chunkActions {
+	display: flex;
+}
+
+.ReactModal__Body--open {
+	overflow: hidden;
+	position: inherit;
+}
+
+.modal-overlay {
+	z-index: 400;
+}
+
+/* 
+Old basic styles
+Modal styles
 .ReactModal__Body--open {
 	overflow: hidden;
 }
@@ -31,9 +55,9 @@
 
 .sr-only {
 	border: 0 !important;
-	clip: rect( 1px, 1px, 1px, 1px ) !important; /* 1 */
+	clip: rect( 1px, 1px, 1px, 1px ) !important;
 	-webkit-clip-path: inset( 50% ) !important;
-	clip-path: inset( 50% ) !important; /* 2 */
+	clip-path: inset( 50% ) !important; 
 	height: 1px !important;
 	margin: -1px !important;
 	overflow: hidden !important;
@@ -44,4 +68,4 @@
 }
 .help-text {
 	display: block;
-}
+} */

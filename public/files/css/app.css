@@ -5761,3 +5761,103 @@ blockquote.color-golden-brown cite,
 		flex-direction: inherit;
 	}
 }
+
+/** these are admin styles in GVMagazine **/
+.controlContainer,
+.article-banner:hover,
+.article-heading:hover,
+.article-subheading:hover,
+.article-byline:hover {
+	cursor: pointer;
+}
+.controlContainer.editing {
+	position: relative;
+}
+.sidebar {
+	background-color: white;
+}
+.active .sidebar,
+.controlContainer.active,
+.article-heading:hover,
+.article-subheading:hover,
+.article-byline:hover {
+	background-color: #f3f2f2;
+}
+
+.quill {
+	margin-bottom: 1em;
+}
+
+.ql-editor p,
+.ql-editor ol,
+.ql-editor ul {
+	margin-top: 1em;
+}
+
+.editor-actions {
+	margin-top: 1em;
+}
+.editor-actions button {
+	margin-right: 0.25em;
+}
+
+.chunkActions {
+	/*position:absolute;*/
+	z-index: 300;
+	margin-bottom: -2.5em;
+	width: 8.5rem;
+}
+
+.chunkActions-right,
+.chunkActions-offset-right {
+	float: right;
+	clear: both;
+}
+
+.chunkActions-left,
+.chunkActions-offset-left {
+	clear: both;
+}
+
+.content-buttons {
+	clear: both;
+}
+
+.clearfix {
+	clear: both;
+}
+
+.ReactModal__Body--open {
+	overflow: hidden;
+	position: fixed;
+}
+
+.modal {
+	position: relative;
+	/*top: 40px;
+		left: 40px;
+		right: 40px;
+		bottom: 40px;*/
+	margin: 20%;
+	margin-top: 5%;
+	border: 1px solid rgb( 204, 204, 204 );
+	background: rgb( 255, 255, 255 );
+	overflow: auto;
+	border-radius: 4px;
+	outline: none;
+	padding: 20px;
+	max-height: 45vw;
+}
+
+.modal-overlay {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background-color: rgba( 0, 0, 0, 0.75 );
+}
+
+.modal .button-group {
+	margin-top: 0.75em;
+}

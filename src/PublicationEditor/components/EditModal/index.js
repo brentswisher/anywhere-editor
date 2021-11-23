@@ -40,7 +40,7 @@ export function EditModal( {
 }
 
 EditModal.defaultProps = {
-	appElement: '#publicationEditorLayout',
+	appElement: '#root',
 };
 
 export default EditModal;

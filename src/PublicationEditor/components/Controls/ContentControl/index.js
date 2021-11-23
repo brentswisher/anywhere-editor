@@ -85,19 +85,15 @@ function ContentEditor( props ) {
 
 function ContentDisplay( props ) {
 	return (
-		<div className="grid-x" onClick={ props.onClick }>
-			<div className="article-content small-6 small-offset-3 cell">
-				{ props.title && (
-					<h2 className="article-content-header">{ props.title }</h2>
-				) }
-				<div
-					dangerouslySetInnerHTML={ {
-						__html: props.content
-							? props.content
-							: '<br /><p style="text-align:center;" class="stop-drop-cap">[Enter Content Here]</p><br />',
-					} }
-				></div>
-			</div>
+		<div onClick={ props.onClick }>
+			{ props.title && <h2>{ props.title }</h2> }
+			<div
+				dangerouslySetInnerHTML={ {
+					__html: props.content
+						? props.content
+						: '<br /><p style="text-align:center;" class="stop-drop-cap">[Enter Content Here]</p><br />',
+				} }
+			></div>
 		</div>
 	);
 }

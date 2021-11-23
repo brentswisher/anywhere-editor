@@ -50,31 +50,13 @@ export function LayoutEditor( { initialContent, controls } ) {
 
 	return (
 		<div id="publicationEditorLayout">
-			{ controls.map( ( controlName ) => (
-				<button
-					onClick={ () =>
-						dispatch(
-							addContentItem( {
-								id: parseInt(
-									Math.random() * 10000
-								).toString(),
-								innerContent: [
-									{
-										id: parseInt(
-											Math.random() * 10000
-										).toString(),
-										type: controlName,
-										data: {},
-									},
-								],
-							} )
-						)
-					}
-					key={ controlName }
-				>
-					Add { controlLibrary[ controlName ].displayName }
-				</button>
-			) ) }
+			<input
+				type="hidden"
+				name="chunkJSON"
+				id="chunkJSON"
+				value={ JSON.stringify( content ) }
+			/>
+			;
 			<DragDropContext
 				onDragEnd={ ( result ) => {
 					const { destination, source } = result;
@@ -104,62 +86,67 @@ export function LayoutEditor( { initialContent, controls } ) {
 								// This is how to create a React component from a string of its neam
 								// https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
 								return (
-									<ControlBlock
-										key={ row.id }
-										id={ row.id }
-										index={ rowIndex }
-										onMoveUp={ () =>
-											dispatch(
-												moveItem( {
-													currentIndex: rowIndex,
-													newIndex: rowIndex - 1,
-												} )
-											)
-										}
-										onMoveDown={ () =>
-											dispatch(
-												moveItem( {
-													currentIndex: rowIndex,
-													newIndex: rowIndex + 1,
-												} )
-											)
-										}
-										onDelete={ () =>
-											dispatch(
-												removeContentItem( rowIndex )
-											)
-										}
-										disableUp={ rowIndex === 0 }
-										disableDown={
-											rowIndex === content.length - 1
-										}
-									>
-										{ row.innerContent.map(
-											( column, columnIndex ) => {
-												const TheControl =
-													controlLibrary[
-														column.type
-													].control;
-												return (
-													<TheControl
-														key={ column.id }
-														setData={ ( data ) =>
-															dispatch(
-																setContentItemData(
-																	{
-																		rowIndex,
-																		columnIndex,
-																		data,
-																	}
-																)
-															)
-														}
-														{ ...column.data }
-													/>
-												);
+									<div className={ row.type } key={ row.id }>
+										<ControlBlock
+											id={ row.id }
+											index={ rowIndex }
+											onMoveUp={ () =>
+												dispatch(
+													moveItem( {
+														currentIndex: rowIndex,
+														newIndex: rowIndex - 1,
+													} )
+												)
 											}
-										) }
-									</ControlBlock>
+											onMoveDown={ () =>
+												dispatch(
+													moveItem( {
+														currentIndex: rowIndex,
+														newIndex: rowIndex + 1,
+													} )
+												)
+											}
+											onDelete={ () =>
+												dispatch(
+													removeContentItem(
+														rowIndex
+													)
+												)
+											}
+											disableUp={ rowIndex === 0 }
+											disableDown={
+												rowIndex === content.length - 1
+											}
+										>
+											{ row.innerContent.map(
+												( column, columnIndex ) => {
+													const TheControl =
+														controlLibrary[
+															column.type
+														].control;
+													return (
+														<TheControl
+															key={ column.id }
+															setData={ (
+																data
+															) =>
+																dispatch(
+																	setContentItemData(
+																		{
+																			rowIndex,
+																			columnIndex,
+																			data,
+																		}
+																	)
+																)
+															}
+															{ ...column.data }
+														/>
+													);
+												}
+											) }
+										</ControlBlock>
+									</div>
 								);
 							} ) }
 							{ provided.placeholder }
@@ -167,6 +154,37 @@ export function LayoutEditor( { initialContent, controls } ) {
 					) }
 				</Droppable>
 			</DragDropContext>
+			<div className="article-content">
+				<div className="content-buttons button-group">
+					{ controls.map( ( controlName ) => (
+						<button
+							onClick={ () =>
+								dispatch(
+									addContentItem( {
+										id: parseInt(
+											Math.random() * 10000
+										).toString(),
+										type: 'article-content',
+										innerContent: [
+											{
+												id: parseInt(
+													Math.random() * 10000
+												).toString(),
+												type: controlName,
+												data: {},
+											},
+										],
+									} )
+								)
+							}
+							key={ controlName }
+							className="button secondary"
+						>
+							Add { controlLibrary[ controlName ].displayName }
+						</button>
+					) ) }
+				</div>
+			</div>
 		</div>
 	);
 }
