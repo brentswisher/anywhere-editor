@@ -16,6 +16,7 @@ import {
 	ContentControl,
 	VideoControl,
 	ImageControl,
+	QuoteControl,
 } from '../Controls/';
 
 export function LayoutEditor( { initialContent, controls } ) {
@@ -40,6 +41,11 @@ export function LayoutEditor( { initialContent, controls } ) {
 			Video: {
 				control: VideoControl,
 				displayName: 'Video',
+				isMainItem: true,
+			},
+			Quote: {
+				control: QuoteControl,
+				displayName: 'Quote',
 				isMainItem: true,
 			},
 		};

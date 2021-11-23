@@ -20,7 +20,7 @@ export function ColorInput( {
 					className="color-picker-sample"
 					style={ {
 						backgroundColor: colors[ value ],
-						height: '1.25em',
+						height: '2.45em',
 						width: '2em',
 						paddinRight: '0.5em',
 					} }
