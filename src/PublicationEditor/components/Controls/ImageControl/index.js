@@ -23,7 +23,9 @@ export function ImageControl( {
 		return (
 			<ImageEditor
 				setData={ setData }
-				src={ src }
+				src={ `${ thumbnailPath }/${ src }/${
+					sizes[ sizes.length - 1 ]
+				}.jpg` }
 				hasUpload={ hasUpload }
 				sizes={ sizes }
 				alt={ alt }
