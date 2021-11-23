@@ -37,10 +37,14 @@ function VideoEditor( props ) {
 	const [ title, setTitle ] = useState( props.title ),
 		[ videoId, setVideoId ] = useState( props.videoId ),
 		[ error, setError ] = useState( '' ),
+		videoIdRegex = /[\w-]{11}/,
+		validUrlRegex = /(?:https:\/\/(www)?)?(?:youtube.com\/watch\?v=|youtube\.com\/embed\/|youtu\.be\/)([\w-]{11})/,
 		saveChanges = ( e ) => {
 			e.preventDefault();
 			if ( videoId.length && ! title.length ) {
 				setError( 'Please enter the video title text to continue' );
+			} else if ( ! videoId.match( videoIdRegex ) ) {
+				setError( 'Please enter the valide youtube videoId' );
 			} else {
 				props.setData( {
 					videoId,
@@ -50,7 +54,16 @@ function VideoEditor( props ) {
 				props.toggleEditable();
 			}
 		},
-		cancelChanges = () => props.toggleEditable();
+		cancelChanges = () => props.toggleEditable(),
+		processVideoId = ( url ) => {
+			const videoIdMatch = url.match( validUrlRegex );
+			console.log( videoIdMatch );
+			if ( videoIdMatch && videoIdMatch.length === 3 ) {
+				setVideoId( videoIdMatch[ 2 ] );
+			} else {
+				setVideoId( url );
+			}
+		};
 
 	return (
 		<EditModal
@@ -61,9 +74,10 @@ function VideoEditor( props ) {
 			<TextInput
 				name="videoId"
 				label="YouTube VideoId"
+				helpText="Please enter the YouTube videoId or copy/paste the url of the video you wish to use."
 				autoFocus={ true }
 				value={ videoId }
-				onChange={ setVideoId }
+				onChange={ processVideoId }
 			/>
 			<TextInput
 				name="title"
