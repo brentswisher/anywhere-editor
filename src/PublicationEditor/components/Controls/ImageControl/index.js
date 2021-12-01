@@ -23,9 +23,8 @@ export function ImageControl( {
 		return (
 			<ImageEditor
 				setData={ setData }
-				src={ `${ thumbnailPath }/${ src }/${
-					sizes[ sizes.length - 1 ]
-				}.jpg` }
+				src={ src }
+				thumbnailPath={ thumbnailPath }
 				hasUpload={ hasUpload }
 				sizes={ sizes }
 				alt={ alt }
@@ -104,6 +103,7 @@ function ImageEditor( props ) {
 				props.setData( {
 					title,
 					src,
+					thumbnailPath: props.thumbnailPath,
 					alt,
 					caption,
 					captionPosition,

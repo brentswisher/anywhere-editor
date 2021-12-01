@@ -144,7 +144,9 @@ export function ImageInput( {
 	let thumbnailSrc = '';
 	if ( typeof src === 'string' && src.length ) {
 		//Previously uploaded image, saved to storage
-		thumbnailSrc = thumbnailPath.concat( src );
+		thumbnailSrc = `${ thumbnailPath }/${ src }/${
+			sizes[ sizes.length - 1 ]
+		}.jpg`;
 	} else if ( Object.keys( src ).length ) {
 		// Image uploaded in this editing session, not saved to storage yet
 		thumbnailSrc = src[ sizes[ 0 ] ];
