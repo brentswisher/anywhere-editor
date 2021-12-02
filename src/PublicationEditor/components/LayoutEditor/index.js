@@ -12,11 +12,12 @@ import {
 
 import ControlBlock from '../ControlBlock';
 import {
-	HeadingControl,
 	ContentControl,
-	VideoControl,
+	GalleryControl,
+	HeadingControl,
 	ImageControl,
 	QuoteControl,
+	VideoControl,
 } from '../Controls/';
 
 export function LayoutEditor( { initialContent, controls } ) {
@@ -36,6 +37,11 @@ export function LayoutEditor( { initialContent, controls } ) {
 			Image: {
 				control: ImageControl,
 				displayName: 'Image',
+				isMainItem: true,
+			},
+			Gallery: {
+				control: GalleryControl,
+				displayName: 'Gallery',
 				isMainItem: true,
 			},
 			Video: {

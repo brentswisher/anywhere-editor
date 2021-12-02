@@ -20,7 +20,7 @@ export function PublicationEditor( { content, template, controls } ) {
 PublicationEditor.defaultProps = {
 	content: [],
 	template: [],
-	controls: [ 'Heading', 'Content', 'Quote', 'Image', 'Video' ],
+	controls: [ 'Heading', 'Content', 'Quote', 'Image', 'Gallery', 'Video' ],
 };
 
 export default PublicationEditor;
