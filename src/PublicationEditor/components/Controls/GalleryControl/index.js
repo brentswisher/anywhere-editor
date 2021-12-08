@@ -254,7 +254,6 @@ function GalleryEditor( props ) {
 				onChange={ setCaptionPosition }
 			/>
 			<ul className="tabs">
-				{ console.log( images ) }
 				{ images.map( ( image, index ) => (
 					<li
 						key={ index }
