@@ -63,6 +63,10 @@ export function ImageInput( {
 			return canvas.toDataURL( 'image/jpeg', quality / 100 );
 		},
 		saveFile = function ( e ) {
+			// Verify upload wasn't cancelled
+			if ( ! e.target.files[ 0 ] ) {
+				return;
+			}
 			const file = e.target.files[ 0 ],
 				//Set the quality based on the file size constrained between 15 and 100
 				quality = Math.min(
