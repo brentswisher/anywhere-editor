@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import {
 	TextInput,
 	SelectInput,
@@ -69,8 +69,7 @@ GalleryControl.defaultProps = {
 	editing: false,
 };
 function GalleryEditor( props ) {
-	const [ images, setImages ] = useState( props.images ),
-		[ title, setTitle ] = useState( props.title ),
+	const [ title, setTitle ] = useState( props.title ),
 		[ caption, setCaption ] = useState( props.caption ),
 		[ captionPosition, setCaptionPosition ] = useState(
 			props.captionPosition
@@ -81,37 +80,53 @@ function GalleryEditor( props ) {
 		[ position, setPosition ] = useState( props.position ),
 		[ currentTab, setCurrentTab ] = useState( 0 ),
 		[ error, setError ] = useState( '' ),
-		changeOneImage = ( title, value ) => {
-			// Can't just slice this at the array has complex data types that would get passed by reference
-			const imagesToUpdate = JSON.parse( JSON.stringify( images ) );
-			imagesToUpdate[ currentTab ][ title ] = value;
-			setImages( imagesToUpdate );
+		imageReducer = ( state, action ) => {
+			switch ( action.type ) {
+				case 'add':
+					return [ ...state, action.image ];
+				case 'remove':
+					return state.filter(
+						( _, index ) => index != action.index
+					);
+				case 'updateSrc':
+					return state.map( ( image, index ) =>
+						index === action.index
+							? { ...image, src: action.value, hasUpload: true }
+							: image
+					);
+				case 'updateAlt':
+					return state.map( ( image, index ) =>
+						index === action.index
+							? { ...image, alt: action.value }
+							: image
+					);
+				case 'updateCaption':
+					return state.map( ( image, index ) =>
+						index === action.index
+							? { ...image, caption: action.value }
+							: image
+					);
+				default:
+					return state;
+			}
 		},
+		[ images, dispatchImage ] = useReducer( imageReducer, props.images ),
 		addImage = () => {
-			const imagesToUpdate = JSON.parse( JSON.stringify( images ) );
-			if ( imagesToUpdate.length < props.maxImages ) {
-				imagesToUpdate.push( {
-					src: {},
-					sizes: [ 500, 770, 1200, 2000 ],
-					alt: '',
-					hasUpload: false,
-					caption: '',
+			if ( images.length < props.maxImages ) {
+				dispatchImage( {
+					type: 'add',
+					image: {
+						src: {},
+						sizes: [ 500, 770, 1200, 2000 ],
+						alt: '',
+						hasUpload: false,
+						caption: '',
+					},
 				} );
-				setImages( imagesToUpdate );
 			} else {
 				setError(
 					`You may currently only add up to  ${ props.maxImages } images to a gallery`
 				);
-			}
-		},
-		removeImage = () => {
-			const imagesToUpdate = JSON.parse( JSON.stringify( images ) );
-			if ( images.length === 1 ) {
-				setError( 'You must have at least one image in a gallery' );
-			} else {
-				imagesToUpdate.splice( currentTab, 1 );
-				setImages( imagesToUpdate );
-				setCurrentTab( Math.max( 0, currentTab - 1 ) );
 			}
 		},
 		saveChanges = ( e ) => {
@@ -121,7 +136,6 @@ function GalleryEditor( props ) {
 			let counter = 0,
 				errorFound = false; // We can't just check errorMessage because if may not have been updated yet
 			for ( const image of images ) {
-				console.log( image );
 				if ( ! Object.keys( image.src ).length ) {
 					setError(
 						`Please upload a the photo for image ${
@@ -240,6 +254,7 @@ function GalleryEditor( props ) {
 				onChange={ setCaptionPosition }
 			/>
 			<ul className="tabs">
+				{ console.log( images ) }
 				{ images.map( ( image, index ) => (
 					<li
 						key={ index }
@@ -268,20 +283,54 @@ function GalleryEditor( props ) {
 						key={ index }
 					>
 						<ImageInput
-							name={ `image_${ index }` }
-							label={ `Image_${ index }` }
+							name={ `image_${ index + 1 }` }
+							label={ `Image_${ index + 1 }` }
 							src={ images[ index ].src }
 							sizes={ images[ index ].sizes }
 							thumbnailPath={ props.thumbnailPath }
-							uploadCallback={ setHasUpload }
-							onChange={ changeOneImage }
+							onChange={ ( e ) =>
+								dispatchImage( {
+									type: 'updateSrc',
+									index: currentTab,
+									value: e,
+								} )
+							}
 							setError={ setError }
+						/>
+						<TextInput
+							name={ `image_${ index + 1 }_alt` }
+							label={ `Image ${ index + 1 } Alt Text` }
+							value={ images[ index ].alt }
+							onChange={ ( e ) =>
+								dispatchImage( {
+									type: 'updateAlt',
+									index: currentTab,
+									value: e,
+								} )
+							}
+						/>
+						<TextInput
+							name={ `image_${ index + 1 }_caption` }
+							label={ `Image ${ index + 1 } Caption` }
+							value={ images[ index ].caption }
+							onChange={ ( e ) =>
+								dispatchImage( {
+									type: 'updateCaption',
+									index: currentTab,
+									value: e,
+								} )
+							}
 						/>
 						<button onClick={ addImage } className="button success">
 							Add Image
 						</button>
 						<button
-							onClick={ removeImage }
+							onClick={ () =>
+								dispatchImage( {
+									type: 'remove',
+									index: currentTab,
+								} )
+							}
 							className="button alert"
 						>
 							Remove Image
@@ -294,39 +343,60 @@ function GalleryEditor( props ) {
 }
 
 function GalleryDisplay( props ) {
-	let classString = 'photo';
-
-	if ( props.position ) {
-		classString += ` photo-${ props.position }`;
-	}
-
-	if ( props.mobilePosition ) {
-		classString += ` photo-mobile-${ props.mobilePosition }`;
-	}
-
-	if ( props.border ) {
-		classString += ` border-${ props.border }`;
-	}
-
-	if ( props.src ) {
-		return (
-			<div className={ classString } onClick={ props.onClick }>
-				<input type="hidden" value={ props.src } name="photoId" />
-				<img src={ props.src } alt={ props.alt } />
+	return (
+		<div
+			className={ `gallery gallery-${ props.position }` }
+			onClick={ props.onClick }
+		>
+			{ props.title && (
+				<h2 className={ `text-${ props.headingPosition }` }>
+					{ ' ' }
+					{ props.title }{ ' ' }
+				</h2>
+			) }
+			<div className="gallery-items">
+				{ props.images.length &&
+				Object.keys( props.images[ 0 ].src ).length ? (
+					props.images.map( ( image, index ) => {
+						let displaySrc = '';
+						if ( image.hasUpload ) {
+							//Pass base64 image
+							displaySrc =
+								image.src[
+									image.sizes[ image.sizes.length - 1 ]
+								];
+						} else if ( typeof image.src === 'string' ) {
+							//Pass locaiton in the file system
+							displaySrc = `${ thumbnailPath }/${ image.src }/${
+								image.sizes[ image.sizes.length - 1 ]
+							}.jpg`;
+						}
+						return (
+							<div className="gallery-item" key={ index }>
+								<img src={ displaySrc } alt={ image.alt } />
+								{ image.caption && (
+									<div
+										className={ `gallery-caption text-${ props.captionPosition }` }
+										dangerouslySetInnerHTML={ {
+											__html: image.caption,
+										} }
+									/>
+								) }
+							</div>
+						);
+					} )
+				) : (
+					<p style={ { margin: '1em 0' } }>
+						[Click here to upload images to the gallery]
+					</p>
+				) }
+			</div>
+			{ props.caption && props.caption.length && (
 				<div
-					className={ `photo-caption text-${ props.captionPosition }` }
+					className={ `gallery-caption text-${ props.captionPosition }` }
 					dangerouslySetInnerHTML={ { __html: props.caption } }
 				/>
-			</div>
-		);
-	}
-	return (
-		<div onClick={ props.onClick }>
-			<br />
-			<p className="stop-drop-cap">
-				[Click here to upload { props.label } ]
-			</p>
-			<br />
+			) }
 		</div>
 	);
 }
