@@ -13,16 +13,14 @@ export function ControlBlock( {
 	children,
 } ) {
 	const [ isFocused, setFocused ] = useState( false );
-	let containerClass = 'controlContainer';
-	if ( isFocused ) {
-		containerClass += ' active';
-	}
 	return (
 		<Draggable draggableId={ id } index={ index }>
 			{ ( provided, snapshot ) => (
 				<div
 					key={ id }
-					className={ containerClass }
+					className={ `controlContainer ${
+						isFocused || snapshot.isDragging ? ' active' : ''
+					}` }
 					{ ...provided.draggableProps }
 					ref={ provided.innerRef }
 					onMouseEnter={ () => setFocused( true ) }
