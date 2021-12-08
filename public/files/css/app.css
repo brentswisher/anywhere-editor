@@ -4668,7 +4668,7 @@ footer .menu a:focus {
 .article-content {
 	display: block;
 	width: 100%;
-	float: left;
+	/* float: left; This breaks drag/drop */
 	padding-right: 1.25rem;
 	padding-left: 1.25rem;
 }
