@@ -98,7 +98,10 @@ export function LayoutEditor( { initialContent, controls } ) {
 								// This is how to create a React component from a string of its neam
 								// https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
 								return (
-									<div className={ row.type } key={ row.id }>
+									<div
+										className={ ` ${ row.position }` }
+										key={ row.id }
+									>
 										<ControlBlock
 											id={ row.id }
 											index={ rowIndex }

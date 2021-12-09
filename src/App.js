@@ -5,6 +5,7 @@ function App() {
 		{
 			id: '11111',
 			type: 'article-content',
+			position: 'position-full',
 			innerContent: [
 				{
 					data: {
@@ -19,6 +20,7 @@ function App() {
 		{
 			id: '109811',
 			type: 'article-content',
+			position: 'position-full',
 			innerContent: [
 				{
 					data: {
@@ -45,6 +47,7 @@ function App() {
 		{
 			id: '12344',
 			type: 'article-content',
+			position: 'position-full',
 			innerContent: [
 				{
 					data: {
@@ -65,6 +68,7 @@ function App() {
 		{
 			id: '523465',
 			type: 'article-content',
+			position: 'position-full',
 			innerContent: [
 				{
 					data: {
@@ -86,6 +90,7 @@ function App() {
 		{
 			id: '234543645',
 			type: 'article-content',
+			position: 'position-full',
 			innerContent: [
 				{
 					data: {
@@ -106,6 +111,7 @@ function App() {
 		{
 			id: '23453465',
 			type: 'article-content',
+			position: 'position-full',
 			innerContent: [
 				{
 					data: {
@@ -127,6 +133,7 @@ function App() {
 		{
 			id: '23464354',
 			type: 'article-content',
+			position: 'position-full',
 			innerContent: [
 				{
 					data: {
@@ -147,6 +154,7 @@ function App() {
 		{
 			id: '23452345',
 			type: 'article-content',
+			position: 'position-full',
 			innerContent: [
 				{
 					data: {
@@ -168,6 +176,7 @@ function App() {
 		{
 			id: '32452345',
 			type: 'article-content',
+			position: 'position-full',
 			innerContent: [
 				{
 					data: {

@@ -26,6 +26,11 @@ export const layoutSlice = createSlice( {
 			const { rowIndex, columnIndex, data } = action.payload;
 			state.content[ rowIndex ].innerContent[ columnIndex ].data = data;
 		},
+		setRowPosition: ( state, action ) => {
+			const { rowIndex, position } = action.payload;
+			console.log( state.content );
+			state.content[ rowIndex ].position = position;
+		},
 		setContent: ( state, action ) => {
 			state.content = action.payload;
 		},
@@ -38,8 +43,11 @@ export const {
 	removeContentItem,
 	setContentItemData,
 	setContent,
+	setRowPosition,
 } = layoutSlice.actions;
 
 export const selectContent = ( state ) => state.layout.content;
+export const selectRow = ( state, id ) =>
+	state.layout.content.find( ( row ) => row.id === id );
 
 export default layoutSlice.reducer;

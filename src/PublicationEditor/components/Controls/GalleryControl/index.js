@@ -14,7 +14,6 @@ export function GalleryControl( {
 	caption,
 	captionPosition,
 	headingPosition,
-	position,
 	thumbnailPath,
 	setData,
 } ) {
@@ -31,7 +30,6 @@ export function GalleryControl( {
 				caption={ caption }
 				captionPosition={ captionPosition }
 				headingPosition={ headingPosition }
-				position={ position }
 				setData={ setData }
 				toggleEditable={ toggleEditable }
 			/>
@@ -44,7 +42,6 @@ export function GalleryControl( {
 			caption={ caption }
 			captionPosition={ captionPosition }
 			headingPosition={ headingPosition }
-			position={ position }
 			setData={ setData }
 			onClick={ toggleEditable }
 		/>
@@ -63,7 +60,6 @@ GalleryControl.defaultProps = {
 	],
 	title: '',
 	caption: '',
-	position: 'full',
 	captionPosition: 'right',
 	headingPosition: 'left',
 	editing: false,
@@ -77,7 +73,6 @@ function GalleryEditor( props ) {
 		[ headingPosition, setHeadingPosition ] = useState(
 			props.headingPosition
 		),
-		[ position, setPosition ] = useState( props.position ),
 		[ currentTab, setCurrentTab ] = useState( 0 ),
 		[ error, setError ] = useState( '' ),
 		imageReducer = ( state, action ) => {
@@ -86,7 +81,7 @@ function GalleryEditor( props ) {
 					return [ ...state, action.image ];
 				case 'remove':
 					return state.filter(
-						( _, index ) => index != action.index
+						( images, index ) => index != action.index
 					);
 				case 'updateSrc':
 					return state.map( ( image, index ) =>
@@ -165,7 +160,6 @@ function GalleryEditor( props ) {
 					caption,
 					captionPosition,
 					headingPosition,
-					position,
 				} );
 				setError( '' );
 				props.toggleEditable();
@@ -205,26 +199,6 @@ function GalleryEditor( props ) {
 					},
 				] }
 				onChange={ setHeadingPosition }
-			/>
-			<SelectInput
-				name="galleryPosition"
-				label="Gallery Style"
-				value={ position }
-				options={ [
-					{
-						value: 'full',
-						title: 'Normal Full Width',
-					},
-					{
-						value: 'offset-full',
-						title: 'Offset Full Width',
-					},
-					{
-						value: 'full-page',
-						title: 'Full Page Width',
-					},
-				] }
-				onChange={ setPosition }
 			/>
 			<RichTextInput
 				name="GalleryCaption"
@@ -343,10 +317,7 @@ function GalleryEditor( props ) {
 
 function GalleryDisplay( props ) {
 	return (
-		<div
-			className={ `gallery gallery-${ props.position }` }
-			onClick={ props.onClick }
-		>
+		<div className="gallery" onClick={ props.onClick }>
 			{ props.title && (
 				<h2 className={ `text-${ props.headingPosition }` }>
 					{ ' ' }

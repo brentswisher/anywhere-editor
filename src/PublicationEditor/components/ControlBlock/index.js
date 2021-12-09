@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
+import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
+import { useSelector, useDispatch } from 'react-redux';
+import { setRowPosition, selectRow } from '../LayoutEditor/layoutSlice';
 
 export function ControlBlock( {
 	id,
@@ -12,7 +15,50 @@ export function ControlBlock( {
 	disableDelete,
 	children,
 } ) {
-	const [ isFocused, setFocused ] = useState( false );
+	const [ isFocused, setFocused ] = useState( false ),
+		{ buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu( 3 ),
+		row = useSelector( ( state ) => selectRow( state, id ) ),
+		dispatch = useDispatch(),
+		handlePositionClick = ( index, item ) => {
+			dispatch(
+				setRowPosition( {
+					rowIndex: index,
+					position: item,
+				} )
+			);
+			setIsOpen( false );
+		},
+		positions = [
+			{
+				title: 'Normal',
+				value: 'position-full',
+			},
+			{
+				title: 'Left',
+				value: 'position-left',
+			},
+			{
+				title: 'Right',
+				value: 'position-right',
+			},
+			{
+				title: 'Full Page',
+				value: 'position-full-page',
+			},
+			{
+				title: 'Offset',
+				value: 'position-offset-full',
+			},
+			{
+				title: 'Offset Left',
+				value: 'position-offset-left',
+			},
+			{
+				title: 'Offset Right',
+				value: 'position-offset-right',
+			},
+		];
+
 	return (
 		<Draggable draggableId={ id } index={ index }>
 			{ ( provided, snapshot ) => (
@@ -35,6 +81,45 @@ export function ControlBlock( {
 								&#10021;
 							</a>
 						</li>
+						<li>
+							<button
+								className="button secondary"
+								{ ...buttonProps }
+							>
+								&#9881;
+								<span className="show-for-sr">
+									Row Settings
+								</span>
+							</button>
+							<ul
+								className={ `menu dropdown ${
+									isOpen ? 'visible' : ''
+								}` }
+								role="menu"
+							>
+								{ positions.map( ( { title, value } ) => (
+									<li key={ value }>
+										<a
+											className={ `${
+												row.position === value
+													? 'is-active'
+													: ''
+											}` }
+											{ ...itemProps[ 0 ] }
+											onClick={ () =>
+												handlePositionClick(
+													index,
+													value
+												)
+											}
+										>
+											{ title }
+										</a>
+									</li>
+								) ) }
+							</ul>
+						</li>
+
 						<li>
 							<button
 								className="button secondary"

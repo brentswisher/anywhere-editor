@@ -10,7 +10,6 @@ export function ImageControl( {
 	hasUpload,
 	caption,
 	captionPosition,
-	position,
 	mobilePosition,
 	border,
 	thumbnailPath,
@@ -30,7 +29,6 @@ export function ImageControl( {
 				alt={ alt }
 				caption={ caption }
 				captionPosition={ captionPosition }
-				position={ position }
 				mobilePosition={ mobilePosition }
 				border={ border }
 				toggleEditable={ toggleEditable }
@@ -57,7 +55,6 @@ export function ImageControl( {
 			hasUpload={ hasUpload }
 			caption={ caption }
 			captionPosition={ captionPosition }
-			position={ position }
 			mobilePosition={ mobilePosition }
 			border={ border }
 			onClick={ toggleEditable }
@@ -74,7 +71,6 @@ ImageControl.defaultProps = {
 	hasUpload: false,
 	caption: '',
 	captionPosition: 'right',
-	position: 'full',
 	mobilePosition: 'full',
 	border: '',
 	editing: false,
@@ -91,7 +87,6 @@ function ImageEditor( props ) {
 		[ mobilePosition, setMobilePosition ] = useState(
 			props.mobilePosition
 		),
-		[ position, setPosition ] = useState( props.position ),
 		[ border, setBorder ] = useState( props.border ),
 		[ hasUpload, setHasUpload ] = useState( props.hasUpload ),
 		[ error, setError ] = useState( '' ),
@@ -108,7 +103,6 @@ function ImageEditor( props ) {
 					caption,
 					captionPosition,
 					mobilePosition,
-					position,
 					border,
 					hasUpload,
 				} );
@@ -167,42 +161,6 @@ function ImageEditor( props ) {
 				onChange={ setCaptionPosition }
 			/>
 			<SelectInput
-				name="photoPosition"
-				label="Position"
-				value={ position }
-				options={ [
-					{
-						value: 'left',
-						title: 'Left',
-					},
-					{
-						value: 'right',
-						title: 'Right',
-					},
-					{
-						value: 'full',
-						title: 'Full Width - In Content',
-					},
-					{
-						value: 'offset-left',
-						title: 'Offset Left',
-					},
-					{
-						value: 'offset-right',
-						title: 'Offset Right',
-					},
-					{
-						value: 'offset-full',
-						title: 'Offset Full Width',
-					},
-					{
-						value: 'full-page',
-						title: 'Full Page Width',
-					},
-				] }
-				onChange={ setPosition }
-			/>
-			<SelectInput
 				name="mobilePosition"
 				label="Mobile Position"
 				value={ mobilePosition }
@@ -253,10 +211,6 @@ function ImageEditor( props ) {
 }
 function ImageDisplay( props ) {
 	let classString = 'photo';
-
-	if ( props.position ) {
-		classString += ` photo-${ props.position }`;
-	}
 
 	if ( props.mobilePosition ) {
 		classString += ` photo-mobile-${ props.mobilePosition }`;

@@ -143,10 +143,6 @@ function QuoteDisplay( props ) {
 		classList += ` color-${ props.color }`;
 	}
 
-	if ( props.position ) {
-		classList += ` pull-quote-${ props.position }`;
-	}
-
 	if ( props.border ) {
 		classList += ` border-${ props.border }`;
 	}
