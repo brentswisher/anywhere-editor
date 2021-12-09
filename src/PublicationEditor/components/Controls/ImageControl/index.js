@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { TextInput, SelectInput, ImageInput } from '../../Inputs';
+import {
+	TextInput,
+	SelectInput,
+	ImageInput,
+	RichTextInput,
+} from '../../Inputs';
 import EditModal from '../../EditModal';
 
 export function ImageControl( {
@@ -134,7 +139,7 @@ function ImageEditor( props ) {
 				value={ alt }
 				onChange={ setAlt }
 			/>
-			<TextInput
+			<RichTextInput
 				name="caption"
 				label="Caption:"
 				value={ caption }
