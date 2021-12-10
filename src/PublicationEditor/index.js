@@ -4,7 +4,12 @@ import { Provider } from 'react-redux';
 
 import { LayoutEditor } from './components/';
 
-export function PublicationEditor( { content, template, controls } ) {
+export function PublicationEditor( {
+	content,
+	template,
+	controls,
+	customControls,
+} ) {
 	const initalContent =
 		! content.length && template.length ? template : content;
 	return (
@@ -12,6 +17,7 @@ export function PublicationEditor( { content, template, controls } ) {
 			<LayoutEditor
 				initialContent={ initalContent }
 				controls={ controls }
+				customControls={ customControls }
 			/>
 		</Provider>
 	);
@@ -21,6 +27,7 @@ PublicationEditor.defaultProps = {
 	content: [],
 	template: [],
 	controls: [ 'Heading', 'Content', 'Quote', 'Image', 'Gallery', 'Video' ],
+	customControls: {},
 };
 
 export default PublicationEditor;

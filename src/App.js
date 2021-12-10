@@ -1,4 +1,5 @@
 import PublicationEditor from './PublicationEditor';
+import CustomControl from './CustomControl';
 
 function App() {
 	const testData = [
@@ -197,7 +198,18 @@ function App() {
 
 	return (
 		<div>
-			<PublicationEditor content={ testData } template={ testData } />
+			<PublicationEditor
+				content={ testData }
+				template={ testData }
+				controls={ [ 'Heading', 'Content', 'Image', 'Video' ] }
+				customControls={ {
+					Testing: {
+						control: CustomControl,
+						displayName: 'Testing',
+						isMainItem: true,
+					},
+				} }
+			/>
 		</div>
 	);
 }

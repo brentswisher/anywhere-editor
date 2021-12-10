@@ -20,9 +20,10 @@ import {
 	VideoControl,
 } from '../Controls/';
 
-export function LayoutEditor( { initialContent, controls } ) {
+export function LayoutEditor( { initialContent, controls, customControls } ) {
 	const content = useSelector( selectContent ),
 		dispatch = useDispatch(),
+		controlList = [ ...controls, ...Object.keys( customControls ) ],
 		controlLibrary = {
 			Heading: {
 				control: HeadingControl,
@@ -54,8 +55,8 @@ export function LayoutEditor( { initialContent, controls } ) {
 				displayName: 'Quote',
 				isMainItem: true,
 			},
+			...customControls,
 		};
-
 	useEffect( () => {
 		dispatch( setContent( initialContent ) );
 	}, [ dispatch, initialContent ] );
@@ -171,7 +172,7 @@ export function LayoutEditor( { initialContent, controls } ) {
 			</DragDropContext>
 			<div className="article-content">
 				<div className="content-buttons button-group">
-					{ controls.map( ( controlName ) => (
+					{ controlList.map( ( controlName ) => (
 						<button
 							onClick={ () =>
 								dispatch(
