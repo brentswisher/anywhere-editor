@@ -10,6 +10,8 @@ import {
 	setContentItemData,
 } from './layoutSlice';
 
+import { selectCssClasses } from './configSlice';
+
 import ControlBlock from '../ControlBlock';
 import {
 	ContentControl,
@@ -22,6 +24,7 @@ import {
 
 export function LayoutEditor( { initialContent, controls, customControls } ) {
 	const content = useSelector( selectContent ),
+		cssClasses = useSelector( selectCssClasses ),
 		dispatch = useDispatch(),
 		controlList = [ ...controls, ...Object.keys( customControls ) ],
 		controlLibrary = {
@@ -94,13 +97,18 @@ export function LayoutEditor( { initialContent, controls, customControls } ) {
 			>
 				<Droppable droppableId={ 'dropper' }>
 					{ ( provided ) => (
-						<div className="block-list" ref={ provided.innerRef }>
+						<div
+							className={ cssClasses[ 'block-list' ] }
+							ref={ provided.innerRef }
+						>
 							{ content.map( ( row, rowIndex ) => {
 								// This is how to create a React component from a string of its neam
 								// https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
 								return (
 									<div
-										className={ ` ${ row.position }` }
+										className={ ` ${
+											cssClasses[ row.position ]
+										}` }
 										key={ row.id }
 									>
 										<ControlBlock
@@ -170,8 +178,8 @@ export function LayoutEditor( { initialContent, controls, customControls } ) {
 					) }
 				</Droppable>
 			</DragDropContext>
-			<div className="article-content">
-				<div className="content-buttons button-group">
+			<div className={ cssClasses[ 'article-content' ] }>
+				<div className={ cssClasses[ 'content-buttons' ] }>
 					{ controlList.map( ( controlName ) => (
 						<button
 							onClick={ () =>
@@ -194,7 +202,7 @@ export function LayoutEditor( { initialContent, controls, customControls } ) {
 								)
 							}
 							key={ controlName }
-							className="button secondary"
+							className={ cssClasses[ 'button-secondary' ] }
 						>
 							Add { controlLibrary[ controlName ].displayName }
 						</button>

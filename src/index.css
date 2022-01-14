@@ -7,7 +7,7 @@
 	display: none;
 }
 
-.active .chunkActions {
+.is-active .chunkActions {
 	display: flex;
 }
 
@@ -99,53 +99,3 @@ ul.dropdown[role='menu'].visible {
 	clear: both;
 	margin-right: 10.125%;
 }
-
-/* 
-Old basic styles
-Modal styles
-.ReactModal__Body--open {
-	overflow: hidden;
-}
-
-.modal {
-	position: relative;
-	margin: 20%;
-	margin-top: 3%;
-	border: 1px solid rgb( 204, 204, 204 );
-	background: rgb( 255, 255, 255 );
-	overflow: auto;
-	border-radius: 4px;
-	outline: none;
-	padding: 20px;
-	max-height: 85vh;
-}
-
-.modal-overlay {
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
-	background-color: rgba( 0, 0, 0, 0.75 );
-}
-
-.modal .button-group {
-	margin-top: 0.75em;
-}
-
-.sr-only {
-	border: 0 !important;
-	clip: rect( 1px, 1px, 1px, 1px ) !important;
-	-webkit-clip-path: inset( 50% ) !important;
-	clip-path: inset( 50% ) !important; 
-	height: 1px !important;
-	margin: -1px !important;
-	overflow: hidden !important;
-	padding: 0 !important;
-	position: absolute !important;
-	width: 1px !important;
-	white-space: nowrap !important;
-}
-.help-text {
-	display: block;
-} */

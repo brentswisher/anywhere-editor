@@ -1,5 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { useSelector } from 'react-redux';
+
+import { selectCssClasses } from '../LayoutEditor/configSlice';
 
 export function EditModal( {
 	error,
@@ -9,28 +12,33 @@ export function EditModal( {
 	appElement,
 } ) {
 	Modal.setAppElement( appElement );
+	const cssClasses = useSelector( selectCssClasses );
 	return (
 		<Modal
 			isOpen={ true }
 			contentLabel="Edit Sidebar Modal Window"
-			className="modal"
-			overlayClassName="modal-overlay"
+			className={ cssClasses[ 'modal' ] }
+			overlayClassName={ cssClasses[ 'modal-overlay' ] }
 			onRequestClose={ cancelChanges }
 		>
-			{ error && <div className="callout alert">{ error }</div> }
+			{ error && (
+				<div className={ cssClasses[ 'error-container' ] }>
+					{ error }
+				</div>
+			) }
 			{ children }
-			<div className="button-group">
+			<div className={ cssClasses[ 'button-group' ] }>
 				<button
 					type="button"
 					onClick={ saveChanges }
-					className="button primary"
+					className={ cssClasses[ 'button-primary' ] }
 				>
 					Update
 				</button>
 				<button
 					type="button"
 					onClick={ cancelChanges }
-					className="button secondary"
+					className={ cssClasses[ 'button-secondary' ] }
 				>
 					Cancel
 				</button>
