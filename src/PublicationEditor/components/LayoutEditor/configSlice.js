@@ -28,12 +28,17 @@ const initialState = {
 		'text-right': 'text-right',
 		'text-center': 'text-center',
 
+		'border-top': 'border-top',
+		'border-bottom': 'border-bottom',
+		'border-both': 'border-both',
+
 		'heading-1': 'article-heading',
 		'heading-2': 'article-subheading',
 		'heading-3': '',
 		'heading-4': '',
 
 		controlContainer: 'controlContainer',
+		'no-drop-cap': 'stop-drop-cap',
 
 		modal: 'modal',
 		'modal-overlay': 'modal-overlay',
@@ -52,6 +57,11 @@ const initialState = {
 		'gallery-items': 'gallery-items',
 		'gallery-item': 'gallery-item',
 		'gallery-caption': 'gallery-caption',
+
+		photo: 'photo',
+		'photo-caption': 'photo-caption',
+		'photo-mobile-full': 'photo-mobile-full',
+		'photo-mobile-match': 'photo-mobile-match',
 	},
 };
 

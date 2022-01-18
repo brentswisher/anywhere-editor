@@ -7,6 +7,9 @@ import {
 } from '../../Inputs';
 import EditModal from '../../EditModal';
 
+import { useSelector } from 'react-redux';
+import { selectCssClasses } from '../../LayoutEditor/configSlice';
+
 export function ImageControl( {
 	src,
 	sizes,
@@ -215,23 +218,29 @@ function ImageEditor( props ) {
 	);
 }
 function ImageDisplay( props ) {
-	let classString = 'photo';
+	const cssClasses = useSelector( selectCssClasses ),
+		classList = [ cssClasses[ 'photo' ] ];
 
 	if ( props.mobilePosition ) {
-		classString += ` photo-mobile-${ props.mobilePosition }`;
+		classList.push(
+			cssClasses[ `photo-mobile-${ props.mobilePosition }` ]
+		);
 	}
 
 	if ( props.border ) {
-		classString += ` border-${ props.border }`;
+		// classString += ` border-${ props.border }`;
+		classList.push( cssClasses[ `border-${ props.border }` ] );
 	}
 
 	if ( props.src ) {
 		return (
-			<div className={ classString } onClick={ props.onClick }>
+			<div className={ classList.join( ' ' ) } onClick={ props.onClick }>
 				<input type="hidden" value={ props.src } name="photoId" />
 				<img src={ props.src } alt={ props.alt } />
 				<div
-					className={ `photo-caption text-${ props.captionPosition }` }
+					className={ `${ cssClasses[ 'photo-caption' ] }  ${
+						cssClasses[ 'text-' + props.captionPosition ]
+					}` }
 					dangerouslySetInnerHTML={ { __html: props.caption } }
 				/>
 			</div>
@@ -240,7 +249,7 @@ function ImageDisplay( props ) {
 	return (
 		<div onClick={ props.onClick }>
 			<br />
-			<p className="stop-drop-cap">
+			<p className={ cssClasses[ 'no-drop-cap' ] }>
 				[Click here to upload { props.label } ]
 			</p>
 			<br />
