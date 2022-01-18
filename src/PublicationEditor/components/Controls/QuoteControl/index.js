@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { TextInput, ColorInput, SelectInput } from '../../Inputs';
 import EditModal from '../../EditModal';
 
+import { useSelector } from 'react-redux';
+import { selectCssClasses } from '../../LayoutEditor/configSlice';
+
 export function QuoteControl( {
 	name,
 	title,
@@ -137,23 +140,27 @@ function QuoteEditor( props ) {
 }
 
 function QuoteDisplay( props ) {
-	let classList = 'pull-quote';
+	const cssClasses = useSelector( selectCssClasses ),
+		classList = [ cssClasses[ 'pull-quote' ] ];
 
 	if ( props.color ) {
-		classList += ` color-${ props.color }`;
+		classList.push( cssClasses[ `color-${ props.color }` ] );
 	}
 
 	if ( props.border ) {
-		classList += ` border-${ props.border }`;
+		classList.push( cssClasses[ `border-${ props.border }` ] );
 	}
 
 	if ( props.showIcon === '1' ) {
-		classList += ' pull-quote-spacing-large';
+		classList.push( cssClasses[ 'pull-quote-spacing-large' ] );
 	}
 	return (
-		<blockquote className={ classList } onClick={ props.onClick }>
+		<blockquote
+			className={ classList.join( ' ' ) }
+			onClick={ props.onClick }
+		>
 			{ props.showIcon === '1' && (
-				<div className="pull-quote-icon">&ldquo;</div>
+				<div className={ cssClasses[ 'pull-quote-icon' ] }>&ldquo;</div>
 			) }
 			{ props.title && <h2>{ props.title }</h2> }
 			<p>
@@ -162,7 +169,10 @@ function QuoteDisplay( props ) {
 				&rdquo;
 			</p>
 			{ props.author && (
-				<cite className="pull-quote-author"> { props.author } </cite>
+				<cite className={ cssClasses[ 'pull-quote-author' ] }>
+					{ ' ' }
+					{ props.author }{ ' ' }
+				</cite>
 			) }
 		</blockquote>
 	);
