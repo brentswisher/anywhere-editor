@@ -4,6 +4,9 @@ import 'react-quill/dist/quill.snow.css';
 
 import { FieldLabel } from '../';
 
+import { useSelector } from 'react-redux';
+import { selectCssClasses } from '../../LayoutEditor/configSlice';
+
 export function RichTextInput( {
 	label,
 	name,
@@ -13,7 +16,8 @@ export function RichTextInput( {
 	helpText,
 	onChange,
 } ) {
-	const defaultFormats = [ 'bold', 'italic', 'list', 'bullet', 'link' ];
+	const cssClasses = useSelector( selectCssClasses ),
+		defaultFormats = [ 'bold', 'italic', 'list', 'bullet', 'link' ];
 	return (
 		<React.Fragment>
 			<FieldLabel htmlFor={ name } visuallyHidden={ labelHidden }>
@@ -27,7 +31,12 @@ export function RichTextInput( {
 				formats={ formats || defaultFormats }
 				theme="snow"
 			/>
-			{ helpText && <span className="help-text"> { helpText } </span> }
+			{ helpText && (
+				<span className={ cssClasses[ 'help-text' ] }>
+					{ ' ' }
+					{ helpText }{ ' ' }
+				</span>
+			) }
 		</React.Fragment>
 	);
 }

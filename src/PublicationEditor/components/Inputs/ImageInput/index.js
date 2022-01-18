@@ -1,5 +1,7 @@
 import React from 'react';
 import { FieldLabel } from '../';
+import { useSelector } from 'react-redux';
+import { selectCssClasses } from '../../LayoutEditor/configSlice';
 
 export function ImageInput( {
 	name,
@@ -14,7 +16,8 @@ export function ImageInput( {
 	thumbnailPath,
 	uploadCallback,
 } ) {
-	const fileRef = React.createRef(),
+	const cssClasses = useSelector( selectCssClasses ),
+		fileRef = React.createRef(),
 		resizeImage = function ( image, width, quality ) {
 			const canvas = document.createElement( 'canvas' ),
 				context = canvas.getContext( '2d' ),
@@ -174,7 +177,12 @@ export function ImageInput( {
 				onChange={ saveFile }
 				ref={ fileRef }
 			/>
-			{ helpText && <span className="help-text"> { helpText } </span> }
+			{ helpText && (
+				<span className={ cssClasses[ 'help-text' ] }>
+					{ ' ' }
+					{ helpText }{ ' ' }
+				</span>
+			) }
 		</div>
 	);
 }

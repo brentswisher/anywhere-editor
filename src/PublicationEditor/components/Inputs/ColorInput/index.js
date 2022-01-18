@@ -1,6 +1,9 @@
 import React from 'react';
 import { FieldLabel } from '..';
 
+import { useSelector } from 'react-redux';
+import { selectCssClasses } from '../../LayoutEditor/configSlice';
+
 export function ColorInput( {
 	value,
 	name,
@@ -10,19 +13,23 @@ export function ColorInput( {
 	labelHidden,
 	helpText,
 } ) {
+	const cssClasses = useSelector( selectCssClasses );
 	return (
 		<div>
 			<FieldLabel htmlFor={ name } visuallyHidden={ labelHidden }>
 				{ label }
 			</FieldLabel>
-			<div className="color-picker" style={ { display: 'flex' } }>
+			<div
+				className={ cssClasses[ 'color-picker' ] }
+				style={ { display: 'flex' } }
+			>
 				<div
-					className="color-picker-sample"
+					className={ cssClasses[ 'color-picker-sample' ] }
 					style={ {
 						backgroundColor: colors[ value ],
 						height: '2.45em',
 						width: '2em',
-						paddinRight: '0.5em',
+						paddingRight: '0.5em',
 					} }
 				></div>
 				<div>
@@ -43,7 +50,12 @@ export function ColorInput( {
 					</select>
 				</div>
 			</div>
-			{ helpText && <span className="help-text"> { helpText } </span> }
+			{ helpText && (
+				<span className={ cssClasses[ 'help-text' ] }>
+					{ ' ' }
+					{ helpText }{ ' ' }
+				</span>
+			) }
 		</div>
 	);
 }

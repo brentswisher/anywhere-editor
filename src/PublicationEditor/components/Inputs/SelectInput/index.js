@@ -1,5 +1,8 @@
 import React from 'react';
 import { FieldLabel } from '..';
+import { useSelector } from 'react-redux';
+import { selectCssClasses } from '../../LayoutEditor/configSlice';
+
 export function SelectInput( {
 	label,
 	name,
@@ -9,6 +12,7 @@ export function SelectInput( {
 	labelHidden,
 	helpText,
 } ) {
+	const cssClasses = useSelector( selectCssClasses );
 	return (
 		<div>
 			<FieldLabel htmlFor={ name } visuallyHidden={ labelHidden }>
@@ -26,7 +30,12 @@ export function SelectInput( {
 					</option>
 				) ) }
 			</select>
-			{ helpText && <span className="help-text"> { helpText } </span> }
+			{ helpText && (
+				<span className={ cssClasses[ 'help-text' ] }>
+					{ ' ' }
+					{ helpText }{ ' ' }
+				</span>
+			) }
 		</div>
 	);
 }
