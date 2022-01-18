@@ -8,6 +8,7 @@ export function PublicationEditor( {
 	content,
 	template,
 	controls,
+	config,
 	customControls,
 } ) {
 	const initalContent =
@@ -18,6 +19,7 @@ export function PublicationEditor( {
 				initialContent={ initalContent }
 				controls={ controls }
 				customControls={ customControls }
+				config={ config }
 			/>
 		</Provider>
 	);
@@ -28,6 +30,7 @@ PublicationEditor.defaultProps = {
 	template: [],
 	controls: [ 'Heading', 'Content', 'Quote', 'Image', 'Gallery', 'Video' ],
 	customControls: {},
+	config: {},
 };
 
 export default PublicationEditor;

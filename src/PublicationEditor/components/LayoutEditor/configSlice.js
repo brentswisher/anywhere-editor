@@ -85,13 +85,19 @@ export const configSlice = createSlice( {
 	name: 'config',
 	initialState,
 	reducers: {
-		setCssClasses: ( state, action ) => {
-			state.cssClasses = action.payload;
+		mergeConfig: ( state, action ) => {
+			state.cssClasses = {
+				...state.cssClasses,
+				...action.payload.cssClasses,
+			};
+		},
+		setConfig: ( state, action ) => {
+			state.cssClasses = { ...action.payload.cssClasses };
 		},
 	},
 } );
 
-export const { setCssClasses } = configSlice.actions;
+export const { setConfig, mergeConfig, setCssClasses } = configSlice.actions;
 
 export const selectCssClasses = ( state ) => state.config.cssClasses;
 

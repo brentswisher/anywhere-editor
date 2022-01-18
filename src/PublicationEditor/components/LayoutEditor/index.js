@@ -10,7 +10,7 @@ import {
 	setContentItemData,
 } from './layoutSlice';
 
-import { selectCssClasses } from './configSlice';
+import { selectCssClasses, mergeConfig } from './configSlice';
 
 import ControlBlock from '../ControlBlock';
 import {
@@ -22,7 +22,12 @@ import {
 	VideoControl,
 } from '../Controls/';
 
-export function LayoutEditor( { initialContent, controls, customControls } ) {
+export function LayoutEditor( {
+	initialContent,
+	controls,
+	config,
+	customControls,
+} ) {
 	const content = useSelector( selectContent ),
 		cssClasses = useSelector( selectCssClasses ),
 		dispatch = useDispatch(),
@@ -63,6 +68,9 @@ export function LayoutEditor( { initialContent, controls, customControls } ) {
 	useEffect( () => {
 		dispatch( setContent( initialContent ) );
 	}, [ dispatch, initialContent ] );
+	useEffect( () => {
+		dispatch( mergeConfig( config ) );
+	}, [ dispatch, config ] );
 
 	return (
 		<div id="publicationEditorLayout">
