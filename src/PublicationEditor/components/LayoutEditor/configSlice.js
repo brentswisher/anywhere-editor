@@ -11,6 +11,7 @@ const initialState = {
 		'content-buttons': 'content-buttons button-group',
 		'button-primary': 'button primary',
 		'button-secondary': 'button secondary',
+		'button-success': 'button success',
 		'button-alert': 'button alert',
 
 		'button-group': 'button-group',
@@ -23,6 +24,10 @@ const initialState = {
 		'position-offset-left': 'position-offset-left',
 		'position-offset-right': 'position-offset-right',
 
+		'text-left': 'text-left',
+		'text-right': 'text-right',
+		'text-center': 'text-center',
+
 		controlContainer: 'controlContainer',
 
 		modal: 'modal',
@@ -32,6 +37,16 @@ const initialState = {
 		active: 'is-active',
 		visible: 'visible',
 		'menu-dropdown': 'menu dropdown',
+
+		'tab-group': 'tabs',
+		'tab-content': 'tabs-content',
+		'tab-panel': 'tabs-panel',
+		'tab-title': 'tabs-title',
+
+		gallery: 'gallery',
+		'gallery-items': 'gallery-items',
+		'gallery-item': 'gallery-item',
+		'gallery-caption': 'gallery-caption',
 	},
 };
 

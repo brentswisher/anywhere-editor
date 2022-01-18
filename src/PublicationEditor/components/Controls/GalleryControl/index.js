@@ -8,6 +8,9 @@ import {
 } from '../../Inputs';
 import EditModal from '../../EditModal';
 
+import { useSelector } from 'react-redux';
+import { selectCssClasses } from '../../LayoutEditor/configSlice';
+
 export function GalleryControl( {
 	images,
 	title,
@@ -65,7 +68,8 @@ GalleryControl.defaultProps = {
 	editing: false,
 };
 function GalleryEditor( props ) {
-	const [ title, setTitle ] = useState( props.title ),
+	const cssClasses = useSelector( selectCssClasses ),
+		[ title, setTitle ] = useState( props.title ),
 		[ caption, setCaption ] = useState( props.caption ),
 		[ captionPosition, setCaptionPosition ] = useState(
 			props.captionPosition
@@ -227,14 +231,13 @@ function GalleryEditor( props ) {
 				] }
 				onChange={ setCaptionPosition }
 			/>
-			<ul className="tabs">
+			<ul className={ cssClasses[ 'tab-group' ] }>
 				{ images.map( ( image, index ) => (
 					<li
 						key={ index }
-						className={
-							'tabs-title' +
-							( index === currentTab ? ' is-active' : '' )
-						}
+						className={ `${ cssClasses[ 'tab-title' ] } ${
+							index === currentTab ? cssClasses[ 'active' ] : ''
+						}` }
 					>
 						<a
 							href="#panel1"
@@ -246,13 +249,12 @@ function GalleryEditor( props ) {
 				) ) }
 			</ul>
 
-			<div className="tabs-content">
+			<div className={ cssClasses[ 'tab-content' ] }>
 				{ images.map( ( image, index ) => (
 					<div
-						className={
-							'tabs-panel' +
-							( index === currentTab ? ' is-active' : '' )
-						}
+						className={ `${ cssClasses[ 'tab-panel' ] } ${
+							index === currentTab ? cssClasses[ 'active' ] : ''
+						}` }
 						key={ index }
 					>
 						<ImageInput
@@ -294,7 +296,10 @@ function GalleryEditor( props ) {
 								} )
 							}
 						/>
-						<button onClick={ addImage } className="button success">
+						<button
+							onClick={ addImage }
+							className={ cssClasses[ 'button-success' ] }
+						>
 							Add Image
 						</button>
 						<button
@@ -304,7 +309,7 @@ function GalleryEditor( props ) {
 									index: currentTab,
 								} )
 							}
-							className="button alert"
+							className={ cssClasses[ 'button-alert' ] }
 						>
 							Remove Image
 						</button>
@@ -316,15 +321,20 @@ function GalleryEditor( props ) {
 }
 
 function GalleryDisplay( props ) {
+	const cssClasses = useSelector( selectCssClasses );
 	return (
-		<div className="gallery" onClick={ props.onClick }>
+		<div className={ cssClasses[ 'gallery' ] } onClick={ props.onClick }>
 			{ props.title && (
-				<h2 className={ `text-${ props.headingPosition }` }>
+				<h2
+					className={
+						cssClasses[ `text-${ props.headingPosition }` ]
+					}
+				>
 					{ ' ' }
 					{ props.title }{ ' ' }
 				</h2>
 			) }
-			<div className="gallery-items">
+			<div className={ cssClasses[ 'gallery-items' ] }>
 				{ props.images.length &&
 				Object.keys( props.images[ 0 ].src ).length ? (
 					props.images.map( ( image, index ) => {
@@ -342,11 +352,20 @@ function GalleryDisplay( props ) {
 							}.jpg`;
 						}
 						return (
-							<div className="gallery-item" key={ index }>
+							<div
+								className={ cssClasses[ 'gallery-item' ] }
+								key={ index }
+							>
 								<img src={ displaySrc } alt={ image.alt } />
 								{ image.caption && (
 									<div
-										className={ `gallery-caption text-${ props.captionPosition }` }
+										className={ `${
+											cssClasses[ 'gallery-item' ]
+										} ${
+											cssClasses[
+												'text-' + props.captionPosition
+											]
+										}` }
 										dangerouslySetInnerHTML={ {
 											__html: image.caption,
 										} }
@@ -363,7 +382,9 @@ function GalleryDisplay( props ) {
 			</div>
 			{ props.caption && props.caption.length && (
 				<div
-					className={ `gallery-caption text-${ props.captionPosition }` }
+					className={ `${ cssClasses[ 'gallery-item' ] } ${
+						cssClasses[ 'text-' + props.captionPosition ]
+					}` }
 					dangerouslySetInnerHTML={ { __html: props.caption } }
 				/>
 			) }
