@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { TextInput } from '../../Inputs';
 import EditModal from '../../EditModal';
 
+import { useSelector } from 'react-redux';
+import { selectCssClasses } from '../../LayoutEditor/configSlice';
+
 export function VideoControl( { name, videoId, title, setData, required } ) {
 	const [ editing, setEditing ] = useState( false ),
 		toggleEditable = () => setEditing( ! editing );
@@ -90,10 +93,12 @@ function VideoEditor( props ) {
 }
 
 function VideoDisplay( props ) {
+	const cssClasses = useSelector( selectCssClasses );
+
 	if ( props.videoId ) {
 		return (
 			<div
-				className="responsive-embed widescreen"
+				className={ cssClasses[ 'video-container' ] }
 				onClick={ props.onClick }
 			>
 				<img
@@ -107,7 +112,9 @@ function VideoDisplay( props ) {
 	return (
 		<div onClick={ props.onClick }>
 			<br />
-			<p className="stop-drop-cap">[Click here to select video]</p>
+			<p className={ cssClasses[ 'no-drop-cap' ] }>
+				[Click here to select video]
+			</p>
 			<br />
 		</div>
 	);
