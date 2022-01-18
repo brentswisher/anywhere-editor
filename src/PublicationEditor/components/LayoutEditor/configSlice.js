@@ -28,6 +28,11 @@ const initialState = {
 		'text-right': 'text-right',
 		'text-center': 'text-center',
 
+		'heading-1': 'article-heading',
+		'heading-2': 'article-subheading',
+		'heading-3': '',
+		'heading-4': '',
+
 		controlContainer: 'controlContainer',
 
 		modal: 'modal',

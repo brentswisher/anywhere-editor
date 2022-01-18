@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { TextInput } from '../../Inputs';
 import EditModal from '../../EditModal';
 
+import { useSelector } from 'react-redux';
+import { selectCssClasses } from '../../LayoutEditor/configSlice';
+
 export function HeadingControl( { name, level, text, setData, required } ) {
 	const [ editing, setEditing ] = useState( false ),
 		toggleEditable = () => setEditing( ! editing );
@@ -68,15 +71,15 @@ function HeadingEditor( props ) {
 }
 
 function HeadingDisplay( props ) {
-	const validHeadings = [ 1, 2, 3, 4 ],
-		cssClasses = [ 'article-heading', 'article-subheading', '', '' ],
+	const cssClasses = useSelector( selectCssClasses ),
+		validHeadings = [ 1, 2, 3, 4 ],
 		HeadingEl =
 			'h' + ( validHeadings.indexOf( props.level ) ? props.level : '1' );
 	return (
 		<HeadingEl
 			tabIndex="0"
 			onClick={ props.onClick }
-			className={ cssClasses[ props.level - 1 ] }
+			className={ cssClasses[ `heading-${ props.level }` ] }
 		>
 			{ props.text ? props.text : '[Enter heading text here]' }
 			<input type="hidden" name={ props.name } value={ props.text } />
