@@ -18,33 +18,33 @@ function App() {
 					},
 				],
 			},
-			{
-				id: '109811',
-				type: 'article-content',
-				position: 'position-full',
-				innerContent: [
-					{
-						data: {
-							articleId: 'C63E796E-C5FA-E3C3-0D7C67D38EC20D9B',
-							position: 'full',
-							captionPosition: 'right',
-							border: '',
-							src: '9BF1DCF1-93A1-EA36-A1F1605255B1E5EE',
-							thumbnailPath:
-								'https://www.gvsu.edu/gvmagazine/files/img/article/C63E796E-C5FA-E3C3-0D7C67D38EC20D9B/',
-							fieldName: 'field_0',
-							alt:
-								'The Distinguished Alumni Award: headshot of Nicholas Ceglarek',
-							editing: false,
-							mobilePosition: 'full',
-							hasUpload: false,
-							caption: '',
-						},
-						id: 8,
-						type: 'Image',
-					},
-				],
-			},
+			// {
+			// 	id: '109811',
+			// 	type: 'article-content',
+			// 	position: 'position-full',
+			// 	innerContent: [
+			// 		{
+			// 			data: {
+			// 				articleId: 'C63E796E-C5FA-E3C3-0D7C67D38EC20D9B',
+			// 				position: 'full',
+			// 				captionPosition: 'right',
+			// 				border: '',
+			// 				src: '9BF1DCF1-93A1-EA36-A1F1605255B1E5EE',
+			// 				thumbnailPath:
+			// 					'https://www.gvsu.edu/gvmagazine/files/img/article/C63E796E-C5FA-E3C3-0D7C67D38EC20D9B/',
+			// 				fieldName: 'field_0',
+			// 				alt:
+			// 					'The Distinguished Alumni Award: headshot of Nicholas Ceglarek',
+			// 				editing: false,
+			// 				mobilePosition: 'full',
+			// 				hasUpload: false,
+			// 				caption: '',
+			// 			},
+			// 			id: 8,
+			// 			type: 'Image',
+			// 		},
+			// 	],
+			// },
 			{
 				id: '12344',
 				type: 'article-content',
@@ -66,28 +66,28 @@ function App() {
 					},
 				],
 			},
-			{
-				id: '523465',
-				type: 'article-content',
-				position: 'position-full',
-				innerContent: [
-					{
-						data: {
-							articleId: 'C63E796E-C5FA-E3C3-0D7C67D38EC20D9B',
-							src: '9BF1DD3B-C008-D057-0D567241F728C7B9',
-							thumbnailPath:
-								'https://www.gvsu.edu/gvmagazine/files/img/article/C63E796E-C5FA-E3C3-0D7C67D38EC20D9B/',
-							fieldName: 'field_2',
-							alt:
-								'The Alumni Service Award: Headshot of Rachel Cardosa',
-							editing: false,
-							hasUpload: false,
-						},
-						id: 9,
-						type: 'Image',
-					},
-				],
-			},
+			// {
+			// 	id: '523465',
+			// 	type: 'article-content',
+			// 	position: 'position-full',
+			// 	innerContent: [
+			// 		{
+			// 			data: {
+			// 				articleId: 'C63E796E-C5FA-E3C3-0D7C67D38EC20D9B',
+			// 				src: '9BF1DD3B-C008-D057-0D567241F728C7B9',
+			// 				thumbnailPath:
+			// 					'https://www.gvsu.edu/gvmagazine/files/img/article/C63E796E-C5FA-E3C3-0D7C67D38EC20D9B/',
+			// 				fieldName: 'field_2',
+			// 				alt:
+			// 					'The Alumni Service Award: Headshot of Rachel Cardosa',
+			// 				editing: false,
+			// 				hasUpload: false,
+			// 			},
+			// 			id: 9,
+			// 			type: 'Image',
+			// 		},
+			// 	],
+			// },
 			{
 				id: '234543645',
 				type: 'article-content',
@@ -109,28 +109,28 @@ function App() {
 					},
 				],
 			},
-			{
-				id: '23453465',
-				type: 'article-content',
-				position: 'position-full',
-				innerContent: [
-					{
-						data: {
-							articleId: 'C63E796E-C5FA-E3C3-0D7C67D38EC20D9B',
-							src: '9C58D794-DCF4-C36C-69C9E5EB0FDB7BBB',
-							thumbnailPath:
-								'https://www.gvsu.edu/gvmagazine/files/img/article/C63E796E-C5FA-E3C3-0D7C67D38EC20D9B/',
-							fieldName: 'field_4',
-							alt:
-								'The Young Alumni Award: Headshot of Mackenzie Satkoski ',
-							editing: false,
-							hasUpload: false,
-						},
-						id: 10,
-						type: 'Image',
-					},
-				],
-			},
+			// {
+			// 	id: '23453465',
+			// 	type: 'article-content',
+			// 	position: 'position-full',
+			// 	innerContent: [
+			// 		{
+			// 			data: {
+			// 				articleId: 'C63E796E-C5FA-E3C3-0D7C67D38EC20D9B',
+			// 				src: '9C58D794-DCF4-C36C-69C9E5EB0FDB7BBB',
+			// 				thumbnailPath:
+			// 					'https://www.gvsu.edu/gvmagazine/files/img/article/C63E796E-C5FA-E3C3-0D7C67D38EC20D9B/',
+			// 				fieldName: 'field_4',
+			// 				alt:
+			// 					'The Young Alumni Award: Headshot of Mackenzie Satkoski ',
+			// 				editing: false,
+			// 				hasUpload: false,
+			// 			},
+			// 			id: 10,
+			// 			type: 'Image',
+			// 		},
+			// 	],
+			// },
 			{
 				id: '23464354',
 				type: 'article-content',
@@ -235,12 +235,16 @@ function App() {
 					'block py-2 px-4 text-sm text-gray-100 bg-gray-700 hover:text-gray-700 hover:bg-gray-100',
 
 				'position-full': 'w-7/12 mx-auto sm:px-2',
-				'position-left': 'position-left',
-				'position-right': 'position-right',
-				'position-full-page': 'position-full-page',
-				'position-offset-full': 'position-offset-full',
-				'position-offset-left': 'position-offset-left',
-				'position-offset-right': 'position-offset-right',
+				'position-left':
+					'float-left w-3/12 box-border mr-6 ml-80 clear-both',
+				'position-right':
+					'float-right w-3/12 box-border ml-6 mr-80 clear-both',
+				'position-full-page': 'w-full clear-both',
+				'position-offset-full': 'w-10/12 py-4 mx-auto',
+				'position-offset-left':
+					'float-left w-5/12 box-border clear-both mr-6 ml-32',
+				'position-offset-right':
+					'float-right w-5/12 box-border clear-both ml-6 mr-32',
 
 				'text-left': 'text-left',
 				'text-right': 'text-right',
