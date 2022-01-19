@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { TextInput, RichTextInput } from '../../Inputs';
 import EditModal from '../../EditModal';
 
+import { useSelector } from 'react-redux';
+import { selectCssClasses } from '../../LayoutEditor/configSlice';
+
 export function ContentControl( { name, title, content, setData, required } ) {
 	const [ editing, setEditing ] = useState( false ),
 		toggleEditable = () => setEditing( ! editing );
@@ -84,10 +87,16 @@ function ContentEditor( props ) {
 }
 
 function ContentDisplay( props ) {
+	const cssClasses = useSelector( selectCssClasses );
 	return (
 		<div onClick={ props.onClick }>
-			{ props.title && <h2>{ props.title }</h2> }
+			{ props.title && (
+				<h2 className={ cssClasses[ 'content-heading' ] }>
+					{ props.title }
+				</h2>
+			) }
 			<div
+				className={ cssClasses[ 'content-body' ] }
 				dangerouslySetInnerHTML={ {
 					__html: props.content
 						? props.content

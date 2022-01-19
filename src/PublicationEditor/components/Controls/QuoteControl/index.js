@@ -162,8 +162,12 @@ function QuoteDisplay( props ) {
 			{ props.showIcon === '1' && (
 				<div className={ cssClasses[ 'pull-quote-icon' ] }>&ldquo;</div>
 			) }
-			{ props.title && <h2>{ props.title }</h2> }
-			<p>
+			{ props.title && (
+				<h2 className={ cssClasses[ 'pull-quote-title' ] }>
+					{ props.title }
+				</h2>
+			) }
+			<p className={ cssClasses[ 'pull-quote-content' ] }>
 				&ldquo;
 				{ props.text ? props.text : '  [Enter Quote Text Here]  ' }
 				&rdquo;

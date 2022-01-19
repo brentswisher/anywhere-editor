@@ -18,33 +18,33 @@ function App() {
 					},
 				],
 			},
-			// {
-			// 	id: '109811',
-			// 	type: 'article-content',
-			// 	position: 'position-full',
-			// 	innerContent: [
-			// 		{
-			// 			data: {
-			// 				articleId: 'C63E796E-C5FA-E3C3-0D7C67D38EC20D9B',
-			// 				position: 'full',
-			// 				captionPosition: 'right',
-			// 				border: '',
-			// 				src: '9BF1DCF1-93A1-EA36-A1F1605255B1E5EE',
-			// 				thumbnailPath:
-			// 					'https://www.gvsu.edu/gvmagazine/files/img/article/C63E796E-C5FA-E3C3-0D7C67D38EC20D9B/',
-			// 				fieldName: 'field_0',
-			// 				alt:
-			// 					'The Distinguished Alumni Award: headshot of Nicholas Ceglarek',
-			// 				editing: false,
-			// 				mobilePosition: 'full',
-			// 				hasUpload: false,
-			// 				caption: '',
-			// 			},
-			// 			id: 8,
-			// 			type: 'Image',
-			// 		},
-			// 	],
-			// },
+			{
+				id: '109811',
+				type: 'article-content',
+				position: 'position-full',
+				innerContent: [
+					{
+						data: {
+							articleId: 'C63E796E-C5FA-E3C3-0D7C67D38EC20D9B',
+							position: 'full',
+							captionPosition: 'right',
+							border: '',
+							src: '9BF1DCF1-93A1-EA36-A1F1605255B1E5EE',
+							thumbnailPath:
+								'https://www.gvsu.edu/gvmagazine/files/img/article/C63E796E-C5FA-E3C3-0D7C67D38EC20D9B/',
+							fieldName: 'field_0',
+							alt:
+								'The Distinguished Alumni Award: headshot of Nicholas Ceglarek',
+							editing: false,
+							mobilePosition: 'full',
+							hasUpload: false,
+							caption: '',
+						},
+						id: 8,
+						type: 'Image',
+					},
+				],
+			},
 			{
 				id: '12344',
 				type: 'article-content',
@@ -66,28 +66,28 @@ function App() {
 					},
 				],
 			},
-			// {
-			// 	id: '523465',
-			// 	type: 'article-content',
-			// 	position: 'position-full',
-			// 	innerContent: [
-			// 		{
-			// 			data: {
-			// 				articleId: 'C63E796E-C5FA-E3C3-0D7C67D38EC20D9B',
-			// 				src: '9BF1DD3B-C008-D057-0D567241F728C7B9',
-			// 				thumbnailPath:
-			// 					'https://www.gvsu.edu/gvmagazine/files/img/article/C63E796E-C5FA-E3C3-0D7C67D38EC20D9B/',
-			// 				fieldName: 'field_2',
-			// 				alt:
-			// 					'The Alumni Service Award: Headshot of Rachel Cardosa',
-			// 				editing: false,
-			// 				hasUpload: false,
-			// 			},
-			// 			id: 9,
-			// 			type: 'Image',
-			// 		},
-			// 	],
-			// },
+			{
+				id: '523465',
+				type: 'article-content',
+				position: 'position-full',
+				innerContent: [
+					{
+						data: {
+							articleId: 'C63E796E-C5FA-E3C3-0D7C67D38EC20D9B',
+							src: '9BF1DD3B-C008-D057-0D567241F728C7B9',
+							thumbnailPath:
+								'https://www.gvsu.edu/gvmagazine/files/img/article/C63E796E-C5FA-E3C3-0D7C67D38EC20D9B/',
+							fieldName: 'field_2',
+							alt:
+								'The Alumni Service Award: Headshot of Rachel Cardosa',
+							editing: false,
+							hasUpload: false,
+						},
+						id: 9,
+						type: 'Image',
+					},
+				],
+			},
 			{
 				id: '234543645',
 				type: 'article-content',
@@ -109,28 +109,28 @@ function App() {
 					},
 				],
 			},
-			// {
-			// 	id: '23453465',
-			// 	type: 'article-content',
-			// 	position: 'position-full',
-			// 	innerContent: [
-			// 		{
-			// 			data: {
-			// 				articleId: 'C63E796E-C5FA-E3C3-0D7C67D38EC20D9B',
-			// 				src: '9C58D794-DCF4-C36C-69C9E5EB0FDB7BBB',
-			// 				thumbnailPath:
-			// 					'https://www.gvsu.edu/gvmagazine/files/img/article/C63E796E-C5FA-E3C3-0D7C67D38EC20D9B/',
-			// 				fieldName: 'field_4',
-			// 				alt:
-			// 					'The Young Alumni Award: Headshot of Mackenzie Satkoski ',
-			// 				editing: false,
-			// 				hasUpload: false,
-			// 			},
-			// 			id: 10,
-			// 			type: 'Image',
-			// 		},
-			// 	],
-			// },
+			{
+				id: '23453465',
+				type: 'article-content',
+				position: 'position-full',
+				innerContent: [
+					{
+						data: {
+							articleId: 'C63E796E-C5FA-E3C3-0D7C67D38EC20D9B',
+							src: '9C58D794-DCF4-C36C-69C9E5EB0FDB7BBB',
+							thumbnailPath:
+								'https://www.gvsu.edu/gvmagazine/files/img/article/C63E796E-C5FA-E3C3-0D7C67D38EC20D9B/',
+							fieldName: 'field_4',
+							alt:
+								'The Young Alumni Award: Headshot of Mackenzie Satkoski ',
+							editing: false,
+							hasUpload: false,
+						},
+						id: 10,
+						type: 'Image',
+					},
+				],
+			},
 			{
 				id: '23464354',
 				type: 'article-content',
@@ -206,15 +206,15 @@ function App() {
 				'error-container':
 					'bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-4 rounded relative',
 
-				'content-buttons': 'w-7/12 mx-auto mt-6 sm:px-2',
+				'content-buttons': 'w-7/12 mx-auto mt-6 sm:px-2 clear-both',
 				'button-primary':
-					'inline-block font-medium text-sm px-5 py-2.5 text-center mr-2 focus:ring-4 text-white bg-sky-700 hover:bg-sky-900 focus:ring-sky-300',
+					'inline-block font-medium text-sm px-5 py-2.5 text-center mr-1 focus:ring-4 text-white bg-sky-700 hover:bg-sky-900 focus:ring-sky-300',
 				'button-secondary':
-					'inline-block font-medium text-sm px-5 py-2.5 text-center mr-2 focus:ring-4 text-white bg-slate-600 hover:bg-slate-800 focus:ring-slate-300',
+					'inline-block font-medium text-sm px-5 py-2.5 text-center mr-1 focus:ring-4 text-white bg-slate-600 hover:bg-slate-800 focus:ring-slate-300',
 				'button-success':
-					'inline-block font-medium text-sm px-5 py-2.5 text-center mr-2 focus:ring-4 text-gray-900 bg-green-400 hover:bg-green-500 focus:ring-green-100',
+					'inline-block font-medium text-sm px-5 py-2.5 text-center mr-1 focus:ring-4 text-gray-900 bg-green-400 hover:bg-green-500 focus:ring-green-100',
 				'button-alert':
-					'inline-block font-medium text-sm px-5 py-2.5 text-center mr-2 focus:ring-4 text-white bg-red-700 hover:bg-red-800 focus:ring-red-300',
+					'inline-block font-medium text-sm px-5 py-2.5 text-center mr-1 focus:ring-4 text-white bg-red-700 hover:bg-red-800 focus:ring-red-300',
 
 				'button-group': 'flex items-center justify-left py-4',
 				'button-group-primary':
@@ -257,10 +257,14 @@ function App() {
 				// //Todo: these will be generated by the colors config
 				// 'color-*': 'color-*',
 
-				'heading-1': 'font-bold text-6xl text-center',
-				'heading-2': 'font-semibold text-4xl text-center',
+				'heading-1': 'font-serif font-bold text-7xl my-6 text-center',
+				'heading-2': 'font-semibold mt-7 text-4xl text-center',
 				'heading-3': '',
 				'heading-4': '',
+
+				'content-heading':
+					'font-fort-black text-xl text-black uppercase lining-nums mt-7',
+				'content-body': 'font-fort-light text-lg',
 
 				// 'no-drop-cap': 'stop-drop-cap',
 
@@ -282,26 +286,32 @@ function App() {
 				// 'gallery-item': 'gallery-item',
 				// 'gallery-caption': 'gallery-caption',
 
-				// photo: 'photo',
-				// 'photo-caption': 'photo-caption',
+				photo: 'w-full mb-4 text-slate-400 pt-4',
+				'photo-caption': 'text-sm pt-4',
 				// 'photo-mobile-full': 'photo-mobile-full',
 				// 'photo-mobile-match': 'photo-mobile-match',
 
-				// 'pull-quote': 'pull-quote',
-				// 'pull-quote-spacing-large': 'pull-quote-spacing-large',
-				// 'pull-quote-icon': 'pull-quote-icon',
-				// 'pull-quote-author': 'pull-quote-author',
+				'pull-quote': 'text-center',
+				'pull-quote-spacing-large': '',
+				'pull-quote-icon': 'font-fort-black text-8xl mt-2 pt-6',
+				'pull-quote-title':
+					'font-fort-black text-base text-black lining-nums mt-10 pb-6',
+				'pull-quote-content':
+					'font-kepler-bold-italics italic font-bold text-2xl pb-6',
+				'pull-quote-author': 'font-family-fort-light not-italic',
 
-				// 'video-container': 'responsive-embed widescreen',
+				'video-container': '',
 
 				// //Input styles
-				// 'color-picker': 'color-picker',
-				// 'color-picker-sample': 'color-picker-sample',
-				'help-text': 'help-text',
+				'color-picker':
+					'block box-border w-full h-10 mb-4 p-2 border-2 border-neutral-300 shadow-sm transition-shadow text-base text-black',
+				'color-picker-sample': 'h-6 w-6 pr-4',
 				input:
 					'block box-border w-full h-10 mb-4 p-2 border-2 border-neutral-300 shadow-sm transition-shadow text-base text-black',
 				'input-text': '',
 				'input-select': '',
+				'help-text': 'block -mt-2 mb-4 text-sm text-gray-500',
+
 				label: 'block text-sm text-base',
 			},
 		};
@@ -311,7 +321,14 @@ function App() {
 			<PublicationEditor
 				content={ testData }
 				template={ testData }
-				controls={ [ 'Heading', 'Content', 'Image', 'Video' ] }
+				controls={ [
+					'Heading',
+					'Content',
+					'Gallery',
+					'Quote',
+					'Image',
+					'Video',
+				] }
 				config={ config }
 				customControls={ {
 					Testing: {

@@ -236,6 +236,11 @@ function ImageDisplay( props ) {
 		return (
 			<div className={ classList.join( ' ' ) } onClick={ props.onClick }>
 				<input type="hidden" value={ props.src } name="photoId" />
+				{ props.title && (
+					<h2 className={ cssClasses[ 'content-heading' ] }>
+						{ props.title }
+					</h2>
+				) }
 				<img src={ props.src } alt={ props.alt } />
 				<div
 					className={ `${ cssClasses[ 'photo-caption' ] }  ${
