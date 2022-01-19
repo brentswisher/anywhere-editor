@@ -66,20 +66,28 @@ export function ControlBlock( {
 			{ ( provided, snapshot ) => (
 				<div
 					key={ id }
-					className={ `${ cssClasses[ 'controlContainer' ] } ${
+					className={
 						isFocused || snapshot.isDragging
-							? cssClasses[ 'active' ]
-							: ''
-					}` }
+							? cssClasses[ 'control-container-active' ]
+							: cssClasses[ 'control-container' ]
+					}
 					{ ...provided.draggableProps }
 					ref={ provided.innerRef }
 					onMouseEnter={ () => setFocused( true ) }
 					onMouseLeave={ () => setFocused( false ) }
 				>
-					<ul className={ cssClasses[ 'block-actions' ] }>
+					<ul
+						className={
+							isFocused || snapshot.isDragging
+								? cssClasses[ 'block-actions-active' ]
+								: cssClasses[ 'block-actions' ]
+						}
+					>
 						<li>
 							<a
-								className={ cssClasses[ 'button-secondary' ] }
+								className={
+									cssClasses[ 'button-group-secondary' ]
+								}
 								{ ...provided.dragHandleProps }
 							>
 								&#10021;
@@ -87,7 +95,9 @@ export function ControlBlock( {
 						</li>
 						<li>
 							<button
-								className={ cssClasses[ 'button-secondary' ] }
+								className={
+									cssClasses[ 'button-group-secondary' ]
+								}
 								{ ...buttonProps }
 							>
 								&#9881;
@@ -96,19 +106,25 @@ export function ControlBlock( {
 								</span>
 							</button>
 							<ul
-								className={ `${
-									cssClasses[ 'menu-dropdown' ]
-								} ${ isOpen ? cssClasses[ 'visible' ] : '' }` }
+								className={
+									isOpen
+										? cssClasses[ 'dropdown-list-open' ]
+										: cssClasses[ 'dropdown-list' ]
+								}
 								role="menu"
 							>
 								{ positions.map( ( { title, value } ) => (
 									<li key={ value }>
 										<a
-											className={ `${
+											className={
 												row.position === value
-													? cssClasses[ 'active' ]
-													: ''
-											}` }
+													? cssClasses[
+															'dropdown-button-active'
+													  ]
+													: cssClasses[
+															'dropdown-button'
+													  ]
+											}
 											{ ...itemProps[ 0 ] }
 											onClick={ () =>
 												handlePositionClick(
@@ -126,7 +142,9 @@ export function ControlBlock( {
 
 						<li>
 							<button
-								className={ cssClasses[ 'button-secondary' ] }
+								className={
+									cssClasses[ 'button-group-secondary' ]
+								}
 								disabled={ disableUp }
 								onClick={ onMoveUp }
 							>
@@ -138,7 +156,9 @@ export function ControlBlock( {
 						</li>
 						<li>
 							<button
-								className={ cssClasses[ 'button-secondary' ] }
+								className={
+									cssClasses[ 'button-group-secondary' ]
+								}
 								disabled={ disableDown }
 								onClick={ onMoveDown }
 							>
@@ -150,7 +170,7 @@ export function ControlBlock( {
 						</li>
 						<li>
 							<button
-								className={ cssClasses[ 'button-alert' ] }
+								className={ cssClasses[ 'button-group-alert' ] }
 								disabled={ disableDelete }
 								onClick={ onDelete }
 							>

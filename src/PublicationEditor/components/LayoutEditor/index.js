@@ -186,36 +186,34 @@ export function LayoutEditor( {
 					) }
 				</Droppable>
 			</DragDropContext>
-			<div className={ cssClasses[ 'article-content' ] }>
-				<div className={ cssClasses[ 'content-buttons' ] }>
-					{ controlList.map( ( controlName ) => (
-						<button
-							onClick={ () =>
-								dispatch(
-									addContentItem( {
-										id: parseInt(
-											Math.random() * 10000
-										).toString(),
-										type: 'article-content',
-										innerContent: [
-											{
-												id: parseInt(
-													Math.random() * 10000
-												).toString(),
-												type: controlName,
-												data: {},
-											},
-										],
-									} )
-								)
-							}
-							key={ controlName }
-							className={ cssClasses[ 'button-secondary' ] }
-						>
-							Add { controlLibrary[ controlName ].displayName }
-						</button>
-					) ) }
-				</div>
+			<div className={ cssClasses[ 'content-buttons' ] }>
+				{ controlList.map( ( controlName ) => (
+					<button
+						onClick={ () =>
+							dispatch(
+								addContentItem( {
+									id: parseInt(
+										Math.random() * 10000
+									).toString(),
+									type: 'article-content',
+									innerContent: [
+										{
+											id: parseInt(
+												Math.random() * 10000
+											).toString(),
+											type: controlName,
+											data: {},
+										},
+									],
+								} )
+							)
+						}
+						key={ controlName }
+						className={ cssClasses[ 'button-secondary' ] }
+					>
+						Add { controlLibrary[ controlName ].displayName }
+					</button>
+				) ) }
 			</div>
 		</div>
 	);

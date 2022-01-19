@@ -24,6 +24,7 @@ export function TextInput( {
 				name={ name }
 				id={ name }
 				value={ value }
+				className={ cssClasses[ 'input' ] }
 				onChange={ ( e ) => onChange( e.target.value ) }
 			/>
 			{ helpText && (

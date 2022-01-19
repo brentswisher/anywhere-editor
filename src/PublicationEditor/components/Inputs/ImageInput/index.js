@@ -174,6 +174,7 @@ export function ImageInput( {
 			<input
 				type="file"
 				id={ name }
+				className={ cssClasses[ 'input' ] }
 				onChange={ saveFile }
 				ref={ fileRef }
 			/>

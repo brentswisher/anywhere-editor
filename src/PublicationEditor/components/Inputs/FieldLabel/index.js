@@ -4,14 +4,14 @@ import { selectCssClasses } from '../../LayoutEditor/configSlice';
 
 export function FieldLabel( { htmlFor, visuallyHidden, children } ) {
 	const cssClasses = useSelector( selectCssClasses ),
-		labelClasses = [ cssClasses[ 'label' ] ];
+		classList = [ cssClasses[ 'label' ] ];
 
 	if ( visuallyHidden ) {
-		labelClasses.push( cssClasses[ 'sr-only' ] );
+		classList.push( cssClasses[ 'sr-only' ] );
 	}
 	return (
 		<React.Fragment>
-			<label htmlFor={ htmlFor } className={ labelClasses.join( ' ' ) }>
+			<label htmlFor={ htmlFor } className={ classList.join( ' ' ) }>
 				{ children }
 			</label>
 		</React.Fragment>
