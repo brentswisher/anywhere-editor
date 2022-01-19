@@ -9,18 +9,41 @@
 
 		<title>test</title>
 		<!--- Advanced typekit load --->
-			<script>
-		(function(d) {
-			var config = {
-				kitId: 'rfs4opa',
-				scriptTimeout: 3000,
-				async: true
-			},
-			h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-			})(document);
+		<script>
+			( function ( d ) {
+				var config = {
+						kitId: 'rfs4opa',
+						scriptTimeout: 3000,
+						async: true,
+					},
+					h = d.documentElement,
+					t = setTimeout( function () {
+						h.className =
+							h.className.replace( /\bwf-loading\b/g, '' ) +
+							' wf-inactive';
+					}, config.scriptTimeout ),
+					tk = d.createElement( 'script' ),
+					f = false,
+					s = d.getElementsByTagName( 'script' )[ 0 ],
+					a;
+				h.className += ' wf-loading';
+				tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+				tk.async = true;
+				tk.onload = tk.onreadystatechange = function () {
+					a = this.readyState;
+					if ( f || ( a && a != 'complete' && a != 'loaded' ) )
+						return;
+					f = true;
+					clearTimeout( t );
+					try {
+						Typekit.load( config );
+					} catch ( e ) {}
+				};
+				s.parentNode.insertBefore( tk, s );
+			} )( document );
 		</script>
 		<!--- Handles the FOUT issue --->
-		<style >
+		<style>
 			.wf-loading h1,
 			.wf-loading h2,
 			.wf-loading h3,
@@ -36,34 +59,39 @@
 
 			@font-face {
 				font-family: FortBlack;
-				src: url("./files/fonts/fortblack.eot");
-				src: url("./files/fonts/fortblack.woff2") format("woff2"),url("./files/fonts/fortblack.woff") format("woff")
+				src: url( './files/fonts/fortblack.eot' );
+				src: url( './files/fonts/fortblack.woff2' ) format( 'woff2' ),
+					url( './files/fonts/fortblack.woff' ) format( 'woff' );
 			}
 
 			@font-face {
 				font-family: FortBook;
-				src: url("./files/fonts/fortbook.eot");
-				src: url("./files/fonts/fortbook.woff2") format("woff2"),url("./files/fonts/fortbook.woff") format("woff")
+				src: url( './files/fonts/fortbook.eot' );
+				src: url( './files/fonts/fortbook.woff2' ) format( 'woff2' ),
+					url( './files/fonts/fortbook.woff' ) format( 'woff' );
 			}
 
 			@font-face {
 				font-family: FortBookItalic;
-				src: url("./files/fonts/fortbookitalic.eot");
-				src: url("./files/fonts/fortbookitalic.woff2") format("woff2"),url("./files/fonts/fortbookitalic.woff") format("woff")
+				src: url( './files/fonts/fortbookitalic.eot' );
+				src: url( './files/fonts/fortbookitalic.woff2' )
+						format( 'woff2' ),
+					url( './files/fonts/fortbookitalic.woff' ) format( 'woff' );
 			}
 
 			@font-face {
 				font-family: FortLight;
-				src: url("./files/fonts/fortlight.eot");
-				src: url("./files/fonts/fortlight.woff2") format("woff2"),url("./files/fonts/fortlight.woff") format("woff")
+				src: url( './files/fonts/fortlight.eot' );
+				src: url( './files/fonts/fortlight.woff2' ) format( 'woff2' ),
+					url( './files/fonts/fortlight.woff' ) format( 'woff' );
 			}
 
 			@font-face {
 				font-family: FortMedium;
-				src: url("./files/fonts/fortmedium.eot");
-				src: url("./files/fonts/fortmedium.woff2") format("woff2"),url("./files/fonts/fortmedium.woff") format("woff")
+				src: url( './files/fonts/fortmedium.eot' );
+				src: url( './files/fonts/fortmedium.woff2' ) format( 'woff2' ),
+					url( './files/fonts/fortmedium.woff' ) format( 'woff' );
 			}
-
 		</style>
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script>
@@ -88,9 +116,7 @@
 					},
 				},
 			};
-			
 		</script>
-	
 	</head>
 	<body class="font-fort-light">
 		<nav

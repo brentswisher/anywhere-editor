@@ -233,14 +233,14 @@ function GalleryEditor( props ) {
 			/>
 			<ul className={ cssClasses[ 'tab-group' ] }>
 				{ images.map( ( image, index ) => (
-					<li
-						key={ index }
-						className={ `${ cssClasses[ 'tab-title' ] } ${
-							index === currentTab ? cssClasses[ 'active' ] : ''
-						}` }
-					>
+					<li key={ index }>
 						<a
-							href="#panel1"
+							href={ `#panel${ index }` }
+							className={
+								index === currentTab
+									? cssClasses[ 'tab-title-active' ]
+									: cssClasses[ 'tab-title' ]
+							}
 							onClick={ () => setCurrentTab( index ) }
 						>
 							Image { index + 1 }
@@ -252,9 +252,11 @@ function GalleryEditor( props ) {
 			<div className={ cssClasses[ 'tab-content' ] }>
 				{ images.map( ( image, index ) => (
 					<div
-						className={ `${ cssClasses[ 'tab-panel' ] } ${
-							index === currentTab ? cssClasses[ 'active' ] : ''
-						}` }
+						className={
+							index === currentTab
+								? cssClasses[ 'tab-panel-active' ]
+								: cssClasses[ 'tab-panel' ]
+						}
 						key={ index }
 					>
 						<ImageInput

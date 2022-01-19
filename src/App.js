@@ -206,25 +206,26 @@ function App() {
 				'error-container':
 					'bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-4 rounded relative',
 
-				'content-buttons': 'w-7/12 mx-auto mt-6 sm:px-2 clear-both',
+				'content-buttons':
+					'w-7/12 mx-auto mt-6 sm:px-2 clear-both leading-5',
 				'button-primary':
-					'inline-block font-medium text-sm px-5 py-2.5 text-center mr-1 focus:ring-4 text-white bg-sky-700 hover:bg-sky-900 focus:ring-sky-300',
+					'inline-block font-medium text-sm px-4 py-2.5 mt-1 text-center mr-0.5 focus:ring-4 text-white bg-sky-700 hover:bg-sky-900 focus:ring-sky-300',
 				'button-secondary':
-					'inline-block font-medium text-sm px-5 py-2.5 text-center mr-1 focus:ring-4 text-white bg-slate-600 hover:bg-slate-800 focus:ring-slate-300',
+					'inline-block font-medium text-sm px-4 py-2.5 mt-1 text-center mr-0.5 focus:ring-4 text-white bg-slate-600 hover:bg-slate-800 focus:ring-slate-300',
 				'button-success':
-					'inline-block font-medium text-sm px-5 py-2.5 text-center mr-1 focus:ring-4 text-gray-900 bg-green-400 hover:bg-green-500 focus:ring-green-100',
+					'inline-block font-medium text-sm px-4 py-2.5 mt-1 text-center mr-0.5 focus:ring-4 text-gray-900 bg-green-400 hover:bg-green-500 focus:ring-green-100',
 				'button-alert':
-					'inline-block font-medium text-sm px-5 py-2.5 text-center mr-1 focus:ring-4 text-white bg-red-700 hover:bg-red-800 focus:ring-red-300',
+					'inline-block font-medium text-sm px-4 py-2.5 mt-1 text-center mr-0.5 focus:ring-4 text-white bg-red-700 hover:bg-red-800 focus:ring-red-300',
 
 				'button-group': 'flex items-center justify-left py-4',
 				'button-group-primary':
-					'inline-block font-medium text-sm px-5 py-2.5 text-center focus:ring-4 text-white bg-sky-700 hover:bg-sky-900 focus:ring-sky-300',
+					'inline-block font-medium text-sm px-4 py-2.5 mt-1 text-center focus:ring-4 text-white bg-sky-700 hover:bg-sky-900 focus:ring-sky-300',
 				'button-group-secondary':
-					'inline-block font-medium text-sm px-5 py-2.5 text-center focus:ring-4 text-white bg-slate-600 hover:bg-slate-800 focus:ring-slate-300',
+					'inline-block font-medium text-sm px-4 py-2.5 mt-1 text-center focus:ring-4 text-white bg-slate-600 hover:bg-slate-800 focus:ring-slate-300',
 				'button-group-success':
-					'inline-block font-medium text-sm px-5 py-2.5 text-center focus:ring-4 text-gray-900 bg-green-400 hover:bg-green-500 focus:ring-green-100',
+					'inline-block font-medium text-sm px-4 py-2.5 mt-1 text-center focus:ring-4 text-gray-900 bg-green-400 hover:bg-green-500 focus:ring-green-100',
 				'button-group-alert':
-					'inline-block font-medium text-sm px-5 py-2.5 text-center focus:ring-4 text-white bg-red-700 hover:bg-red-800 focus:ring-red-300',
+					'inline-block font-medium text-sm px-4 py-2.5 mt-1 text-center focus:ring-4 text-white bg-red-700 hover:bg-red-800 focus:ring-red-300',
 
 				'dropdown-list': 'hidden',
 				'dropdown-list-open':
@@ -266,7 +267,7 @@ function App() {
 					'font-fort-black text-xl text-black uppercase lining-nums mt-7',
 				'content-body': 'font-fort-light text-lg',
 
-				// 'no-drop-cap': 'stop-drop-cap',
+				// 'no-drop-cap': 'stop-drop-cap', TODO
 
 				modal:
 					'relative mx-auto w-2/3 p-8 mt-16 rounded border-2 border-slate-200 bg-white max-h-screen',
@@ -276,19 +277,22 @@ function App() {
 				active: 'is-active bg-zinc-100',
 				// visible: 'visible',
 
-				// 'tab-group': 'tabs',
-				// 'tab-content': 'tabs-content',
-				// 'tab-panel': 'tabs-panel',
-				// 'tab-title': 'tabs-title',
+				'tab-group': 'flex flex-wrap border-b border-gray-200',
+				'tab-title':
+					'block py-2 px-4 mr-1 text-sm text-gray-100 bg-gray-700 hover:text-gray-700 hover:bg-gray-100',
+				'tab-title-active':
+					'block py-2 px-4 mr-1 text-sm text-black bg-zinc-100 hover:bg-gray-100',
+				'tab-panel': 'hidden',
+				'tab-panel-active': 'px-2 py-6 bg-zinc-100',
 
-				// gallery: 'gallery',
-				// 'gallery-items': 'gallery-items',
-				// 'gallery-item': 'gallery-item',
-				// 'gallery-caption': 'gallery-caption',
+				gallery: 'font-family-fort-italic italic pt-4 mb-4',
+				'gallery-items': 'flex clear-both',
+				'gallery-item': 'flex-1 ml- 7 first:ml-0 sm:ml-5',
+				'gallery-caption': '',
 
 				photo: 'w-full mb-4 text-slate-400 pt-4',
 				'photo-caption': 'text-sm pt-4',
-				// 'photo-mobile-full': 'photo-mobile-full',
+				// 'photo-mobile-full': 'photo-mobile-full', TODO
 				// 'photo-mobile-match': 'photo-mobile-match',
 
 				'pull-quote': 'text-center',
@@ -310,6 +314,8 @@ function App() {
 					'block box-border w-full h-10 mb-4 p-2 border-2 border-neutral-300 shadow-sm transition-shadow text-base text-black',
 				'input-text': '',
 				'input-select': '',
+				'input-file':
+					'block box-border w-full h-10 mb-4 py-2 shadow-sm transition-shadow text-base text-black',
 				'help-text': 'block -mt-2 mb-4 text-sm text-gray-500',
 
 				label: 'block text-sm text-base',
