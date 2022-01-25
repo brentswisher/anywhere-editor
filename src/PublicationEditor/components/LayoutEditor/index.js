@@ -76,8 +76,8 @@ export function LayoutEditor({
 		<div id="publicationEditorLayout">
 			<input
 				type="hidden"
-				name="chunkJSON"
-				id="chunkJSON"
+				name="contentJSON"
+				id="contentJSON"
 				value={JSON.stringify(content)}
 			/>
 			<DragDropContext
