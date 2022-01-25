@@ -184,6 +184,7 @@ export function LayoutEditor({
 			<div className={cssClasses['content-buttons']}>
 				{controlList.map((controlName) => (
 					<button
+						type="button"
 						onClick={() =>
 							dispatch(
 								addContentItem({

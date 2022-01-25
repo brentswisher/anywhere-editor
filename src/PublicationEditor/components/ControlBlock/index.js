@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setRowPosition, selectRow } from '../LayoutEditor/layoutSlice';
 import { selectCssClasses } from '../LayoutEditor/configSlice';
 
-export function ControlBlock( {
+export function ControlBlock({
 	id,
 	index,
 	onMoveUp,
@@ -15,20 +15,20 @@ export function ControlBlock( {
 	disableDown,
 	disableDelete,
 	children,
-} ) {
-	const [ isFocused, setFocused ] = useState( false ),
-		{ buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu( 3 ),
-		row = useSelector( ( state ) => selectRow( state, id ) ),
-		cssClasses = useSelector( ( state ) => selectCssClasses( state ) ),
+}) {
+	const [isFocused, setFocused] = useState(false),
+		{ buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(3),
+		row = useSelector((state) => selectRow(state, id)),
+		cssClasses = useSelector((state) => selectCssClasses(state)),
 		dispatch = useDispatch(),
-		handlePositionClick = ( index, item ) => {
+		handlePositionClick = (index, item) => {
 			dispatch(
-				setRowPosition( {
+				setRowPosition({
 					rowIndex: index,
 					position: item,
-				} )
+				})
 			);
-			setIsOpen( false );
+			setIsOpen(false);
 		},
 		positions = [
 			{
@@ -62,59 +62,56 @@ export function ControlBlock( {
 		];
 
 	return (
-		<Draggable draggableId={ id } index={ index }>
-			{ ( provided, snapshot ) => (
+		<Draggable draggableId={id} index={index}>
+			{(provided, snapshot) => (
 				<div
-					key={ id }
+					key={id}
 					className={
 						isFocused || snapshot.isDragging
-							? cssClasses[ 'control-container-active' ]
-							: cssClasses[ 'control-container' ]
+							? cssClasses['control-container-active']
+							: cssClasses['control-container']
 					}
-					{ ...provided.draggableProps }
-					ref={ provided.innerRef }
-					onMouseEnter={ () => setFocused( true ) }
-					onMouseLeave={ () => setFocused( false ) }
+					{...provided.draggableProps}
+					ref={provided.innerRef}
+					onMouseEnter={() => setFocused(true)}
+					onMouseLeave={() => setFocused(false)}
 				>
 					<ul
 						className={
 							isFocused || snapshot.isDragging
-								? cssClasses[ 'block-actions-active' ]
-								: cssClasses[ 'block-actions' ]
+								? cssClasses['block-actions-active']
+								: cssClasses['block-actions']
 						}
 					>
 						<li>
 							<a
-								className={
-									cssClasses[ 'button-group-secondary' ]
-								}
-								{ ...provided.dragHandleProps }
+								className={cssClasses['button-group-secondary']}
+								{...provided.dragHandleProps}
 							>
 								&#10021;
 							</a>
 						</li>
 						<li>
 							<button
-								className={
-									cssClasses[ 'button-group-secondary' ]
-								}
-								{ ...buttonProps }
+								type="button"
+								className={cssClasses['button-group-secondary']}
+								{...buttonProps}
 							>
 								&#9881;
-								<span className={ cssClasses[ 'sr-only' ] }>
+								<span className={cssClasses['sr-only']}>
 									Row Settings
 								</span>
 							</button>
 							<ul
 								className={
 									isOpen
-										? cssClasses[ 'dropdown-list-open' ]
-										: cssClasses[ 'dropdown-list' ]
+										? cssClasses['dropdown-list-open']
+										: cssClasses['dropdown-list']
 								}
 								role="menu"
 							>
-								{ positions.map( ( { title, value } ) => (
-									<li key={ value }>
+								{positions.map(({ title, value }) => (
+									<li key={value}>
 										<a
 											className={
 												row.position === value
@@ -125,65 +122,64 @@ export function ControlBlock( {
 															'dropdown-button'
 													  ]
 											}
-											{ ...itemProps[ 0 ] }
-											onClick={ () =>
+											{...itemProps[0]}
+											onClick={() =>
 												handlePositionClick(
 													index,
 													value
 												)
 											}
 										>
-											{ title }
+											{title}
 										</a>
 									</li>
-								) ) }
+								))}
 							</ul>
 						</li>
 
 						<li>
 							<button
-								className={
-									cssClasses[ 'button-group-secondary' ]
-								}
-								disabled={ disableUp }
-								onClick={ onMoveUp }
+								type="button"
+								className={cssClasses['button-group-secondary']}
+								disabled={disableUp}
+								onClick={onMoveUp}
 							>
 								&uarr;
-								<span className={ cssClasses[ 'sr-only' ] }>
+								<span className={cssClasses['sr-only']}>
 									Move Up
 								</span>
 							</button>
 						</li>
 						<li>
 							<button
-								className={
-									cssClasses[ 'button-group-secondary' ]
-								}
-								disabled={ disableDown }
-								onClick={ onMoveDown }
+								type="button"
+								className={cssClasses['button-group-secondary']}
+								disabled={disableDown}
+								onClick={onMoveDown}
 							>
 								&darr;
-								<span className={ cssClasses[ 'sr-only' ] }>
+								<span className={cssClasses['sr-only']}>
 									Move Down
 								</span>
 							</button>
 						</li>
 						<li>
 							<button
-								className={ cssClasses[ 'button-group-alert' ] }
-								disabled={ disableDelete }
-								onClick={ onDelete }
+								type="button"
+								className={cssClasses['button-group-alert']}
+								disabled={disableDelete}
+								onClick={onDelete}
 							>
 								X
-								<span className={ cssClasses[ 'sr-only' ] }>
+								<span className={cssClasses['sr-only']}>
 									Delete
 								</span>
 							</button>
 						</li>
 					</ul>
-					{ children }
+					{children}
 				</div>
-			) }
+			)}
 		</Draggable>
 	);
 }
