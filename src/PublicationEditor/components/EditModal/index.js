@@ -4,41 +4,39 @@ import { useSelector } from 'react-redux';
 
 import { selectCssClasses } from '../LayoutEditor/configSlice';
 
-export function EditModal( {
+export function EditModal({
 	error,
 	saveChanges,
 	cancelChanges,
 	children,
 	appElement,
-} ) {
-	Modal.setAppElement( appElement );
-	const cssClasses = useSelector( selectCssClasses );
+}) {
+	Modal.setAppElement('#publication-editor');
+	const cssClasses = useSelector(selectCssClasses);
 	return (
 		<Modal
-			isOpen={ true }
+			isOpen={true}
 			contentLabel="Edit Sidebar Modal Window"
-			className={ cssClasses[ 'modal' ] }
-			overlayClassName={ cssClasses[ 'modal-overlay' ] }
-			onRequestClose={ cancelChanges }
+			className={cssClasses['modal']}
+			overlayClassName={cssClasses['modal-overlay']}
+			onRequestClose={cancelChanges}
 		>
-			{ error && (
-				<div className={ cssClasses[ 'error-container' ] }>
-					{ error }
-				</div>
-			) }
-			{ children }
-			<div className={ cssClasses[ 'button-group' ] }>
+			{error && (
+				<div className={cssClasses['error-container']}>{error}</div>
+			)}
+			{children}
+			<div className={cssClasses['button-group']}>
 				<button
 					type="button"
-					onClick={ saveChanges }
-					className={ cssClasses[ 'button-primary' ] }
+					onClick={saveChanges}
+					className={cssClasses['button-primary']}
 				>
 					Update
 				</button>
 				<button
 					type="button"
-					onClick={ cancelChanges }
-					className={ cssClasses[ 'button-secondary' ] }
+					onClick={cancelChanges}
+					className={cssClasses['button-secondary']}
 				>
 					Cancel
 				</button>
@@ -48,7 +46,7 @@ export function EditModal( {
 }
 
 EditModal.defaultProps = {
-	appElement: '#root',
+	appElement: '#react-root',
 };
 
 export default EditModal;
