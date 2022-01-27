@@ -22,16 +22,16 @@ import {
 	VideoControl,
 } from '../Controls/';
 
-export function LayoutEditor({
+export function LayoutEditor( {
 	initialContent,
 	controls,
 	config,
 	customControls,
-}) {
-	const content = useSelector(selectContent),
-		cssClasses = useSelector(selectCssClasses),
+} ) {
+	const content = useSelector( selectContent ),
+		cssClasses = useSelector( selectCssClasses ),
 		dispatch = useDispatch(),
-		controlList = [...controls, ...Object.keys(customControls)],
+		controlList = [ ...controls, ...Object.keys( customControls ) ],
 		controlLibrary = {
 			Heading: {
 				control: HeadingControl,
@@ -65,12 +65,12 @@ export function LayoutEditor({
 			},
 			...customControls,
 		};
-	useEffect(() => {
-		dispatch(setContent(initialContent));
-	}, [dispatch, initialContent]);
-	useEffect(() => {
-		dispatch(mergeConfig(config));
-	}, [dispatch, config]);
+	useEffect( () => {
+		dispatch( setContent( initialContent ) );
+	}, [ dispatch, initialContent ] );
+	useEffect( () => {
+		dispatch( mergeConfig( config ) );
+	}, [ dispatch, config ] );
 
 	return (
 		<div id="publicationEditorLayout">
@@ -78,12 +78,12 @@ export function LayoutEditor({
 				type="hidden"
 				name="contentJSON"
 				id="contentJSON"
-				value={JSON.stringify(content)}
+				value={ JSON.stringify( content ) }
 			/>
 			<DragDropContext
-				onDragEnd={(result) => {
+				onDragEnd={ ( result ) => {
 					const { destination, source } = result;
-					if (!destination) {
+					if ( ! destination ) {
 						//Wasn't dropped anywhere
 						return;
 					}
@@ -95,68 +95,72 @@ export function LayoutEditor({
 						return;
 					}
 					dispatch(
-						moveItem({
+						moveItem( {
 							currentIndex: result.source.index,
 							newIndex: result.destination.index,
-						})
+						} )
 					);
-				}}
+				} }
 			>
-				<Droppable droppableId={'dropper'}>
-					{(provided) => (
+				<Droppable droppableId={ 'dropper' }>
+					{ ( provided ) => (
 						<div
-							className={cssClasses['block-list']}
-							ref={provided.innerRef}
+							className={ cssClasses[ 'block-list' ] }
+							ref={ provided.innerRef }
 						>
-							{content.map((row, rowIndex) => {
+							{ content.map( ( row, rowIndex ) => {
 								// This is how to create a React component from a string of its neam
 								// https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
 								return (
 									<div
-										className={` ${
-											cssClasses[row.position]
-										}`}
-										key={row.id}
+										className={ ` ${
+											cssClasses[ row.position ]
+										}` }
+										key={ row.id }
 									>
 										<ControlBlock
-											id={row.id}
-											index={rowIndex}
-											onMoveUp={() =>
+											id={ row.id }
+											index={ rowIndex }
+											onMoveUp={ () =>
 												dispatch(
-													moveItem({
+													moveItem( {
 														currentIndex: rowIndex,
 														newIndex: rowIndex - 1,
-													})
+													} )
 												)
 											}
-											onMoveDown={() =>
+											onMoveDown={ () =>
 												dispatch(
-													moveItem({
+													moveItem( {
 														currentIndex: rowIndex,
 														newIndex: rowIndex + 1,
-													})
+													} )
 												)
 											}
-											onDelete={() =>
+											onDelete={ () =>
 												dispatch(
-													removeContentItem(rowIndex)
+													removeContentItem(
+														rowIndex
+													)
 												)
 											}
-											disableUp={rowIndex === 0}
+											disableUp={ rowIndex === 0 }
 											disableDown={
 												rowIndex === content.length - 1
 											}
 										>
-											{row.innerContent.map(
-												(column, columnIndex) => {
+											{ row.innerContent.map(
+												( column, columnIndex ) => {
 													const TheControl =
 														controlLibrary[
 															column.type
 														].control;
 													return (
 														<TheControl
-															key={column.id}
-															setData={(data) =>
+															key={ column.id }
+															setData={ (
+																data
+															) =>
 																dispatch(
 																	setContentItemData(
 																		{
@@ -167,27 +171,27 @@ export function LayoutEditor({
 																	)
 																)
 															}
-															{...column.data}
+															{ ...column.data }
 														/>
 													);
 												}
-											)}
+											) }
 										</ControlBlock>
 									</div>
 								);
-							})}
-							{provided.placeholder}
+							} ) }
+							{ provided.placeholder }
 						</div>
-					)}
+					) }
 				</Droppable>
 			</DragDropContext>
-			<div className={cssClasses['content-buttons']}>
-				{controlList.map((controlName) => (
+			<div className={ cssClasses[ 'content-buttons' ] }>
+				{ controlList.map( ( controlName ) => (
 					<button
 						type="button"
-						onClick={() =>
+						onClick={ () =>
 							dispatch(
-								addContentItem({
+								addContentItem( {
 									id: parseInt(
 										Math.random() * 10000
 									).toString(),
@@ -201,15 +205,15 @@ export function LayoutEditor({
 											data: {},
 										},
 									],
-								})
+								} )
 							)
 						}
-						key={controlName}
-						className={cssClasses['button-secondary']}
+						key={ controlName }
+						className={ cssClasses[ 'button-secondary' ] }
 					>
-						Add {controlLibrary[controlName].displayName}
+						Add { controlLibrary[ controlName ].displayName }
 					</button>
-				))}
+				) ) }
 			</div>
 		</div>
 	);
