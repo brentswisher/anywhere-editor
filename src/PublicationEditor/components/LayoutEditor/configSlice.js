@@ -2,23 +2,19 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	cssClasses: {
-		active: 'is-active',
+		active: 'active',
 		'article-content': 'article-content',
-		'block-actions-active': 'flex',
+		'block-actions-active': '',
 		'block-actions': 'menu chunkActions chunkActions-full',
 		'block-list': 'block-list',
 		'border-both': 'border-both',
 		'border-bottom': 'border-bottom',
 		'border-top': 'border-top',
 		'button-alert': 'button alert',
-		'button-group-alert':
-			'inline-block font-medium text-sm px-4 py-2.5 mt-1 text-center focus:ring-4 text-white bg-red-700 hover:bg-red-800 focus:ring-red-300',
-		'button-group-primary':
-			'inline-block font-medium text-sm px-4 py-2.5 mt-1 text-center focus:ring-4 text-white bg-sky-700 hover:bg-sky-900 focus:ring-sky-300',
-		'button-group-secondary':
-			'inline-block font-medium text-sm px-4 py-2.5 mt-1 text-center focus:ring-4 text-white bg-slate-600 hover:bg-slate-800 focus:ring-slate-300',
-		'button-group-success':
-			'inline-block font-medium text-sm px-4 py-2.5 mt-1 text-center focus:ring-4 text-gray-900 bg-green-400 hover:bg-green-500 focus:ring-green-100',
+		'button-group-alert': 'button alert',
+		'button-group-primary': 'button primary',
+		'button-group-secondary': 'button secondary',
+		'button-group-success': 'button success',
 		'button-group': 'button-group',
 		'button-primary': 'button primary',
 		'button-secondary': 'button secondary',
@@ -29,17 +25,13 @@ const initialState = {
 		'color-picker': 'color-picker',
 		'content-body': 'font-fort-light text-lg',
 		'content-buttons': 'content-buttons button-group',
-		'content-heading':
-			'font-fort-black text-xl text-black uppercase lining-nums mt-7',
+		'content-heading': '',
 		'control-container-active': '',
 		'control-container': '',
 		controlContainer: 'controlContainer',
-		'dropdown-button-active':
-			'block py-2 px-4 text-sm text-gray-100 bg-gray-700 hover:text-gray-700 hover:bg-gray-100',
-		'dropdown-button':
-			'block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100',
-		'dropdown-list-open':
-			'absolute z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow',
+		'dropdown-button-active': '',
+		'dropdown-button': '',
+		'dropdown-list-open': '',
 		'dropdown-list': 'hidden',
 		'error-container': 'callout alert',
 		'gallery-caption': 'gallery-caption',
@@ -51,12 +43,10 @@ const initialState = {
 		'heading-3': '',
 		'heading-4': '',
 		'help-text': 'help-text',
-		'input-file':
-			'block box-border w-full h-10 mb-4 py-2 shadow-sm transition-shadow text-base text-black',
+		'input-file': '',
 		'input-select': '',
 		'input-text': '',
-		input:
-			'block box-border w-full h-10 mb-4 p-2 border-2 border-neutral-300 shadow-sm transition-shadow text-base text-black',
+		input: '',
 		label: '',
 		'menu-dropdown': 'menu dropdown',
 		'modal-overlay': 'modal-overlay',
@@ -74,20 +64,17 @@ const initialState = {
 		'position-offset-right': 'position-offset-right',
 		'position-right': 'position-right',
 		'pull-quote-author': 'pull-quote-author',
-		'pull-quote-content':
-			'font-kepler-bold-italics italic font-bold text-2xl pb-6',
+		'pull-quote-content': '',
 		'pull-quote-icon': 'pull-quote-icon',
 		'pull-quote-spacing-large': 'pull-quote-spacing-large',
-		'pull-quote-title':
-			'font-fort-black text-base text-black lining-nums mt-10 pb-6',
+		'pull-quote-title': '',
 		'pull-quote': 'pull-quote',
 		'sr-only': 'show-for-sr',
 		'tab-content': 'tabs-content',
 		'tab-group': 'tabs',
-		'tab-panel-active': 'px-2 py-6 bg-zinc-100',
+		'tab-panel-active': '',
 		'tab-panel': 'tabs-panel',
-		'tab-title-active':
-			'block py-2 px-4 mr-1 text-sm text-black bg-zinc-100 hover:bg-gray-100',
+		'tab-title-active': '',
 		'tab-title': 'tabs-title',
 		'text-center': 'text-center',
 		'text-left': 'text-left',
