@@ -24,7 +24,10 @@ export function ImageControl( {
 	setData,
 } ) {
 	const [ editing, setEditing ] = useState( false ),
-		toggleEditable = () => setEditing( ! editing );
+		toggleEditable = () => setEditing( ! editing ),
+		displaySrc =
+			( thumbnailPath !== '' ? `${ thumbnailPath }/` : '' ) +
+			src[ sizes[ sizes.length - 1 ] ];
 
 	if ( editing ) {
 		return (
@@ -43,17 +46,6 @@ export function ImageControl( {
 				title={ title }
 			/>
 		);
-	}
-
-	let displaySrc = '';
-	if ( hasUpload ) {
-		//Pass base64 image
-		displaySrc = src[ sizes[ sizes.length - 1 ] ];
-	} else if ( typeof src === 'string' ) {
-		//Pass locaiton in the file system
-		displaySrc = `${ thumbnailPath }/${ src }/${
-			sizes[ sizes.length - 1 ]
-		}.jpg`;
 	}
 	return (
 		<ImageDisplay
