@@ -41,6 +41,7 @@ export function GalleryControl( {
 	return (
 		<GalleryDisplay
 			images={ images }
+			thumbnailPath={ thumbnailPath }
 			title={ title }
 			caption={ caption }
 			captionPosition={ captionPosition }
@@ -61,6 +62,7 @@ GalleryControl.defaultProps = {
 			caption: '',
 		},
 	],
+	thumbnailPath: '',
 	title: '',
 	caption: '',
 	captionPosition: 'right',
@@ -340,19 +342,11 @@ function GalleryDisplay( props ) {
 				{ props.images.length &&
 				Object.keys( props.images[ 0 ].src ).length ? (
 					props.images.map( ( image, index ) => {
-						let displaySrc = '';
-						if ( image.hasUpload ) {
-							//Pass base64 image
-							displaySrc =
-								image.src[
-									image.sizes[ image.sizes.length - 1 ]
-								];
-						} else if ( typeof image.src === 'string' ) {
-							//Pass locaiton in the file system
-							displaySrc = `${ thumbnailPath }/${ image.src }/${
-								image.sizes[ image.sizes.length - 1 ]
-							}.jpg`;
-						}
+						const displaySrc =
+							( props.thumbnailPath !== ''
+								? `${ props.thumbnailPath }/`
+								: '' ) +
+							image.src[ image.sizes[ image.sizes.length - 1 ] ];
 						return (
 							<div
 								className={ cssClasses[ 'gallery-item' ] }
