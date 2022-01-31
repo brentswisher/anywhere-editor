@@ -267,15 +267,13 @@ function App() {
 					'font-fort-black text-xl text-black uppercase lining-nums mt-7',
 				'content-body': 'font-fort-light text-lg',
 
-				// 'no-drop-cap': 'stop-drop-cap', TODO
-
 				modal:
 					'relative mx-auto w-2/3 p-8 mt-16 rounded border-2 border-slate-200 bg-white max-h-screen',
 				'modal-overlay': 'fixed inset-0 bg-black/75',
 
 				'sr-only': 'sr-only',
 				active: 'is-active bg-zinc-100',
-				// visible: 'visible',
+				visible: 'visible',
 
 				'tab-group': 'flex flex-wrap border-b border-gray-200',
 				'tab-title':
@@ -292,8 +290,8 @@ function App() {
 
 				photo: 'w-full mb-4 text-slate-400 pt-4',
 				'photo-caption': 'text-sm pt-4',
-				// 'photo-mobile-full': 'photo-mobile-full', TODO
-				// 'photo-mobile-match': 'photo-mobile-match',
+				'photo-mobile-full': 'photo-mobile-full',
+				'photo-mobile-match': 'photo-mobile-match',
 
 				'pull-quote': 'text-center',
 				'pull-quote-spacing-large': '',
