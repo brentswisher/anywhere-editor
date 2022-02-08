@@ -1,16 +1,38 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import './index.css';
-import App from './App';
+import { store } from './app/store';
+import { Provider } from 'react-redux';
 
-ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-	document.getElementById( 'root' )
-);
+import { LayoutEditor } from './components';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
+export function PublicationEditor( {
+	content,
+	template,
+	controls,
+	config,
+	customControls,
+} ) {
+	const initalContent =
+		! content.length && template.length ? template : content;
+	return (
+		<Provider store={ store }>
+			<div id="publication-editor">
+				<LayoutEditor
+					initialContent={ initalContent }
+					controls={ controls }
+					customControls={ customControls }
+					config={ config }
+				/>
+			</div>
+		</Provider>
+	);
+}
+
+PublicationEditor.defaultProps = {
+	content: [],
+	template: [],
+	controls: [ 'Heading', 'Content', 'Quote', 'Image', 'Gallery', 'Video' ],
+	customControls: {},
+	config: {},
+};
+
+export default PublicationEditor;
