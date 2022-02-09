@@ -7547,6 +7547,7 @@ Stolen from https://foundation.zurb.com/building-blocks/blocks/callout-border.ht
 
 .is-active .chunkActions {
 	display: flex;
+	position:absolute;
 }
 
 .ReactModal__Body--open {
