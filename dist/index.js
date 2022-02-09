@@ -22,7 +22,41 @@ function AnywhereEditor(_ref) {
       controls = _ref.controls,
       config = _ref.config,
       customControls = _ref.customControls;
-  var initalContent = !content.length && template.length ? template : content;
+  var initalContent;
+
+  if (content.length) {
+    initalContent = content;
+  } else if (template.length) {
+    initalContent = template;
+  } else {
+    //Default to a blank content control so it isn't empty which is confusing to users
+    initalContent = [{
+      id: '5249',
+      type: 'article-content',
+      position: 'position-offset-full',
+      innerContent: [{
+        id: '8466',
+        type: 'Heading',
+        data: {
+          text: 'Hello!',
+          level: 1
+        }
+      }]
+    }, {
+      id: '9544',
+      type: 'article-content',
+      position: 'position-full',
+      innerContent: [{
+        id: '89',
+        type: 'Content',
+        data: {
+          title: '',
+          content: "<p>This is where you can edit your article's content. Use the buttons on the bottom to add different kinds of content. You can move a row and adjust its position on the page by using the buttons on the upper left of a block when you hover over it.</p>"
+        }
+      }]
+    }];
+  }
+
   return /*#__PURE__*/_react.default.createElement(_reactRedux.Provider, {
     store: _store.store
   }, /*#__PURE__*/_react.default.createElement("div", {
