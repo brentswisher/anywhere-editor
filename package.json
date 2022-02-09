@@ -5,7 +5,7 @@
 	"main": "dist/index.js",
 	"scripts": {
 		"start": "webpack-dev-server --mode=development",
-		"build": "babel src -d dist",
+		"build": "babel src -d dist  --ignore '**/__tests__' --ignore '*/setupTests.js' --ignore '*/test-utils.js' --ignore '**/stories.js'",
 		"prepublishOnly": "npm run build",
 		"test": "jest --watch",
 		"test:nowatch": "jest --passWithNoTests",
