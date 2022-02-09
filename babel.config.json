@@ -1,0 +1,9 @@
+{
+	"presets": [ "@babel/env", "@babel/react" ],
+	"ignore": [
+		"**/__tests__", // ignore tests
+		"*/setupTests.js", // ignore testing files
+		"*/test-utils.js", // ignore testing files
+		"**/stories.js" // ignore stprybook files
+	]
+}

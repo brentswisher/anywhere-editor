@@ -1,228 +1,162 @@
-'use strict';
+"use strict";
 
-Object.defineProperty( exports, '__esModule', {
-	value: true,
-} );
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.ImageInput = ImageInput;
 exports.default = void 0;
 
-var _react = _interopRequireDefault( require( 'react' ) );
+var _react = _interopRequireDefault(require("react"));
 
-var _ = require( '../' );
+var _ = require("../");
 
-var _reactRedux = require( 'react-redux' );
+var _reactRedux = require("react-redux");
 
-var _configSlice = require( '../../LayoutEditor/configSlice' );
+var _configSlice = require("../../LayoutEditor/configSlice");
 
-function _interopRequireDefault( obj ) {
-	return obj && obj.__esModule ? obj : { default: obj };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function ImageInput( _ref ) {
-	var name = _ref.name,
-		label = _ref.label,
-		helpText = _ref.helpText,
-		labelHidden = _ref.labelHidden,
-		setError = _ref.setError,
-		sizes = _ref.sizes,
-		maxFileSize = _ref.maxFileSize,
-		onChange = _ref.onChange,
-		src = _ref.src,
-		thumbnailPath = _ref.thumbnailPath,
-		uploadCallback = _ref.uploadCallback;
+function ImageInput(_ref) {
+  var name = _ref.name,
+      label = _ref.label,
+      helpText = _ref.helpText,
+      labelHidden = _ref.labelHidden,
+      setError = _ref.setError,
+      sizes = _ref.sizes,
+      maxFileSize = _ref.maxFileSize,
+      onChange = _ref.onChange,
+      src = _ref.src,
+      thumbnailPath = _ref.thumbnailPath,
+      uploadCallback = _ref.uploadCallback;
 
-	var cssClasses = ( 0, _reactRedux.useSelector )(
-			_configSlice.selectCssClasses
-		),
-		fileRef = /*#__PURE__*/ _react.default.createRef(),
-		resizeImage = function resizeImage( image, width, quality ) {
-			var canvas = document.createElement( 'canvas' ),
-				context = canvas.getContext( '2d' ),
-				newWidth = width || image.naturalWidth,
-				newHeight =
-					( newWidth / image.naturalWidth ) * image.naturalHeight,
-				stepToWidth = function stepToWidth( input, width ) {
-					var steps = Math.ceil(
-							Math.log( input.width / width ) / Math.log( 2 )
-						),
-						getResizedCanvas = function getResizedCanvas( image ) {
-							var canvas = document.createElement( 'canvas' ),
-								context = canvas.getContext( '2d' );
-							canvas.width = image.width / 2;
-							canvas.height = image.height / 2;
-							context.drawImage(
-								image,
-								0,
-								0,
-								canvas.width,
-								canvas.height
-							);
-							return canvas;
-						};
+  var cssClasses = (0, _reactRedux.useSelector)(_configSlice.selectCssClasses),
+      fileRef = /*#__PURE__*/_react.default.createRef(),
+      resizeImage = function resizeImage(image, width, quality) {
+    var canvas = document.createElement('canvas'),
+        context = canvas.getContext('2d'),
+        newWidth = width || image.naturalWidth,
+        newHeight = newWidth / image.naturalWidth * image.naturalHeight,
+        stepToWidth = function stepToWidth(input, width) {
+      var steps = Math.ceil(Math.log(input.width / width) / Math.log(2)),
+          getResizedCanvas = function getResizedCanvas(image) {
+        var canvas = document.createElement('canvas'),
+            context = canvas.getContext('2d');
+        canvas.width = image.width / 2;
+        canvas.height = image.height / 2;
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+        return canvas;
+      };
 
-					for ( var i = 0; i < steps - 1; i++ ) {
-						input = getResizedCanvas( input );
-					}
+      for (var i = 0; i < steps - 1; i++) {
+        input = getResizedCanvas(input);
+      }
 
-					return input;
-				},
-				element = stepToWidth( image, width );
+      return input;
+    },
+        element = stepToWidth(image, width);
 
-			canvas.width = newWidth;
-			canvas.height = newHeight; // fill the background in white
+    canvas.width = newWidth;
+    canvas.height = newHeight; // fill the background in white
 
-			context.fillStyle = '#FFF';
-			context.fillRect( 0, 0, canvas.width, canvas.height );
-			context.drawImage(
-				element,
-				-Math.floor( ( newWidth - canvas.width ) / 2 ),
-				-Math.floor( ( newHeight - canvas.height ) / ( 3 * 1.618 ) ),
-				newWidth,
-				newHeight
-			);
-			return canvas.toDataURL( 'image/jpeg', quality / 100 );
-		},
-		saveFile = function saveFile( e ) {
-			// Verify upload wasn't cancelled
-			if ( ! e.target.files[ 0 ] ) {
-				return;
-			}
+    context.fillStyle = '#FFF';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(element, -Math.floor((newWidth - canvas.width) / 2), -Math.floor((newHeight - canvas.height) / (3 * 1.618)), newWidth, newHeight);
+    return canvas.toDataURL('image/jpeg', quality / 100);
+  },
+      saveFile = function saveFile(e) {
+    // Verify upload wasn't cancelled
+    if (!e.target.files[0]) {
+      return;
+    }
 
-			var file = e.target.files[ 0 ],
-				//Set the quality based on the file size constrained between 15 and 100
-				quality = Math.min(
-					85,
-					Math.max(
-						20,
-						parseInt( ( maxFileSize / file.size ) * 100 )
-					)
-				);
-			var fileSaved = true;
-			setError( '' ); // Only process image files.
+    var file = e.target.files[0],
+        //Set the quality based on the file size constrained between 15 and 100
+    quality = Math.min(85, Math.max(20, parseInt(maxFileSize / file.size * 100)));
+    var fileSaved = true;
+    setError(''); // Only process image files.
 
-			if ( ! file.type.match( 'image.*' ) ) {
-				setError(
-					'The file you tried to upload is an invalid file type, please upload a different image'
-				);
-				fileSaved = false;
-			}
+    if (!file.type.match('image.*')) {
+      setError('The file you tried to upload is an invalid file type, please upload a different image');
+      fileSaved = false;
+    }
 
-			if ( fileSaved ) {
-				var reader = new FileReader(); // So this seems confusing, but we are checking reading the file in with a FileReader, then in that readers onload, creating an "imaginary"
-				// image and setting it's source to the value of the file. Then in the images onload, which will trigger after we set the src to the File Reader output
-				// we can check it's width to see if it is wide enough, and if it is, update the component state.
+    if (fileSaved) {
+      var reader = new FileReader(); // So this seems confusing, but we are checking reading the file in with a FileReader, then in that readers onload, creating an "imaginary"
+      // image and setting it's source to the value of the file. Then in the images onload, which will trigger after we set the src to the File Reader output
+      // we can check it's width to see if it is wide enough, and if it is, update the component state.
 
-				reader.onload = function ( loadEvent ) {
-					setError( '' );
-					var img = document.createElement( 'img' );
+      reader.onload = function (loadEvent) {
+        setError('');
+        var img = document.createElement('img');
 
-					img.onload = function ( evt ) {
-						var newSrc = {};
+        img.onload = function (evt) {
+          var newSrc = {};
 
-						if (
-							evt.target.width <
-							sizes[ Math.floor( ( sizes.length - 1 ) / 2 ) ]
-						) {
-							setError(
-								'Warning, the image you uploaded is quite narrow and may become pixelated when displayed, please upload an image that is at least '.concat(
-									sizes[
-										Math.floor( ( sizes.length - 1 ) / 2 )
-									],
-									' px wide.'
-								)
-							); //TODO: the new file name is still displayed in the input field
-							// fileRef.current.value = '';
-						}
+          if (evt.target.width < sizes[Math.floor((sizes.length - 1) / 2)]) {
+            setError("Warning, the image you uploaded is quite narrow and may become pixelated when displayed, please upload an image that is at least ".concat(sizes[Math.floor((sizes.length - 1) / 2)], " px wide.")); //TODO: the new file name is still displayed in the input field
+            // fileRef.current.value = '';
+          }
 
-						sizes.forEach( function ( size ) {
-							if (
-								evt.target.naturalWidth === size &&
-								file.size <= maxFileSize
-							) {
-								// If what they upload matches a needed size and is under the file size limit, just save it
-								newSrc[ size ] = evt.target.src;
-							} else {
-								newSrc[ size ] = resizeImage(
-									evt.target,
-									size,
-									quality
-								);
-							}
-						} );
-						onChange( newSrc ); //trigger upload callback if a new upload was processed
+          sizes.forEach(function (size) {
+            if (evt.target.naturalWidth === size && file.size <= maxFileSize) {
+              // If what they upload matches a needed size and is under the file size limit, just save it
+              newSrc[size] = evt.target.src;
+            } else {
+              newSrc[size] = resizeImage(evt.target, size, quality);
+            }
+          });
+          onChange(newSrc); //trigger upload callback if a new upload was processed
 
-						if ( typeof uploadCallback === 'function' ) {
-							uploadCallback( true );
-						}
-					};
+          if (typeof uploadCallback === 'function') {
+            uploadCallback(true);
+          }
+        };
 
-					img.src = loadEvent.target.result;
-				};
+        img.src = loadEvent.target.result;
+      };
 
-				reader.readAsDataURL( e.target.files[ 0 ] );
-			} else {
-				fileRef.current.value = ''; // onChange( 'hasUpload', false );
-				// Don't don't want to update the src via onChange('src','') as that will override the existing image is a bad file was attempted
-			}
-		};
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
+      fileRef.current.value = ''; // onChange( 'hasUpload', false );
+      // Don't don't want to update the src via onChange('src','') as that will override the existing image is a bad file was attempted
+    }
+  };
 
-	var thumbnailSrc = '';
+  var thumbnailSrc = '';
 
-	if ( typeof src === 'string' && src.length ) {
-		//Previously uploaded image, saved to storage
-		thumbnailSrc = ''
-			.concat( thumbnailPath, '/' )
-			.concat( src, '/' )
-			.concat( sizes[ sizes.length - 1 ], '.jpg' );
-	} else if ( Object.keys( src ).length ) {
-		// Image uploaded in this editing session, not saved to storage yet
-		thumbnailSrc = src[ sizes[ 0 ] ];
-	}
+  if (typeof src === 'string' && src.length) {
+    //Previously uploaded image, saved to storage
+    thumbnailSrc = "".concat(thumbnailPath, "/").concat(src, "/").concat(sizes[sizes.length - 1], ".jpg");
+  } else if (Object.keys(src).length) {
+    // Image uploaded in this editing session, not saved to storage yet
+    thumbnailSrc = src[sizes[0]];
+  }
 
-	return /*#__PURE__*/ _react.default.createElement(
-		'div',
-		null,
-		thumbnailSrc &&
-			/*#__PURE__*/ _react.default.createElement( 'img', {
-				src: thumbnailSrc,
-				alt: 'Thumbnail preview of upload for '.concat( label ),
-				style: {
-					width: '150px',
-				},
-			} ),
-		/*#__PURE__*/ _react.default.createElement(
-			_.FieldLabel,
-			{
-				htmlFor: name,
-				visuallyHidden: labelHidden,
-			},
-			src ? 'Replace '.concat( label ) : 'Upload '.concat( label )
-		),
-		/*#__PURE__*/ _react.default.createElement( 'input', {
-			type: 'file',
-			id: name,
-			className: cssClasses[ 'input-file' ],
-			onChange: saveFile,
-			ref: fileRef,
-		} ),
-		helpText &&
-			/*#__PURE__*/ _react.default.createElement(
-				'span',
-				{
-					className: cssClasses[ 'help-text' ],
-				},
-				' ',
-				helpText,
-				' '
-			)
-	);
+  return /*#__PURE__*/_react.default.createElement("div", null, thumbnailSrc && /*#__PURE__*/_react.default.createElement("img", {
+    src: thumbnailSrc,
+    alt: "Thumbnail preview of upload for ".concat(label),
+    style: {
+      width: '150px'
+    }
+  }), /*#__PURE__*/_react.default.createElement(_.FieldLabel, {
+    htmlFor: name,
+    visuallyHidden: labelHidden
+  }, src ? "Replace ".concat(label) : "Upload ".concat(label)), /*#__PURE__*/_react.default.createElement("input", {
+    type: "file",
+    id: name,
+    className: cssClasses['input-file'],
+    onChange: saveFile,
+    ref: fileRef
+  }), helpText && /*#__PURE__*/_react.default.createElement("span", {
+    className: cssClasses['help-text']
+  }, ' ', helpText, ' '));
 }
 
 ImageInput.defaultProps = {
-	src: '',
-	sizes: [ 500, 1000, 1200, 1500 ],
-	thumbnailPath: '',
-	maxFileSize: 300000,
+  src: '',
+  sizes: [500, 1000, 1200, 1500],
+  thumbnailPath: '',
+  maxFileSize: 300000
 };
 var _default = ImageInput;
 exports.default = _default;
