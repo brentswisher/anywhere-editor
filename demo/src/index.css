@@ -7600,7 +7600,9 @@ ul.dropdown[role='menu'] li {
 }
 .position-left {
 	float: left;
-	width: 40%;
+	width: 22.222222444%;
+	margin-left: 22.222222444%;
+	padding-left: 1.875rem;
 	box-sizing: border-box;
 	margin-right: 1.5em;
 	clear: both;
@@ -7608,7 +7610,9 @@ ul.dropdown[role='menu'] li {
 
 .position-right {
 	float: right;
-	width: 40%;
+	width: 22.222222444%;
+	margin-right: 22.222222444%;
+	padding-right: 1.875rem;
 	box-sizing: border-box;
 	margin-left: 1.5em;
 	clear: both;
