@@ -177,7 +177,7 @@ function LayoutEditor(_ref) {
         var defaultPosition = 'position-full';
 
         if (controlName === 'Heading') {
-          defaultPosition = 'position-offset';
+          defaultPosition = 'position-offset-full';
         }
 
         return dispatch((0, _layoutSlice.addContentItem)({
