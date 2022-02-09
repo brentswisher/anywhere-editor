@@ -192,7 +192,7 @@ export function LayoutEditor( {
 						onClick={ () => {
 							let defaultPosition = 'position-full';
 							if ( controlName === 'Heading' ) {
-								defaultPosition = 'position-offset';
+								defaultPosition = 'position-offset-full';
 							}
 
 							return dispatch(
