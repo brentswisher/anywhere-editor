@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { renderWithProvider } from '../../../../test-utils.js';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import FieldLabel from '../';
 
 expect.extend( toHaveNoViolations );
 
 it( 'should render sucessfully', () => {
-	const { container } = render(
+	const { container } = renderWithProvider(
 			<FieldLabel htmlFor="firstName">First Name:</FieldLabel>
 		),
 		label = container.querySelector( 'label' );
@@ -16,17 +16,17 @@ it( 'should render sucessfully', () => {
 } );
 
 it( 'should visually hide when visuallyHidden is set', () => {
-	const { container } = render(
+	const { container } = renderWithProvider(
 			<FieldLabel htmlFor="firstName" visuallyHidden={ true }>
 				First Name
 			</FieldLabel>
 		),
 		label = container.querySelector( 'label' );
-	expect( label ).toHaveClass( 'sr-only' );
+	expect( label ).toHaveClass( 'show-for-sr' );
 } );
 
 it( 'should not have basic accessibility issues', async () => {
-	const { container } = render(
+	const { container } = renderWithProvider(
 			<FieldLabel htmlFor="firstName" visuallyHidden={ true }>
 				First Name
 			</FieldLabel>

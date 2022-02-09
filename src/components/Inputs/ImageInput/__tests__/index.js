@@ -1,12 +1,14 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { renderWithProvider } from '../../../../test-utils.js';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import ImageInput from '../';
 
 expect.extend( toHaveNoViolations );
 
 it( 'should render sucessfully', () => {
-	const { container } = render( <ImageInput name="image" label="Image:" /> ),
+	const { container } = renderWithProvider(
+			<ImageInput name="image" label="Image:" />
+		),
 		label = container.querySelector( 'label' ),
 		input = container.querySelector( 'input' );
 
@@ -17,12 +19,14 @@ it( 'should render sucessfully', () => {
 } );
 
 it( 'should display a thumbnail when image is passed in as a file path', () => {
-	const { container } = render(
+	const { container } = renderWithProvider(
 			<ImageInput
 				name="image"
 				label="Image:"
 				value="Bob"
-				src="./sample.jpg"
+				src={ {
+					500: './sample.jpg',
+				} }
 			/>
 		),
 		thumbnail = container.querySelector( 'img' );
@@ -31,7 +35,7 @@ it( 'should display a thumbnail when image is passed in as a file path', () => {
 
 it( 'should display a thumbnail when image is passed in as an structure', () => {
 	const mockedBase64 = 'data:image/jpeg;base64,TEST',
-		{ container } = render(
+		{ container } = renderWithProvider(
 			<ImageInput
 				name="image"
 				label="Image:"
@@ -47,7 +51,7 @@ it( 'should display a thumbnail when image is passed in as an structure', () => 
 } );
 
 it( 'should render help text when provided', () => {
-	const { container } = render(
+	const { container } = renderWithProvider(
 			<ImageInput
 				name="image"
 				label="Image"
@@ -61,15 +65,17 @@ it( 'should render help text when provided', () => {
 } );
 
 it( 'should visually hide label when labelHidden is set', () => {
-	const { container } = render(
+	const { container } = renderWithProvider(
 			<ImageInput name="image" label="Image:" labelHidden={ true } />
 		),
 		label = container.querySelector( 'label' );
-	expect( label ).toHaveClass( 'sr-only' );
+	expect( label ).toHaveClass( 'show-for-sr' );
 } );
 
 it( 'should not have basic accessibility issues', async () => {
-	const { container } = render( <ImageInput name="image" label="Image:" /> ),
+	const { container } = renderWithProvider(
+			<ImageInput name="image" label="Image:" />
+		),
 		results = await axe( container );
 	expect( results ).toHaveNoViolations();
 } );

@@ -78,7 +78,7 @@ it( 'should visually hide label when labelHidden is set', function () {
 		container = _render4.container,
 		label = container.querySelector( 'label' );
 
-	expect( label ).toHaveClass( 'sr-only' );
+	expect( label ).toHaveClass( 'show-for-sr' );
 } ); //TODO: the react-quill editor does not pass a11y tests, may need to replace with another library
 // it( 'should not have basic accessibility issues', async () => {
 // 	const { container } = render(

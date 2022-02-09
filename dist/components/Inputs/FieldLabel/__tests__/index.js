@@ -91,7 +91,7 @@ it( 'should visually hide when visuallyHidden is set', function () {
 		container = _render2.container,
 		label = container.querySelector( 'label' );
 
-	expect( label ).toHaveClass( 'sr-only' );
+	expect( label ).toHaveClass( 'show-for-sr' );
 } );
 it(
 	'should not have basic accessibility issues',

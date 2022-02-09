@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { renderWithProvider } from '../../../../test-utils.js';
 // import { axe, toHaveNoViolations } from 'jest-axe';
 import RichTextInput from '..';
 
 // expect.extend( toHaveNoViolations );
 
 it( 'should render sucessfully', () => {
-	const { container } = render(
+	const { container } = renderWithProvider(
 			<RichTextInput
 				name="pageContent"
 				value="This is an editor instance."
@@ -20,7 +20,7 @@ it( 'should render sucessfully', () => {
 } );
 
 it( 'should set initial value correctly', () => {
-	const { container } = render(
+	const { container } = renderWithProvider(
 			<RichTextInput
 				name="pageContent"
 				value="This is an editor instance."
@@ -33,7 +33,7 @@ it( 'should set initial value correctly', () => {
 } );
 
 it( 'should render help text when provided', () => {
-	const { container } = render(
+	const { container } = renderWithProvider(
 			<RichTextInput
 				name="pageContent"
 				value="This is an editor instance."
@@ -49,7 +49,7 @@ it( 'should render help text when provided', () => {
 } );
 
 it( 'should visually hide label when labelHidden is set', () => {
-	const { container } = render(
+	const { container } = renderWithProvider(
 			<RichTextInput
 				name="pageContent"
 				value="This is an editor instance."
@@ -59,11 +59,11 @@ it( 'should visually hide label when labelHidden is set', () => {
 			/>
 		),
 		label = container.querySelector( 'label' );
-	expect( label ).toHaveClass( 'sr-only' );
+	expect( label ).toHaveClass( 'show-for-sr' );
 } );
 //TODO: the react-quill editor does not pass a11y tests, may need to replace with another library
 // it( 'should not have basic accessibility issues', async () => {
-// 	const { container } = render(
+// 	const { container } = renderWithProvider(
 // 			<RichTextInput
 // 				name="pageContent"
 // 				value="This is an editor instance."
@@ -77,7 +77,7 @@ it( 'should visually hide label when labelHidden is set', () => {
 
 //TODO: This would be a nivce feature to add, but don't need right now since the quill editor may be replaced anyway
 // it( 'should render the toolbar passed in', () => {
-// 	const { container } = render(
+// 	const { container } = renderWithProvider(
 // 			<RichTextInput
 // 				name="pageContent"
 // 				value="This is an editor instance."

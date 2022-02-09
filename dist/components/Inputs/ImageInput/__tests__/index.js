@@ -134,7 +134,7 @@ it( 'should visually hide label when labelHidden is set', function () {
 		container = _render5.container,
 		label = container.querySelector( 'label' );
 
-	expect( label ).toHaveClass( 'sr-only' );
+	expect( label ).toHaveClass( 'show-for-sr' );
 } );
 it(
 	'should not have basic accessibility issues',

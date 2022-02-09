@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { renderWithProvider, fireEvent } from '../../../test-utils.js';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import EditModal from '../';
 
@@ -7,11 +7,11 @@ expect.extend( toHaveNoViolations );
 
 // Set up the app element for the Modal component
 const modalRoot = document.createElement( 'div' );
-modalRoot.setAttribute( 'id', 'publicationEditorLayout' );
+modalRoot.setAttribute( 'id', 'publication-editor' );
 document.body.appendChild( modalRoot );
 
 it( 'should render sucessfully', () => {
-	const { getByText } = render(
+	const { getByText } = renderWithProvider(
 		<EditModal>
 			<p>Testing</p>
 		</EditModal>
@@ -24,7 +24,7 @@ it( 'should render sucessfully', () => {
 
 it( 'calls "saveChanges" prop on button click', () => {
 	const saveChange = jest.fn(),
-		{ getByText } = render(
+		{ getByText } = renderWithProvider(
 			<EditModal saveChanges={ saveChange }>
 				<p>Testing</p>
 			</EditModal>
@@ -35,7 +35,7 @@ it( 'calls "saveChanges" prop on button click', () => {
 
 it( 'calls "cancelChanges" prop on button click', () => {
 	const cancelMock = jest.fn(),
-		{ getByText } = render(
+		{ getByText } = renderWithProvider(
 			<EditModal cancelChanges={ cancelMock }>
 				<p>Testing</p>
 			</EditModal>
@@ -45,7 +45,7 @@ it( 'calls "cancelChanges" prop on button click', () => {
 } );
 
 it( 'renders errors when they are present', () => {
-	const { getByText } = render(
+	const { getByText } = renderWithProvider(
 		<EditModal error="This is an error">
 			<p>Testing</p>
 		</EditModal>
@@ -54,7 +54,7 @@ it( 'renders errors when they are present', () => {
 } );
 
 it( 'should not have basic accessibility issues', async () => {
-	const { container } = render(
+	const { container } = renderWithProvider(
 			<EditModal>
 				<p>Testing</p>
 			</EditModal>

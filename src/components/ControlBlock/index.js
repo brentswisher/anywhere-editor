@@ -67,9 +67,10 @@ export function ControlBlock( {
 				<div
 					key={ id }
 					className={
-						isFocused || snapshot.isDragging
+						'block ' +
+						( isFocused || snapshot.isDragging
 							? cssClasses[ 'control-container-active' ]
-							: cssClasses[ 'control-container' ]
+							: cssClasses[ 'control-container' ] )
 					}
 					{ ...provided.draggableProps }
 					ref={ provided.innerRef }
@@ -86,7 +87,8 @@ export function ControlBlock( {
 						<li>
 							<a
 								className={
-									cssClasses[ 'button-group-secondary' ]
+									cssClasses[ 'button-group-secondary' ] +
+									' block-button-drag'
 								}
 								{ ...provided.dragHandleProps }
 							>
@@ -97,7 +99,8 @@ export function ControlBlock( {
 							<button
 								type="button"
 								className={
-									cssClasses[ 'button-group-secondary' ]
+									cssClasses[ 'button-group-secondary' ] +
+									' block-button-position'
 								}
 								{ ...buttonProps }
 							>
@@ -112,13 +115,12 @@ export function ControlBlock( {
 										? cssClasses[ 'dropdown-list-open' ]
 										: cssClasses[ 'dropdown-list' ]
 								}
-								role="menu"
 							>
 								{ positions.map( ( { title, value } ) => (
 									<li key={ value }>
 										<a
 											className={
-												row.position === value
+												row?.position === value
 													? cssClasses[
 															'dropdown-button-active'
 													  ]
@@ -145,7 +147,8 @@ export function ControlBlock( {
 							<button
 								type="button"
 								className={
-									cssClasses[ 'button-group-secondary' ]
+									cssClasses[ 'button-group-secondary' ] +
+									' block-button-up'
 								}
 								disabled={ disableUp }
 								onClick={ onMoveUp }
@@ -160,7 +163,8 @@ export function ControlBlock( {
 							<button
 								type="button"
 								className={
-									cssClasses[ 'button-group-secondary' ]
+									cssClasses[ 'button-group-secondary' ] +
+									' block-button-down'
 								}
 								disabled={ disableDown }
 								onClick={ onMoveDown }
@@ -174,7 +178,10 @@ export function ControlBlock( {
 						<li>
 							<button
 								type="button"
-								className={ cssClasses[ 'button-group-alert' ] }
+								className={
+									cssClasses[ 'button-group-alert' ] +
+									' block-button-delete'
+								}
 								disabled={ disableDelete }
 								onClick={ onDelete }
 							>

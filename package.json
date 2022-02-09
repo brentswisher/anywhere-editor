@@ -7,7 +7,7 @@
 		"start": "webpack-dev-server --mode=development",
 		"build": "babel src -d dist --copy-files",
 		"prepublishOnly": "npm run build",
-		"test": "jest --wathc",
+		"test": "jest --watch",
 		"test:nowatch": "jest --passWithNoTests",
 		"lint": "eslint ./src/",
 		"lint:fix": "eslint --fix ./src/",
@@ -37,7 +37,8 @@
 	"lint-staged": {
 		"src/**/*.{js,jsx,ts,css,html}": [
 			"npm run lint:fix",
-			"npm run prettier"
+			"npm run prettier",
+			"npm run test:nowatch"
 		]
 	},
 	"browserslist": {
