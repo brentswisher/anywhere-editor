@@ -122,7 +122,8 @@ function ControlBlock(_ref) {
     }, buttonProps), "\u2699", /*#__PURE__*/_react.default.createElement("span", {
       className: cssClasses['sr-only']
     }, "Row Settings")), /*#__PURE__*/_react.default.createElement("ul", {
-      className: isOpen ? cssClasses['dropdown-list-open'] : cssClasses['dropdown-list']
+      className: isOpen ? cssClasses['dropdown-list-open'] : cssClasses['dropdown-list'],
+      role: "menu"
     }, positions.map(function (_ref2) {
       var title = _ref2.title,
           value = _ref2.value;

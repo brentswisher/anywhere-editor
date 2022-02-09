@@ -174,9 +174,16 @@ function LayoutEditor(_ref) {
     return /*#__PURE__*/_react.default.createElement("button", {
       type: "button",
       onClick: function onClick() {
+        var defaultPosition = 'position-full';
+
+        if (controlName === 'Heading') {
+          defaultPosition = 'position-offset';
+        }
+
         return dispatch((0, _layoutSlice.addContentItem)({
           id: parseInt(Math.random() * 10000).toString(),
           type: 'article-content',
+          position: defaultPosition,
           innerContent: [{
             id: parseInt(Math.random() * 10000).toString(),
             type: controlName,
