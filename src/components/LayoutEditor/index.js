@@ -73,7 +73,7 @@ export function LayoutEditor( {
 	}, [ dispatch, config ] );
 
 	return (
-		<div id="publicationEditorLayout">
+		<div>
 			<input
 				type="hidden"
 				name="contentJSON"

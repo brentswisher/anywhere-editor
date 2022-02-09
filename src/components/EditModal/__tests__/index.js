@@ -7,7 +7,7 @@ expect.extend( toHaveNoViolations );
 
 // Set up the app element for the Modal component
 const modalRoot = document.createElement( 'div' );
-modalRoot.setAttribute( 'id', 'publication-editor' );
+modalRoot.setAttribute( 'id', 'anywhere-editor' );
 document.body.appendChild( modalRoot );
 
 it( 'should render sucessfully', () => {

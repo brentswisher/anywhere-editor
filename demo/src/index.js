@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PublicationEditor from '../../src/';
+import AnywhereEditor from '../../src/';
 import './index.css';
 const App = () => {
 	const testData = [
@@ -199,7 +199,7 @@ const App = () => {
 
 	return (
 		<div>
-			<PublicationEditor
+			<AnywhereEditor
 				content={ testData }
 				template={ testData }
 				controls={ [

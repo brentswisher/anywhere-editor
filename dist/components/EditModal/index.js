@@ -23,7 +23,7 @@ function EditModal(_ref) {
       children = _ref.children,
       appElement = _ref.appElement;
 
-  _reactModal.default.setAppElement('#publication-editor');
+  _reactModal.default.setAppElement('#anywhere-editor');
 
   var cssClasses = (0, _reactRedux.useSelector)(_configSlice.selectCssClasses);
   return /*#__PURE__*/_react.default.createElement(_reactModal.default, {

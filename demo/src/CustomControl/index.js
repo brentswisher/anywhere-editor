@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { TextInput } from '../PublicationEditor/components/Inputs';
-import EditModal from '../PublicationEditor/components/EditModal';
+import { TextInput } from '../AnywhereEditor/components/Inputs';
+import EditModal from '../AnywhereEditor/components/EditModal';
 
 export function CustomControl( { name, level, text, setData, required } ) {
 	const [ editing, setEditing ] = useState( false ),

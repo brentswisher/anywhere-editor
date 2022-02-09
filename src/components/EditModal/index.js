@@ -11,7 +11,7 @@ export function EditModal( {
 	children,
 	appElement,
 } ) {
-	Modal.setAppElement( '#publication-editor' );
+	Modal.setAppElement( '#anywhere-editor' );
 	const cssClasses = useSelector( selectCssClasses );
 	return (
 		<Modal

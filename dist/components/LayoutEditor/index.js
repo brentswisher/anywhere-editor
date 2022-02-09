@@ -97,9 +97,7 @@ function LayoutEditor(_ref) {
   (0, _react.useEffect)(function () {
     dispatch((0, _configSlice.mergeConfig)(config));
   }, [dispatch, config]);
-  return /*#__PURE__*/_react.default.createElement("div", {
-    id: "publicationEditorLayout"
-  }, /*#__PURE__*/_react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "hidden",
     name: "contentJSON",
     id: "contentJSON",

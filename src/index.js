@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import { LayoutEditor } from './components';
 
-export function PublicationEditor( {
+export function AnywhereEditor( {
 	content,
 	template,
 	controls,
@@ -15,7 +15,7 @@ export function PublicationEditor( {
 		! content.length && template.length ? template : content;
 	return (
 		<Provider store={ store }>
-			<div id="publication-editor">
+			<div id="anywhere-editor">
 				<LayoutEditor
 					initialContent={ initalContent }
 					controls={ controls }
@@ -27,7 +27,7 @@ export function PublicationEditor( {
 	);
 }
 
-PublicationEditor.defaultProps = {
+AnywhereEditor.defaultProps = {
 	content: [],
 	template: [],
 	controls: [ 'Heading', 'Content', 'Quote', 'Image', 'Gallery', 'Video' ],
@@ -35,4 +35,4 @@ PublicationEditor.defaultProps = {
 	config: {},
 };
 
-export default PublicationEditor;
+export default AnywhereEditor;

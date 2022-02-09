@@ -1,1 +1,1 @@
-# publication-editor
+# anywhere-editor
