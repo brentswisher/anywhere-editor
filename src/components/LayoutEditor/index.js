@@ -189,13 +189,19 @@ export function LayoutEditor( {
 				{ controlList.map( ( controlName ) => (
 					<button
 						type="button"
-						onClick={ () =>
-							dispatch(
+						onClick={ () => {
+							let defaultPosition = 'position-full';
+							if ( controlName === 'Heading' ) {
+								defaultPosition = 'position-offset';
+							}
+
+							return dispatch(
 								addContentItem( {
 									id: parseInt(
 										Math.random() * 10000
 									).toString(),
 									type: 'article-content',
+									position: defaultPosition,
 									innerContent: [
 										{
 											id: parseInt(
@@ -206,8 +212,8 @@ export function LayoutEditor( {
 										},
 									],
 								} )
-							)
-						}
+							);
+						} }
 						key={ controlName }
 						className={ cssClasses[ 'button-secondary' ] }
 					>
