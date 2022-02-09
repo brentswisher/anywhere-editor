@@ -115,6 +115,7 @@ export function ControlBlock( {
 										? cssClasses[ 'dropdown-list-open' ]
 										: cssClasses[ 'dropdown-list' ]
 								}
+								role="menu"
 							>
 								{ positions.map( ( { title, value } ) => (
 									<li key={ value }>
