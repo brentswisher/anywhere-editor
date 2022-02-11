@@ -27,8 +27,9 @@ export function ImageControl( {
 		toggleEditable = () => setEditing( ! editing ),
 		displaySrc =
 			( thumbnailPath !== '' ? `${ thumbnailPath }/` : '' ) +
-			src[ sizes[ sizes.length - 1 ] ];
-
+			( src[ sizes[ sizes.length - 1 ] ]
+				? src[ sizes[ sizes.length - 1 ] ]
+				: '' );
 	if ( editing ) {
 		return (
 			<ImageEditor
@@ -223,7 +224,6 @@ function ImageDisplay( props ) {
 		// classString += ` border-${ props.border }`;
 		classList.push( cssClasses[ `border-${ props.border }` ] );
 	}
-
 	if ( props.src ) {
 		return (
 			<div className={ classList.join( ' ' ) } onClick={ props.onClick }>
