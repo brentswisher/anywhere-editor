@@ -56,7 +56,7 @@ function ImageControl(_ref) {
       toggleEditable = function toggleEditable() {
     return setEditing(!editing);
   },
-      displaySrc = (thumbnailPath !== '' ? "".concat(thumbnailPath, "/") : '') + src[sizes[sizes.length - 1]];
+      displaySrc = (thumbnailPath !== '' ? "".concat(thumbnailPath, "/") : '') + (src[sizes[sizes.length - 1]] ? src[sizes[sizes.length - 1]] : '');
 
   if (editing) {
     return /*#__PURE__*/_react.default.createElement(ImageEditor, {
