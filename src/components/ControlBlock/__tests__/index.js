@@ -118,18 +118,16 @@ it( 'should handle disabled buttons correctly', () => {
 					<p>Testing</p>
 				</ControlBlock>
 			)
-		),
-		btnUp = container.querySelector( '.block-button-up' ),
-		btnDown = container.querySelector( '.block-button-down' ),
-		btnDelete = container.querySelector( '.block-button-delete' );
-
-	expect( btnUp ).toBeDisabled();
-	expect( btnDown ).toBeDisabled();
-	expect( btnDelete ).toBeDisabled();
-	fireEvent.click( btnUp );
-	fireEvent.click( btnDown );
-	fireEvent.click( btnDelete );
-	expect( testFunction ).not.toHaveBeenCalled();
+		);
+	expect(
+		container.querySelector( '.block-button-up' )
+	).not.toBeInTheDocument();
+	expect(
+		container.querySelector( '.block-button-down' )
+	).not.toBeInTheDocument();
+	expect(
+		container.querySelector( '.block-button-delete' )
+	).not.toBeInTheDocument();
 } );
 
 // it( 'should not have basic accessibility issues', async () => {

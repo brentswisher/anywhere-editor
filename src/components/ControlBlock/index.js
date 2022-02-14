@@ -144,52 +144,56 @@ export function ControlBlock( {
 						</li>
 
 						<li>
-							<button
-								type="button"
-								className={
-									cssClasses[ 'button-group-secondary' ] +
-									' block-button-up'
-								}
-								disabled={ disableUp }
-								onClick={ onMoveUp }
-							>
-								&uarr;
-								<span className={ cssClasses[ 'sr-only' ] }>
-									Move Up
-								</span>
-							</button>
+							{ ! disableUp && (
+								<button
+									type="button"
+									className={
+										cssClasses[ 'button-group-secondary' ] +
+										' block-button-up'
+									}
+									onClick={ onMoveUp }
+								>
+									&uarr;
+									<span className={ cssClasses[ 'sr-only' ] }>
+										Move Up
+									</span>
+								</button>
+							) }
 						</li>
 						<li>
-							<button
-								type="button"
-								className={
-									cssClasses[ 'button-group-secondary' ] +
-									' block-button-down'
-								}
-								disabled={ disableDown }
-								onClick={ onMoveDown }
-							>
-								&darr;
-								<span className={ cssClasses[ 'sr-only' ] }>
-									Move Down
-								</span>
-							</button>
+							{ ! disableDown && (
+								<button
+									type="button"
+									className={
+										cssClasses[ 'button-group-secondary' ] +
+										' block-button-down'
+									}
+									onClick={ onMoveDown }
+								>
+									&darr;
+									<span className={ cssClasses[ 'sr-only' ] }>
+										Move Down
+									</span>
+								</button>
+							) }
 						</li>
 						<li>
-							<button
-								type="button"
-								className={
-									cssClasses[ 'button-group-alert' ] +
-									' block-button-delete'
-								}
-								disabled={ disableDelete }
-								onClick={ onDelete }
-							>
-								X
-								<span className={ cssClasses[ 'sr-only' ] }>
-									Delete
-								</span>
-							</button>
+							{ ! disableDelete && (
+								<button
+									type="button"
+									className={
+										cssClasses[ 'button-group-alert' ] +
+										' block-button-delete'
+									}
+									disabled={ disableDelete }
+									onClick={ onDelete }
+								>
+									X
+									<span className={ cssClasses[ 'sr-only' ] }>
+										Delete
+									</span>
+								</button>
+							) }
 						</li>
 					</ul>
 					{ children }
