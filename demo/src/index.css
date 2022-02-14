@@ -7536,8 +7536,11 @@ Stolen from https://foundation.zurb.com/building-blocks/blocks/callout-border.ht
 	}
 }
 /*  Temporary editor  Override of gvmagazine styles */
-.chunkActions {
-	width: 15.5rem;
+.block {
+	background-color: white;
+}
+.block.is-active {
+	background-color: #f0fafc;
 }
 
 .chunkActions {
@@ -7546,7 +7549,7 @@ Stolen from https://foundation.zurb.com/building-blocks/blocks/callout-border.ht
 
 .is-active .chunkActions {
 	display: flex;
-	position: absolute;
+	height: 0;
 }
 
 .ReactModal__Body--open {
@@ -7614,7 +7617,6 @@ ul.dropdown[role='menu'] li {
 	padding-right: 1.875rem;
 	box-sizing: border-box;
 	margin-left: 1.5em;
-	clear: both;
 }
 
 .position-full-page {
@@ -7642,7 +7644,6 @@ ul.dropdown[role='menu'] li {
 	width: 40%;
 	box-sizing: border-box;
 	margin-left: 1.5em;
-	clear: both;
 	margin-right: 10.125%;
 }
 

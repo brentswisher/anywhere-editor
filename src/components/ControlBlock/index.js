@@ -67,10 +67,9 @@ export function ControlBlock( {
 				<div
 					key={ id }
 					className={
-						'block ' +
-						( isFocused || snapshot.isDragging
+						isFocused || snapshot.isDragging
 							? cssClasses[ 'control-container-active' ]
-							: cssClasses[ 'control-container' ] )
+							: cssClasses[ 'control-container' ]
 					}
 					{ ...provided.draggableProps }
 					ref={ provided.innerRef }
