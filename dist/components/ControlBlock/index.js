@@ -103,7 +103,7 @@ function ControlBlock(_ref) {
   }, function (provided, snapshot) {
     return /*#__PURE__*/_react.default.createElement("div", _extends({
       key: id,
-      className: 'block ' + (isFocused || snapshot.isDragging ? cssClasses['control-container-active'] : cssClasses['control-container'])
+      className: isFocused || snapshot.isDragging ? cssClasses['control-container-active'] : cssClasses['control-container']
     }, provided.draggableProps, {
       ref: provided.innerRef,
       onMouseEnter: function onMouseEnter() {
@@ -136,21 +136,19 @@ function ControlBlock(_ref) {
           return handlePositionClick(index, value);
         }
       }), title));
-    }))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
+    }))), /*#__PURE__*/_react.default.createElement("li", null, !disableUp && /*#__PURE__*/_react.default.createElement("button", {
       type: "button",
       className: cssClasses['button-group-secondary'] + ' block-button-up',
-      disabled: disableUp,
       onClick: onMoveUp
     }, "\u2191", /*#__PURE__*/_react.default.createElement("span", {
       className: cssClasses['sr-only']
-    }, "Move Up"))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
+    }, "Move Up"))), /*#__PURE__*/_react.default.createElement("li", null, !disableDown && /*#__PURE__*/_react.default.createElement("button", {
       type: "button",
       className: cssClasses['button-group-secondary'] + ' block-button-down',
-      disabled: disableDown,
       onClick: onMoveDown
     }, "\u2193", /*#__PURE__*/_react.default.createElement("span", {
       className: cssClasses['sr-only']
-    }, "Move Down"))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
+    }, "Move Down"))), /*#__PURE__*/_react.default.createElement("li", null, !disableDelete && /*#__PURE__*/_react.default.createElement("button", {
       type: "button",
       className: cssClasses['button-group-alert'] + ' block-button-delete',
       disabled: disableDelete,
