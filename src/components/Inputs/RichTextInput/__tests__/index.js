@@ -1,9 +1,10 @@
 import React from 'react';
 import { renderWithProvider } from '../../../../test-utils.js';
-// import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe';
+
 import RichTextInput from '..';
 
-// expect.extend( toHaveNoViolations );
+expect.extend( toHaveNoViolations );
 
 it( 'should render sucessfully', () => {
 	const { container } = renderWithProvider(
@@ -14,7 +15,7 @@ it( 'should render sucessfully', () => {
 				onChange={ ( e ) => null }
 			/>
 		),
-		editor = container.querySelector( 'div.ql-editor' );
+		editor = container.querySelector( 'div.mce-content-body' );
 
 	expect( editor ).toContainHTML( 'This is an editor instance' );
 } );
@@ -28,7 +29,7 @@ it( 'should set initial value correctly', () => {
 				onChange={ ( e ) => null }
 			/>
 		),
-		editor = container.querySelector( '.ql-editor' );
+		editor = container.querySelector( '.mce-content-body' );
 	expect( editor ).toHaveTextContent( 'This is an editor instance.' );
 } );
 
@@ -62,36 +63,34 @@ it( 'should visually hide label when labelHidden is set', () => {
 	expect( label ).toHaveClass( 'show-for-sr' );
 } );
 //TODO: the react-quill editor does not pass a11y tests, may need to replace with another library
-// it( 'should not have basic accessibility issues', async () => {
-// 	const { container } = renderWithProvider(
-// 			<RichTextInput
-// 				name="pageContent"
-// 				value="This is an editor instance."
-// 				label="Content:"
-// 				onChange={ ( e ) => null }
-// 			/>
-// 		),
-// 		results = await axe( container );
-// 	expect( results ).toHaveNoViolations();
-// } );
+it( 'should not have basic accessibility issues', async () => {
+	const { container } = renderWithProvider(
+			<RichTextInput
+				name="pageContent"
+				value="This is an editor instance."
+				label="Content:"
+				onChange={ ( e ) => null }
+			/>
+		),
+		results = await axe( container );
+	expect( results ).toHaveNoViolations();
+} );
 
-//TODO: This would be a nivce feature to add, but don't need right now since the quill editor may be replaced anyway
-// it( 'should render the toolbar passed in', () => {
-// 	const { container } = renderWithProvider(
-// 			<RichTextInput
-// 				name="pageContent"
-// 				value="This is an editor instance."
-// 				label="Content:"
-// 				onChange={ ( e ) => null }
-// 				toolbar={ [ [ 'underline' ] ] }
-// 			/>
-// 		),
-// 		toolbar = container.querySelector( 'div.ql-toolbar' );
-
-// 	expect( toolbar ).toContainElement(
-// 		container.querySelector( 'button.ql-underline' )
-// 	);
-// 	expect( toolbar ).not.toContainElement(
-// 		container.querySelector( 'button.ql-italic' )
-// 	);
-// } );
+it( 'should render the toolbar passed in', async () => {
+	const { container } = renderWithProvider(
+		<RichTextInput
+			name="pageContent"
+			value="This is an editor instance."
+			label="Content:"
+			onChange={ ( e ) => null }
+			toolbar="bold"
+		/>
+	);
+	await new Promise( ( r ) => setTimeout( r, 1000 ) );
+	expect(
+		container.querySelector( 'button[title="Bold"]' )
+	).toBeInTheDocument();
+	expect(
+		container.querySelector( 'button[title="Italic"]' )
+	).not.toBeInTheDocument();
+} );
