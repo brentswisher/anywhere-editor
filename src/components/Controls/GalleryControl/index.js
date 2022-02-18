@@ -389,9 +389,12 @@ function GalleryDisplay( props ) {
 		);
 	}
 	return (
-		<p style={ ( { margin: '1em 0' }, { textAlign: 'center' } ) }>
-			[Click here to upload images to the gallery]
-		</p>
+		<div
+			style={ { padding: '1em 0', textAlign: 'center' } }
+			onClick={ props.onClick }
+		>
+			<p>[Click here to upload images to the gallery]</p>
+		</div>
 	);
 }
 
