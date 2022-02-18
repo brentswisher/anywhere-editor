@@ -5,12 +5,11 @@ const path = require( 'path' ),
 	resolveAppPath = ( relativePath ) =>
 		path.resolve( appDirectory, relativePath );
 
-
-	// Required for babel-preset-react-app
+// Required for babel-preset-react-app
 process.env.NODE_ENV = 'production';
 
 module.exports = {
-	mode:'production',
+	mode: 'production',
 	entry: resolveAppPath( 'src/index.js' ),
 	output: {
 		path: resolveAppPath( 'dist' ),
@@ -25,9 +24,7 @@ module.exports = {
 			{
 				test: /\.(js|jsx)$/,
 				exclude: '/node_modules/',
-				include: [
-					resolveAppPath( 'src' ),
-				],
+				include: [ resolveAppPath( 'src' ) ],
 				loader: 'babel-loader',
 				options: {
 					presets: [
@@ -42,5 +39,5 @@ module.exports = {
 			},
 		],
 	},
-	 externals: [nodeExternals()],
+	externals: [ nodeExternals() ],
 };

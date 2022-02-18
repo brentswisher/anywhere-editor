@@ -1,15 +1,16 @@
 const path = require( 'path' ),
- 	fs = require( 'fs' ),
- 	HtmlWebpackPlugin = require( 'html-webpack-plugin' ),
+	fs = require( 'fs' ),
+	HtmlWebpackPlugin = require( 'html-webpack-plugin' ),
 	appDirectory = fs.realpathSync( process.cwd() ),
-	resolveAppPath = ( relativePath ) => path.resolve( appDirectory, relativePath ),
+	resolveAppPath = ( relativePath ) =>
+		path.resolve( appDirectory, relativePath ),
 	host = process.env.HOST || 'localhost';
 
 // Required for babel-preset-react-app
 process.env.NODE_ENV = 'development';
 
 module.exports = {
-	mode:'development',
+	mode: 'development',
 	entry: resolveAppPath( 'demo/src/index.js' ),
 	module: {
 		rules: [
