@@ -7617,7 +7617,7 @@ ul.dropdown[role='menu'] li {
 	padding-right: 1.875rem;
 	box-sizing: border-box;
 	margin-left: 1.5em;
-	clear:right;
+	clear: right;
 }
 
 .position-full-page {
@@ -7646,7 +7646,7 @@ ul.dropdown[role='menu'] li {
 	box-sizing: border-box;
 	margin-left: 1.5em;
 	margin-right: 10.125%;
-	clear:right;
+	clear: right;
 }
 
 /* Fix issue with content flowing between two items when they are set next to each other, may not need once columns are added */
@@ -7696,4 +7696,3 @@ li {
 .modal .button-group {
 	margin-top: 0.75em;
 }
-
