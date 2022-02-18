@@ -100,7 +100,7 @@ function ContentDisplay( props ) {
 				dangerouslySetInnerHTML={ {
 					__html: props.content
 						? props.content
-						: '<br /><p style="text-align:center;" class="stop-drop-cap">[Enter Content Here]</p><br />',
+						: '<br /><p style="text-align:center;">[Enter Content Here]</p><br />',
 				} }
 			></div>
 		</div>

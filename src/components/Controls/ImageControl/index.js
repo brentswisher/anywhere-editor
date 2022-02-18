@@ -246,8 +246,8 @@ function ImageDisplay( props ) {
 	return (
 		<div onClick={ props.onClick }>
 			<br />
-			<p className={ cssClasses[ 'no-drop-cap' ] }>
-				[Click here to upload { props.label } ]
+			<p style={ { textAlign: 'center' } }>
+				[Click here to upload image ]
 			</p>
 			<br />
 		</div>

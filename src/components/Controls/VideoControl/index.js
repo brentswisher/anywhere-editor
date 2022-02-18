@@ -112,8 +112,11 @@ function VideoDisplay( props ) {
 	return (
 		<div onClick={ props.onClick }>
 			<br />
-			<p className={ cssClasses[ 'no-drop-cap' ] }>
-				[Click here to select video]
+			<p
+				style={ { textAlign: 'center' } }
+				className={ cssClasses[ 'no-drop-cap' ] }
+			>
+				[Click here to embed video]
 			</p>
 			<br />
 		</div>

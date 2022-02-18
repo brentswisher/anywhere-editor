@@ -330,22 +330,24 @@ function GalleryEditor( props ) {
 
 function GalleryDisplay( props ) {
 	const cssClasses = useSelector( selectCssClasses );
-	return (
-		<div className={ cssClasses[ 'gallery' ] } onClick={ props.onClick }>
-			{ props.title && (
-				<h2
-					className={
-						cssClasses[ `text-${ props.headingPosition }` ]
-					}
-				>
-					{ ' ' }
-					{ props.title }{ ' ' }
-				</h2>
-			) }
-			<div className={ cssClasses[ 'gallery-items' ] }>
-				{ props.images.length &&
-				Object.keys( props.images[ 0 ].src ).length ? (
-					props.images.map( ( image, index ) => {
+	if ( props.images.length && Object.keys( props.images[ 0 ].src ).length ) {
+		return (
+			<div
+				className={ cssClasses[ 'gallery' ] }
+				onClick={ props.onClick }
+			>
+				{ props.title && (
+					<h2
+						className={
+							cssClasses[ `text-${ props.headingPosition }` ]
+						}
+					>
+						{ ' ' }
+						{ props.title }{ ' ' }
+					</h2>
+				) }
+				<div className={ cssClasses[ 'gallery-items' ] }>
+					{ props.images.map( ( image, index ) => {
 						const displaySrc =
 							( props.thumbnailPath !== ''
 								? `${ props.thumbnailPath }/`
@@ -373,22 +375,23 @@ function GalleryDisplay( props ) {
 								) }
 							</div>
 						);
-					} )
-				) : (
-					<p style={ { margin: '1em 0' } }>
-						[Click here to upload images to the gallery]
-					</p>
+					} ) }
+				</div>
+				{ props.caption && props.caption.length && (
+					<div
+						className={ `${ cssClasses[ 'gallery-item' ] } ${
+							cssClasses[ 'text-' + props.captionPosition ]
+						}` }
+						dangerouslySetInnerHTML={ { __html: props.caption } }
+					/>
 				) }
 			</div>
-			{ props.caption && props.caption.length && (
-				<div
-					className={ `${ cssClasses[ 'gallery-item' ] } ${
-						cssClasses[ 'text-' + props.captionPosition ]
-					}` }
-					dangerouslySetInnerHTML={ { __html: props.caption } }
-				/>
-			) }
-		</div>
+		);
+	}
+	return (
+		<p style={ ( { margin: '1em 0' }, { textAlign: 'center' } ) }>
+			[Click here to upload images to the gallery]
+		</p>
 	);
 }
 
