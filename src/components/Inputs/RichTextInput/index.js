@@ -67,7 +67,8 @@ export function RichTextInput( {
 						link_default_protocol: 'https',
 						quickbars_insert_toolbar: false,
 						quickbars_selection_toolbar: 'bold italic | quicklink',
-						valid_elements: 'p,ul,ol,li,strong,em,sup,sub,a[href]',
+						valid_elements:
+							'p,ul,ol,li,strong,em,sup,sub,a[href],br',
 					} }
 					onEditorChange={ onChange }
 					value={ value || '' }
