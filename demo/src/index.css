@@ -7617,6 +7617,7 @@ ul.dropdown[role='menu'] li {
 	padding-right: 1.875rem;
 	box-sizing: border-box;
 	margin-left: 1.5em;
+	clear:right;
 }
 
 .position-full-page {
@@ -7645,6 +7646,19 @@ ul.dropdown[role='menu'] li {
 	box-sizing: border-box;
 	margin-left: 1.5em;
 	margin-right: 10.125%;
+	clear:right;
+}
+
+/* Fix issue with content flowing between two items when they are set next to each other, may not need once columns are added */
+.position-left + .position-right + .position-full,
+.position-right + .position-left + .position-full,
+.position-offset-left + .position-offset-right + .position-full,
+.position-offset-right + .position-offset-left + .position-full,
+.position-offset-left + .position-right + .position-full,
+.position-offset-right + .position-left + .position-full,
+.position-left + .position-offset-right + .position-full,
+.position-right + .position-offset-left + .position-full {
+	clear: both;
 }
 
 p,
@@ -7682,3 +7696,4 @@ li {
 .modal .button-group {
 	margin-top: 0.75em;
 }
+
