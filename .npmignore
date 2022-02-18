@@ -3,4 +3,11 @@ src
 demo
 .babelrc
 .gitignore
-webpack.config.js
+.husky
+.storybook
+.eslintrc.js
+.prettierignore
+.prettierrc.js
+babel.config.json
+jest.config.js
+webpack.*.js
