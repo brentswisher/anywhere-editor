@@ -105,7 +105,7 @@
 		"jest-circus": "^27.5.1",
 		"jest-resolve": "^27.5.1",
 		"lint-staged": "^11.2.6",
-		"prettier": "npm:wp-prettier@^2.2.1-beta-1",
+		"prettier": "npm:wp-prettier@latest",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"regenerator-runtime": "^0.13.9",
