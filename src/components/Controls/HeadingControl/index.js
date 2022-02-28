@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextInput } from '../../Inputs';
+import { TextInput, SelectInput } from '../../Inputs';
 import EditModal from '../../EditModal';
 
 import { useSelector } from 'react-redux';
@@ -39,14 +39,14 @@ HeadingControl.defaultProps = {
 
 function HeadingEditor( props ) {
 	const [ text, setText ] = useState( props.text ),
-		// [ level, setLevel ] = useState( props.level ),
+		[ level, setLevel ] = useState( props.level ),
 		[ error, setError ] = useState( '' ),
 		saveChanges = ( e ) => {
 			e.preventDefault();
 			if ( props.required && ! text.length ) {
 				setError( 'Please enter an article heading to continue' );
 			} else {
-				props.setData( { text, level: 1 } );
+				props.setData( { text, level } );
 				setError( '' );
 				props.toggleEditable();
 			}
@@ -61,10 +61,20 @@ function HeadingEditor( props ) {
 		>
 			<TextInput
 				name={ props.name + '_text' }
-				fieldLabel="Heading Text"
+				label="Heading Text"
 				autoFocus={ true }
 				value={ text }
 				onChange={ setText }
+			/>
+			<SelectInput
+				name={ props.name + '_level' }
+				label="Heading Level"
+				value={ level }
+				onChange={ setLevel }
+				options={ [
+					{ title: 'Main Heading (Limit One Per Page)', value: '1' },
+					{ title: 'Sub-Heading', value: '2' },
+				] }
 			/>
 		</EditModal>
 	);
