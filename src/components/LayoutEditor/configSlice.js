@@ -68,6 +68,8 @@ const initialState = {
 		'pull-quote-spacing-large': 'pull-quote-spacing-large',
 		'pull-quote-title': '',
 		'pull-quote': 'pull-quote',
+		'social-share-container': 'social-share-container',
+		'social-share-icon': 'social-share-icon',
 		'sr-only': 'show-for-sr',
 		'tab-content': 'tabs-content',
 		'tab-group': 'tabs',

@@ -7696,3 +7696,16 @@ li {
 .modal .button-group {
 	margin-top: 0.75em;
 }
+
+.social-share-container {
+	text-align: right;
+}
+
+.social-share-icon {
+	width: 1.5em;
+	display: inline-block;
+	margin-right: 0.5em;
+}
+.social-share-icon svg {
+	fill: #767676;
+}

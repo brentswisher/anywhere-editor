@@ -13,6 +13,7 @@ const App = () => {
 					'Quote',
 					'Video',
 					'Image',
+					'SocialShare',
 				] }
 			/>
 		</div>

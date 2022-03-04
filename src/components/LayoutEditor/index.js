@@ -20,6 +20,7 @@ import {
 	ImageControl,
 	QuoteControl,
 	VideoControl,
+	SocialShareControl,
 } from '../Controls/';
 
 export function LayoutEditor( {
@@ -61,6 +62,11 @@ export function LayoutEditor( {
 			Quote: {
 				control: QuoteControl,
 				displayName: 'Quote',
+				isMainItem: true,
+			},
+			SocialShare: {
+				control: SocialShareControl,
+				displayName: 'Social Share',
 				isMainItem: true,
 			},
 			...customControls,
