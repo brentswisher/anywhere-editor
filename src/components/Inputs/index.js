@@ -4,3 +4,4 @@ export { RichTextInput } from './RichTextInput';
 export { ImageInput } from './ImageInput';
 export { SelectInput } from './SelectInput';
 export { TextInput } from './TextInput';
+export { CheckBoxInput } from './CheckBoxInput';
