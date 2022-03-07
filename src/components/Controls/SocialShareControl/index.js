@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckBoxInput } from '../../Inputs';
+import { SelectInput, CheckBoxInput } from '../../Inputs';
 import EditModal from '../../EditModal';
 
 import { useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ export function SocialShareControl( {
 	showTwitter,
 	showLinkedIn,
 	showEmail,
+	textAlign,
 	setData,
 	required,
 } ) {
@@ -23,6 +24,7 @@ export function SocialShareControl( {
 				showTwitter={ showTwitter }
 				showLinkedIn={ showLinkedIn }
 				showEmail={ showEmail }
+				textAlign={ textAlign }
 				required={ required }
 				setData={ setData }
 				toggleEditable={ toggleEditable }
@@ -35,6 +37,7 @@ export function SocialShareControl( {
 			showTwitter={ showTwitter }
 			showLinkedIn={ showLinkedIn }
 			showEmail={ showEmail }
+			textAlign={ textAlign }
 			onClick={ () => toggleEditable() }
 		/>
 	);
@@ -45,6 +48,7 @@ SocialShareControl.defaultProps = {
 	showTwitter: true,
 	showLinkedIn: true,
 	showEmail: true,
+	textAlign: 'center',
 	required: false,
 };
 
@@ -52,6 +56,7 @@ function SocialShareEditor( props ) {
 	const [ showFacebook, setShowFacebook ] = useState( props.showFacebook ),
 		[ showTwitter, setShowTwitter ] = useState( props.showTwitter ),
 		[ showLinkedIn, setShowLinkedIn ] = useState( props.showLinkedIn ),
+		[ textAlign, setTextAlign ] = useState( props.textAlign ),
 		[ showEmail, setShowEmail ] = useState( props.showEmail ),
 		saveChanges = ( e ) => {
 			e.preventDefault();
@@ -60,6 +65,7 @@ function SocialShareEditor( props ) {
 				showTwitter,
 				showLinkedIn,
 				showEmail,
+				textAlign,
 			} );
 			props.toggleEditable();
 		},
@@ -95,6 +101,26 @@ function SocialShareEditor( props ) {
 				checked={ showEmail }
 				onChange={ setShowEmail }
 			/>
+			<SelectInput
+				name="textAlign"
+				label="Alignment"
+				value={ textAlign }
+				options={ [
+					{
+						value: 'left',
+						title: 'Left',
+					},
+					{
+						value: 'right',
+						title: 'Right',
+					},
+					{
+						value: 'center',
+						title: 'Centered',
+					},
+				] }
+				onChange={ setTextAlign }
+			/>
 		</EditModal>
 	);
 }
@@ -104,7 +130,11 @@ function SocialShareDisplay( props ) {
 	return (
 		<div
 			onClick={ props.onClick }
-			className={ cssClasses[ 'social-share-container' ] }
+			className={
+				cssClasses[ 'social-share-container' ] +
+				' ' +
+				cssClasses[ `text-align-${ props.textAlign }` ]
+			}
 		>
 			{ props.showFacebook && (
 				<span className={ cssClasses[ 'social-share-icon' ] }>

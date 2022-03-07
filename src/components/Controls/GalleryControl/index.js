@@ -65,7 +65,7 @@ GalleryControl.defaultProps = {
 	thumbnailPath: '',
 	title: '',
 	caption: '',
-	captionPosition: 'right',
+	captionPosition: 'center',
 	headingPosition: 'left',
 	editing: false,
 };
