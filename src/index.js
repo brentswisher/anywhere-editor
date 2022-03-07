@@ -21,7 +21,6 @@ export function AnywhereEditor( {
 		initalContent = [
 			{
 				id: '5249',
-				type: 'article-content',
 				position: 'position-offset-full',
 				innerContent: [
 					{
@@ -33,7 +32,6 @@ export function AnywhereEditor( {
 			},
 			{
 				id: '9544',
-				type: 'article-content',
 				position: 'position-full',
 				innerContent: [
 					{

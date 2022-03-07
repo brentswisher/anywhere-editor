@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
 	cssClasses: {
 		active: 'is-active',
-		'article-content': 'article-content',
 		'block-actions-active': 'menu chunkActions chunkActions-full is-active',
 		'block-actions': 'menu chunkActions chunkActions-full',
 		'block-list': 'block-list',
@@ -24,7 +23,7 @@ const initialState = {
 		'color-picker-sample': 'color-picker-sample',
 		'color-picker': 'color-picker',
 		'content-body': '',
-		'content-buttons': 'article-content content-buttons button-group',
+		'content-buttons': 'position-full content-buttons button-group',
 		'content-heading': '',
 		'control-container-active': 'block is-active',
 		'control-container': 'block',

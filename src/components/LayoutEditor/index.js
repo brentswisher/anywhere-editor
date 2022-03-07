@@ -206,7 +206,6 @@ export function LayoutEditor( {
 									id: parseInt(
 										Math.random() * 10000
 									).toString(),
-									type: 'article-content',
 									position: defaultPosition,
 									innerContent: [
 										{
