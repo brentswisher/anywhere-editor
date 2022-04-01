@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
-import { TextInput, SelectInput, RichTextInput } from '../../Inputs';
+import {
+	ColorInput,
+	RichTextInput,
+	SelectInput,
+	TextInput,
+} from '../../Inputs';
 import EditModal from '../../EditModal';
 
 import { useSelector } from 'react-redux';
-import { selectCssClasses } from '../../LayoutEditor/configSlice';
+import { selectCssClasses, selectColors } from '../../LayoutEditor/configSlice';
 
 export function ContentControl( {
 	name,
 	title,
 	content,
 	textAlign,
+	color,
 	setData,
 	required,
 } ) {
 	const [ editing, setEditing ] = useState( false ),
+		colorOptions = useSelector( selectColors ),
 		toggleEditable = () => setEditing( ! editing );
 
 	if ( editing ) {
@@ -22,6 +29,8 @@ export function ContentControl( {
 				title={ title }
 				content={ content }
 				textAlign={ textAlign }
+				color={ color }
+				colors={ colorOptions }
 				setData={ setData }
 				toggleEditable={ toggleEditable }
 				name={ name }
@@ -33,6 +42,7 @@ export function ContentControl( {
 			title={ title }
 			content={ content }
 			textAlign={ textAlign }
+			color={ color }
 			onClick={ toggleEditable }
 		/>
 	);
@@ -42,6 +52,7 @@ ContentControl.defaultProps = {
 	title: '',
 	content: '',
 	textAlign: 'left',
+	color: '',
 	editing: false,
 };
 
@@ -57,6 +68,7 @@ function ContentEditor( props ) {
 		[ title, setTitle ] = useState( props.title ),
 		[ content, setContent ] = useState( props.content ),
 		[ textAlign, setTextAlign ] = useState( props.textAlign ),
+		[ color, setColor ] = useState( props.color ),
 		[ error, setError ] = useState( '' ),
 		saveChanges = ( e ) => {
 			e.preventDefault();
@@ -67,6 +79,7 @@ function ContentEditor( props ) {
 					title,
 					content,
 					textAlign,
+					color,
 				} );
 				setError( '' );
 				props.toggleEditable();
@@ -114,6 +127,13 @@ function ContentEditor( props ) {
 				value={ content }
 				onChange={ setContent }
 			/>
+			<ColorInput
+				name="color"
+				label="Font Color"
+				colors={ props.colors }
+				value={ color }
+				onChange={ setColor }
+			/>
 		</EditModal>
 	);
 }
@@ -128,6 +148,7 @@ function ContentDisplay( props ) {
 				</h2>
 			) }
 			<div
+				style={ { color: props.color } }
 				className={
 					cssClasses[ 'content-body' ] +
 					' ' +

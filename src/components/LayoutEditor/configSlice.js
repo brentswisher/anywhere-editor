@@ -85,26 +85,42 @@ const initialState = {
 		'video-container': 'responsive-embed widescreen',
 		visible: 'visible',
 	},
+	colors: {
+		black: '#0a0a0a',
+		brown: '#6F4923',
+		gray: '#757575',
+		blue: '#0065a4',
+		teal: '#006666',
+	},
 };
 
 export const configSlice = createSlice( {
 	name: 'config',
 	initialState,
 	reducers: {
-		mergeConfig: ( state, action ) => {
+		mergeCssClasses: ( state, action ) => {
 			state.cssClasses = {
 				...state.cssClasses,
-				...action.payload.cssClasses,
+				...action.payload,
 			};
 		},
-		setConfig: ( state, action ) => {
-			state.cssClasses = { ...action.payload.cssClasses };
+		setCssClasses: ( state, action ) => {
+			state.cssClasses = { ...action.payload };
+		},
+		setColors: ( state, action ) => {
+			state.colors = { ...action.payload };
 		},
 	},
 } );
 
-export const { setConfig, mergeConfig, setCssClasses } = configSlice.actions;
+export const {
+	setConfig,
+	mergeCssClasses,
+	setCssClasses,
+	setColors,
+} = configSlice.actions;
 
 export const selectCssClasses = ( state ) => state.config.cssClasses;
+export const selectColors = ( state ) => state.config.colors;
 
 export default configSlice.reducer;

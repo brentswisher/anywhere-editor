@@ -12,6 +12,7 @@ export function ColorInput( {
 	onChange,
 	labelHidden,
 	helpText,
+	showDefault,
 } ) {
 	const cssClasses = useSelector( selectCssClasses );
 	return (
@@ -23,12 +24,16 @@ export function ColorInput( {
 				className={ cssClasses[ 'color-picker' ] }
 				style={ { display: 'flex' } }
 			>
-				<div
-					className={ cssClasses[ 'color-picker-sample' ] }
-					style={ {
-						backgroundColor: colors[ value ],
-					} }
-				></div>
+				{ value && (
+					<div
+						className={ cssClasses[ 'color-picker-sample' ] }
+						style={ {
+							backgroundColor: value,
+							width: '3em',
+							height: '2.45em',
+						} }
+					></div>
+				) }
 				<div>
 					<select
 						name={ name }
@@ -36,9 +41,15 @@ export function ColorInput( {
 						value={ value }
 						onChange={ ( e ) => onChange( e.target.value ) }
 					>
+						{ showDefault && (
+							<option value="" key={ name + '_default' }>
+								{ ' ' }
+								Default
+							</option>
+						) }
 						{ Object.keys( colors ).map( ( item, index ) => (
 							<option
-								value={ item.value }
+								value={ colors[ item ] }
 								key={ name + '_' + index }
 							>
 								{ item }
@@ -49,8 +60,7 @@ export function ColorInput( {
 			</div>
 			{ helpText && (
 				<span className={ cssClasses[ 'help-text' ] }>
-					{ ' ' }
-					{ helpText }{ ' ' }
+					{ helpText }
 				</span>
 			) }
 		</div>
@@ -58,16 +68,11 @@ export function ColorInput( {
 }
 
 ColorInput.defaultProps = {
-	value: 'black',
 	name: 'ColorInput',
-	colors: {
-		black: '#0a0a0a',
-		brown: '#6F4923',
-		gray: '#757575',
-		'gvsu-blue': '#0065a4',
-		teal: '#006666',
-	},
+	colors: {},
+	value: '',
 	label: 'Color:',
+	showDefault: true,
 };
 
 export default ColorInput;

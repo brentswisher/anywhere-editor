@@ -10,7 +10,7 @@ import {
 	setContentItemData,
 } from './layoutSlice';
 
-import { selectCssClasses, mergeConfig } from './configSlice';
+import { selectCssClasses, mergeCssClasses, setColors } from './configSlice';
 
 import ControlBlock from '../ControlBlock';
 import {
@@ -75,7 +75,12 @@ export function LayoutEditor( {
 		dispatch( setContent( initialContent ) );
 	}, [ dispatch, initialContent ] );
 	useEffect( () => {
-		dispatch( mergeConfig( config ) );
+		if ( config.cssClasses ) {
+			dispatch( mergeCssClasses( config.cssClasses ) );
+		}
+		if ( config.colors ) {
+			dispatch( setColors( config.colors ) );
+		}
 	}, [ dispatch, config ] );
 
 	return (
