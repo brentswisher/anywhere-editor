@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
-import { TextInput, SelectInput } from '../../Inputs';
+import { ColorInput, SelectInput, TextInput } from '../../Inputs';
 import EditModal from '../../EditModal';
 
 import { useSelector } from 'react-redux';
-import { selectCssClasses } from '../../LayoutEditor/configSlice';
+import { selectCssClasses, selectColors } from '../../LayoutEditor/configSlice';
 
-export function HeadingControl( { name, level, text, setData, required } ) {
+export function HeadingControl( {
+	name,
+	level,
+	text,
+	color,
+	setData,
+	required,
+} ) {
 	const [ editing, setEditing ] = useState( false ),
+		colorOptions = useSelector( selectColors ),
 		toggleEditable = () => setEditing( ! editing );
 
 	if ( editing ) {
@@ -14,6 +22,8 @@ export function HeadingControl( { name, level, text, setData, required } ) {
 			<HeadingEditor
 				text={ text }
 				level={ level }
+				color={ color }
+				colors={ colorOptions }
 				required={ required }
 				setData={ setData }
 				toggleEditable={ toggleEditable }
@@ -25,6 +35,7 @@ export function HeadingControl( { name, level, text, setData, required } ) {
 		<HeadingDisplay
 			text={ text }
 			level={ level }
+			color={ color }
 			name={ name }
 			onClick={ () => toggleEditable() }
 		/>
@@ -34,19 +45,21 @@ export function HeadingControl( { name, level, text, setData, required } ) {
 HeadingControl.defaultProps = {
 	text: '',
 	level: 1,
+	color: '',
 	required: false,
 };
 
 function HeadingEditor( props ) {
 	const [ text, setText ] = useState( props.text ),
 		[ level, setLevel ] = useState( props.level ),
+		[ color, setColor ] = useState( props.color ),
 		[ error, setError ] = useState( '' ),
 		saveChanges = ( e ) => {
 			e.preventDefault();
 			if ( props.required && ! text.length ) {
 				setError( 'Please enter an article heading to continue' );
 			} else {
-				props.setData( { text, level } );
+				props.setData( { text, level, color } );
 				setError( '' );
 				props.toggleEditable();
 			}
@@ -76,6 +89,13 @@ function HeadingEditor( props ) {
 					{ title: 'Sub-Heading', value: '2' },
 				] }
 			/>
+			<ColorInput
+				name="color"
+				label="Font Color"
+				colors={ props.colors }
+				value={ color }
+				onChange={ setColor }
+			/>
 		</EditModal>
 	);
 }
@@ -89,6 +109,7 @@ function HeadingDisplay( props ) {
 		<HeadingEl
 			tabIndex="0"
 			onClick={ props.onClick }
+			style={ { color: props.color } }
 			className={ cssClasses[ `heading-${ props.level }` ] }
 		>
 			{ props.text ? props.text : '[Enter heading text here]' }
