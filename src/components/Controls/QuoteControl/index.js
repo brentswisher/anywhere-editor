@@ -3,7 +3,7 @@ import { TextInput, ColorInput, SelectInput } from '../../Inputs';
 import EditModal from '../../EditModal';
 
 import { useSelector } from 'react-redux';
-import { selectCssClasses } from '../../LayoutEditor/configSlice';
+import { selectCssClasses, selectColors } from '../../LayoutEditor/configSlice';
 
 export function QuoteControl( {
 	name,
@@ -16,6 +16,7 @@ export function QuoteControl( {
 	setData,
 } ) {
 	const [ editing, setEditing ] = useState( false ),
+		colorOptions = useSelector( selectColors ),
 		toggleEditable = () => setEditing( ! editing );
 
 	if ( editing ) {
@@ -27,6 +28,8 @@ export function QuoteControl( {
 				border={ border }
 				showIcon={ showIcon }
 				author={ author }
+				color={ color }
+				colors={ colorOptions }
 				setData={ setData }
 				toggleEditable={ toggleEditable }
 				name={ name }
@@ -41,6 +44,7 @@ export function QuoteControl( {
 			border={ border }
 			showIcon={ showIcon }
 			author={ author }
+			color={ color }
 			onClick={ toggleEditable }
 		/>
 	);
@@ -49,7 +53,7 @@ export function QuoteControl( {
 QuoteControl.defaultProps = {
 	text: '',
 	title: '',
-	color: 'black',
+	color: '',
 	border: 'none',
 	showIcon: '1',
 	author: '',
@@ -120,6 +124,7 @@ function QuoteEditor( props ) {
 			<ColorInput
 				name={ props.name + '_color' }
 				label="Quote Color"
+				colors={ props.colors }
 				value={ color }
 				onChange={ setColor }
 			/>
@@ -143,10 +148,6 @@ function QuoteDisplay( props ) {
 	const cssClasses = useSelector( selectCssClasses ),
 		classList = [ cssClasses[ 'pull-quote' ] ];
 
-	if ( props.color ) {
-		classList.push( cssClasses[ `color-${ props.color }` ] );
-	}
-
 	if ( props.border ) {
 		classList.push( cssClasses[ `border-${ props.border }` ] );
 	}
@@ -158,22 +159,37 @@ function QuoteDisplay( props ) {
 		<blockquote
 			className={ classList.join( ' ' ) }
 			onClick={ props.onClick }
+			style={ { color: props.color } }
 		>
 			{ props.showIcon === '1' && (
-				<div className={ cssClasses[ 'pull-quote-icon' ] }>&ldquo;</div>
+				<div
+					className={ cssClasses[ 'pull-quote-icon' ] }
+					style={ { color: props.color } }
+				>
+					&ldquo;
+				</div>
 			) }
 			{ props.title && (
-				<h2 className={ cssClasses[ 'pull-quote-title' ] }>
+				<h2
+					className={ cssClasses[ 'pull-quote-title' ] }
+					style={ { color: props.color } }
+				>
 					{ props.title }
 				</h2>
 			) }
-			<p className={ cssClasses[ 'pull-quote-content' ] }>
+			<p
+				className={ cssClasses[ 'pull-quote-content' ] }
+				style={ { color: props.color } }
+			>
 				&ldquo;
 				{ props.text ? props.text : '  [Enter Quote Text Here]  ' }
 				&rdquo;
 			</p>
 			{ props.author && (
-				<cite className={ cssClasses[ 'pull-quote-author' ] }>
+				<cite
+					className={ cssClasses[ 'pull-quote-author' ] }
+					style={ { color: props.color } }
+				>
 					{ ' ' }
 					{ props.author }{ ' ' }
 				</cite>
