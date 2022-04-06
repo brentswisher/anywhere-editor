@@ -94,11 +94,18 @@ function ContentEditor( props ) {
 			error={ error }
 		>
 			<TextInput
-				fieldName="contentTitle"
-				fieldLabel="Heading"
+				name="contentTitle"
+				label="Heading"
 				autoFocus={ true }
 				value={ title }
 				onChange={ setTitle }
+			/>
+			<RichTextInput
+				name="contentContent"
+				label="Content"
+				modules={ modules }
+				value={ content }
+				onChange={ setContent }
 			/>
 			<SelectInput
 				name="textAlign"
@@ -120,13 +127,6 @@ function ContentEditor( props ) {
 				] }
 				onChange={ setTextAlign }
 			/>
-			<RichTextInput
-				name="contentContent"
-				label="Content"
-				modules={ modules }
-				value={ content }
-				onChange={ setContent }
-			/>
 			<ColorInput
 				name="color"
 				label="Font Color"
@@ -141,14 +141,13 @@ function ContentEditor( props ) {
 function ContentDisplay( props ) {
 	const cssClasses = useSelector( selectCssClasses );
 	return (
-		<div onClick={ props.onClick }>
+		<div onClick={ props.onClick } style={ { color: props.color } }>
 			{ props.title && (
 				<h2 className={ cssClasses[ 'content-heading' ] }>
 					{ props.title }
 				</h2>
 			) }
 			<div
-				style={ { color: props.color } }
 				className={
 					cssClasses[ 'content-body' ] +
 					' ' +
