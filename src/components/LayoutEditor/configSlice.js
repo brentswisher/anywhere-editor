@@ -86,11 +86,12 @@ const initialState = {
 		visible: 'visible',
 	},
 	colors: {
-		black: '#0a0a0a',
-		brown: '#6F4923',
-		gray: '#757575',
-		blue: '#0065a4',
-		teal: '#006666',
+		black: '#1E212B',
+		orange: '#fa9f42ff',
+		teal: '#297373ff',
+		'light-blue': '#adfcf9ff',
+		gray: '#9a8f97ff',
+		red: '#ad343eff',
 	},
 };
 
