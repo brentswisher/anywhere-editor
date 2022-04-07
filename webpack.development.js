@@ -12,6 +12,9 @@ process.env.NODE_ENV = 'development';
 module.exports = {
 	mode: 'development',
 	entry: resolveAppPath( 'demo/src/index.js' ),
+	output: {
+		path: resolveAppPath( 'demo/dist' ),
+	},
 	module: {
 		rules: [
 			{
