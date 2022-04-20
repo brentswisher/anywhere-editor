@@ -23,6 +23,12 @@ The editor is written in React and published via npm. It can be installed using
 
 `npm i anywhere-editor`
 
+## History/Development
+
+This project started as a part of a project I worked on at GVSU, and I thought it might be useful to someone else. They agreed to open source it, so here it is! It's still in it's early stages but I wanted to get it out there for feedback, expect lots of updates soon!
+
+
+
 
 
 
