@@ -124,6 +124,7 @@ function GalleryEditor( props ) {
 						caption: '',
 					},
 				} );
+				setCurrentTab( images.length );
 			} else {
 				setError(
 					`You may currently only add up to  ${ props.maxImages } images to a gallery`
