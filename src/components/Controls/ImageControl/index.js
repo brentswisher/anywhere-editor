@@ -119,6 +119,12 @@ function ImageEditor( props ) {
 			cancelChanges={ cancelChanges }
 			error={ error }
 		>
+			<TextInput
+				name="title"
+				label="Heading:"
+				value={ title }
+				onChange={ setTitle }
+			/>
 			<ImageInput
 				name="image"
 				label="Image"
@@ -200,12 +206,6 @@ function ImageEditor( props ) {
 					},
 				] }
 				onChange={ setBorder }
-			/>
-			<TextInput
-				name="title"
-				label="Heading:"
-				value={ title }
-				onChange={ setTitle }
 			/>
 		</EditModal>
 	);
