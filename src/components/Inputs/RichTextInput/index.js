@@ -40,7 +40,7 @@ export function RichTextInput( {
 } ) {
 	const cssClasses = useSelector( selectCssClasses ),
 		defaultToolbar = [
-			'undo redo bold italic | bullist numlist | superscript subscript | removeformat',
+			'undo redo bold italic | bullist numlist | superscript subscript | link | removeformat',
 		];
 	return (
 		<React.Fragment>
