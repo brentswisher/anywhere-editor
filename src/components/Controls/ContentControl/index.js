@@ -141,18 +141,18 @@ function ContentEditor( props ) {
 function ContentDisplay( props ) {
 	const cssClasses = useSelector( selectCssClasses );
 	return (
-		<div onClick={ props.onClick } style={ { color: props.color } }>
+		<div
+			onClick={ props.onClick }
+			style={ { color: props.color } }
+			className={ cssClasses[ `text-align-${ props.textAlign }` ] }
+		>
 			{ props.title && (
 				<h2 className={ cssClasses[ 'content-heading' ] }>
 					{ props.title }
 				</h2>
 			) }
 			<div
-				className={
-					cssClasses[ 'content-body' ] +
-					' ' +
-					cssClasses[ `text-align-${ props.textAlign }` ]
-				}
+				className={ cssClasses[ 'content-body' ] }
 				dangerouslySetInnerHTML={ {
 					__html: props.content
 						? props.content
