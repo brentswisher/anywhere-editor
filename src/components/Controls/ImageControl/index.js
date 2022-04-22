@@ -71,7 +71,7 @@ ImageControl.defaultProps = {
 	thumbnailPath: '',
 	hasUpload: false,
 	caption: '',
-	captionPosition: 'right',
+	captionPosition: 'left',
 	mobilePosition: 'full',
 	border: '',
 	editing: false,
@@ -149,7 +149,7 @@ function ImageEditor( props ) {
 			/>
 			<SelectInput
 				name="captionPosition"
-				label="Caption Alignment"
+				label="Text Alignment"
 				value={ captionPosition }
 				options={ [
 					{
@@ -224,6 +224,9 @@ function ImageDisplay( props ) {
 		// classString += ` border-${ props.border }`;
 		classList.push( cssClasses[ `border-${ props.border }` ] );
 	}
+
+	classList.push( cssClasses[ 'text-' + props.captionPosition ] );
+
 	if ( props.src ) {
 		return (
 			<div className={ classList.join( ' ' ) } onClick={ props.onClick }>

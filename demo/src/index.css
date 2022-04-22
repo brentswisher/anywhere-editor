@@ -7051,7 +7051,6 @@ blockquote.color-golden-brown cite,
 	font-family: 'Montserrat', sans-serif;
 	color: #757575;
 	font-style: italic;
-	text-align: right;
 }
 .photo img {
 	width: 100%;
@@ -7069,7 +7068,6 @@ blockquote.color-golden-brown cite,
 }
 .photo .photo-credit {
 	font-size: 0.85em;
-	text-align: right;
 }
 
 .photo-left.photo-mobile-match,
