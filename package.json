@@ -1,6 +1,6 @@
 {
 	"name": "anywhere-editor",
-	"version": "0.1.17",
+	"version": "0.1.18",
 	"description": "React block editor designed to be easy to use in any envionment",
 	"main": "dist/index.js",
 	"scripts": {
