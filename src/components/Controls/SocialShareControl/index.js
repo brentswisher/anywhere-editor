@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SelectInput, CheckBoxInput } from '../../Inputs';
 import EditModal from '../../EditModal';
 
@@ -16,6 +16,16 @@ export function SocialShareControl( {
 } ) {
 	const [ editing, setEditing ] = useState( false ),
 		toggleEditable = () => setEditing( ! editing );
+	// Save the default values to the store, which is a little different than the other blocks
+	useEffect( () => {
+		setData( {
+			showFacebook,
+			showTwitter,
+			showLinkedIn,
+			showEmail,
+			textAlign,
+		} );
+	}, [] );
 
 	if ( editing ) {
 		return (
