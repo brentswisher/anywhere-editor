@@ -363,7 +363,7 @@ function GalleryDisplay( props ) {
 								{ image.caption && (
 									<div
 										className={ `${
-											cssClasses[ 'gallery-item' ]
+											cssClasses[ 'gallery-caption' ]
 										} ${
 											cssClasses[
 												'text-' + props.captionPosition
@@ -380,7 +380,7 @@ function GalleryDisplay( props ) {
 				</div>
 				{ props.caption && props.caption.length && (
 					<div
-						className={ `${ cssClasses[ 'gallery-item' ] } ${
+						className={ `${ cssClasses[ 'gallery-caption' ] } ${
 							cssClasses[ 'text-' + props.captionPosition ]
 						}` }
 						dangerouslySetInnerHTML={ { __html: props.caption } }
