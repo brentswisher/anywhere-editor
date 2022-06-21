@@ -87,11 +87,11 @@ const initialState = {
 	},
 	colors: {
 		black: '#1E212B',
-		orange: '#fa9f42ff',
-		teal: '#297373ff',
-		'light-blue': '#adfcf9ff',
-		gray: '#9a8f97ff',
-		red: '#ad343eff',
+		orange: '#fa9f42',
+		teal: '#297373',
+		'light-blue': '#adfcf9',
+		gray: '#9a8f97',
+		red: '#ad343e',
 	},
 };
 
@@ -114,12 +114,8 @@ export const configSlice = createSlice( {
 	},
 } );
 
-export const {
-	setConfig,
-	mergeCssClasses,
-	setCssClasses,
-	setColors,
-} = configSlice.actions;
+export const { setConfig, mergeCssClasses, setCssClasses, setColors } =
+	configSlice.actions;
 
 export const selectCssClasses = ( state ) => state.config.cssClasses;
 export const selectColors = ( state ) => state.config.colors;
