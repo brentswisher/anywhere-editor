@@ -27,12 +27,12 @@ it( 'should set initial value correctly', () => {
 					teal: '#006666',
 					brown: '#6F4923',
 				} }
-				value="teal"
+				value="#006666"
 			/>
 		),
 		select = container.querySelector( 'select' ),
 		sample = container.querySelector( 'div.color-picker-sample' );
-	expect( select ).toHaveValue( 'teal' );
+	expect( select ).toHaveValue( '#006666' );
 	expect( sample ).toHaveStyle( `background-color: #006666` );
 } );
 
