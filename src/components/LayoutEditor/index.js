@@ -15,12 +15,13 @@ import { selectCssClasses, mergeCssClasses, setColors } from './configSlice';
 import ControlBlock from '../ControlBlock';
 import {
 	ContentControl,
+	FactControl,
 	GalleryControl,
 	HeadingControl,
 	ImageControl,
 	QuoteControl,
-	VideoControl,
 	SocialShareControl,
+	VideoControl,
 } from '../Controls/';
 
 export function LayoutEditor( {
@@ -67,6 +68,11 @@ export function LayoutEditor( {
 			SocialShare: {
 				control: SocialShareControl,
 				displayName: 'Social Share',
+				isMainItem: true,
+			},
+			Fact: {
+				control: FactControl,
+				displayName: 'Quick Fact',
 				isMainItem: true,
 			},
 			...customControls,

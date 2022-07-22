@@ -28,7 +28,6 @@ export function QuoteControl( {
 				border={ border }
 				showIcon={ showIcon }
 				author={ author }
-				color={ color }
 				colors={ colorOptions }
 				setData={ setData }
 				toggleEditable={ toggleEditable }
@@ -44,7 +43,6 @@ export function QuoteControl( {
 			border={ border }
 			showIcon={ showIcon }
 			author={ author }
-			color={ color }
 			onClick={ toggleEditable }
 		/>
 	);

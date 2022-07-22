@@ -14,6 +14,7 @@ const App = () => {
 					'Video',
 					'Image',
 					'SocialShare',
+					'Fact',
 				] }
 			/>
 		</div>

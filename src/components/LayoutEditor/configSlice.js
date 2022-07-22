@@ -93,6 +93,16 @@ const initialState = {
 		gray: '#9a8f97',
 		red: '#ad343e',
 	},
+	icons: {
+		phone: {
+			class: 'fa fa-house',
+			alt: 'House Icon',
+		},
+		camera: {
+			class: 'fa-solid fa-camera',
+			alt: 'Camera Icon',
+		},
+	},
 };
 
 export const configSlice = createSlice( {
@@ -111,13 +121,22 @@ export const configSlice = createSlice( {
 		setColors: ( state, action ) => {
 			state.colors = { ...action.payload };
 		},
+		setIcons: ( state, action ) => {
+			state.icons = { ...action.payload };
+		},
 	},
 } );
 
-export const { setConfig, mergeCssClasses, setCssClasses, setColors } =
-	configSlice.actions;
+export const {
+	setConfig,
+	mergeCssClasses,
+	setCssClasses,
+	setColors,
+	setIcons,
+} = configSlice.actions;
 
 export const selectCssClasses = ( state ) => state.config.cssClasses;
 export const selectColors = ( state ) => state.config.colors;
+export const selectIcons = ( state ) => state.config.icons;
 
 export default configSlice.reducer;

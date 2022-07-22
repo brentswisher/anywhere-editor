@@ -41,7 +41,8 @@ function VideoEditor( props ) {
 		[ videoId, setVideoId ] = useState( props.videoId ),
 		[ error, setError ] = useState( '' ),
 		videoIdRegex = /[\w-]{11}/,
-		validUrlRegex = /(?:https:\/\/(www)?)?(?:youtube.com\/watch\?v=|youtube\.com\/embed\/|youtu\.be\/)([\w-]{11})/,
+		validUrlRegex =
+			/(?:https:\/\/(www)?)?(?:youtube.com\/watch\?v=|youtube\.com\/embed\/|youtu\.be\/)([\w-]{11})/,
 		saveChanges = ( e ) => {
 			e.preventDefault();
 			if ( videoId.length && ! title.length ) {
