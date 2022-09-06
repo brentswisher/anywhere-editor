@@ -1,5 +1,5 @@
 {
-	"name": "anywhere-editor",
+	"name": "@gvsu-webteam/anywhere-editor",
 	"version": "0.1.20",
 	"description": "React block editor designed to be easy to use in any envionment",
 	"main": "dist/index.js",
